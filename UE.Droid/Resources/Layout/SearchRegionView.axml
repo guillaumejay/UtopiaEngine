@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <include
+        layout="@layout/topBar" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:tag="1"
+            android:background="@drawable/CellBorder"
+            local:MvxBind="Text SearchBox[0]"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:id="@+id/searchbox1"
+            android:text="5" />
+        <TextView
+            android:tag="2"
+            android:background="@drawable/CellBorder"
+            local:MvxBind="Text SearchBox[1]"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:id="@+id/searchbox2"
+            android:text="5" />
+        <TextView
+            android:tag="3"
+            android:background="@drawable/CellBorder"
+            local:MvxBind="Text SearchBox[2]"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:id="@+id/searchbox3"
+            android:text="5" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:tag="4"
+            android:background="@drawable/CellBorder"
+            local:MvxBind="Text SearchBox[3]"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:id="@+id/searchbox4"
+            android:text="5" />
+        <TextView
+            android:tag="5"
+            android:background="@drawable/CellBorder"
+            local:MvxBind="Text SearchBox[4]"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:id="@+id/searchbox5"
+            android:text="5" />
+        <TextView
+            android:tag="6"
+            android:background="@drawable/CellBorder"
+            local:MvxBind="Text SearchBox[5]"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:id="@+id/searchbox6"
+            android:text="5" />
+    </LinearLayout>
+    <Button
+        android:tag="0"
+        android:background="@drawable/ButtonPressable"
+        android:id="@+id/dice1"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:text="4"
+        local:MvxBind="Text SearchDice.First;Visibility ButtonVisibility[0],Converter=Visibility" />
+    <Button
+        android:tag="1"
+        android:background="@drawable/ButtonPressable"
+        android:id="@+id/dice2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:text="4"
+        local:MvxBind="Text SearchDice.Second;Visibility ButtonVisibility[1],Converter=Visibility" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <LinearLAyout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

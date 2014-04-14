@@ -1,0 +1,496 @@
+<?xml version="1.0"?>
+<GameState xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <LinkStates>
+    <LinkState ID="1">
+      <Connection ForcedValue="2">
+        <Columns>
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+        </Columns>
+      </Connection>
+    </LinkState>
+    <LinkState ID="2">
+      <Connection ForcedValue="2">
+        <Columns>
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+        </Columns>
+      </Connection>
+       </LinkState>
+    <LinkState ID="3">
+      <Connection ForcedValue="2">
+        <Columns>
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+        </Columns>
+      </Connection>
+      </LinkState>
+    <LinkState ID="4">
+      <Connection ForcedValue="3">
+        <Columns>
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+        </Columns>
+      </Connection>
+      <IsStarted>false</IsStarted>
+    </LinkState>
+    <LinkState ID="5">
+      <Connection ForcedValue="1">
+        <Columns>
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+        </Columns>
+      </Connection>
+    </LinkState>
+    <LinkState ID="0">
+      <Connection ForcedValue="0">
+        <Columns>
+          <Column Bottom="2" ForcedValue="0" Top="6" />
+          <Column Bottom="1" ForcedValue="0" Top="1" />
+          <Column Bottom="1" ForcedValue="0" Top="1" />
+        </Columns>
+      </Connection>
+    </LinkState>
+  </LinkStates>
+  <Constructs>
+    <ConstructState ID="1" Used="false">
+      <ActivationTable1 ForcedValue="0">
+        <Columns>
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+        </Columns>
+      </ActivationTable1>
+      <ActivationTable2 ForcedValue="0">
+        <Columns>
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+        </Columns>
+      </ActivationTable2>
+      <HasBeenFound>true</HasBeenFound>
+      <HasBeenActivated>true</HasBeenActivated>
+    </ConstructState>
+    <ConstructState ID="2" Used="false">
+      <ActivationTable1 ForcedValue="0">
+        <Columns>
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+        </Columns>
+      </ActivationTable1>
+      <ActivationTable2 ForcedValue="0">
+        <Columns>
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+        </Columns>
+      </ActivationTable2>
+      <HasBeenFound>true</HasBeenFound>
+      <HasBeenActivated>true</HasBeenActivated>
+    </ConstructState>
+    <ConstructState ID="3" Used="false">
+      <ActivationTable1 ForcedValue="0">
+        <Columns>
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+        </Columns>
+      </ActivationTable1>
+      <ActivationTable2 ForcedValue="0">
+        <Columns>
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+        </Columns>
+      </ActivationTable2>
+      <HasBeenFound>true</HasBeenFound>
+      <HasBeenActivated>true</HasBeenActivated>
+    </ConstructState>
+    <ConstructState ID="4" Used="false">
+      <ActivationTable1 ForcedValue="0">
+        <Columns>
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+        </Columns>
+      </ActivationTable1>
+      <ActivationTable2 ForcedValue="0">
+        <Columns>
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+        </Columns>
+      </ActivationTable2>
+      <HasBeenFound>true</HasBeenFound>
+      <HasBeenActivated>true</HasBeenActivated>
+    </ConstructState>
+    <ConstructState ID="5" Used="false">
+      <ActivationTable1 ForcedValue="0">
+        <Columns>
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+        </Columns>
+      </ActivationTable1>
+      <ActivationTable2 ForcedValue="0">
+        <Columns>
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+        </Columns>
+      </ActivationTable2>
+      <HasBeenFound>true</HasBeenFound>
+      <HasBeenActivated>true</HasBeenActivated>
+    </ConstructState>
+    <ConstructState ID="6" Used="false">
+      <ActivationTable1 ForcedValue="0">
+        <Columns>
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+        </Columns>
+      </ActivationTable1>
+      <ActivationTable2 ForcedValue="0">
+        <Columns>
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+          <Column Bottom="0" ForcedValue="0" Top="0" />
+        </Columns>
+      </ActivationTable2>
+      <HasBeenFound>true</HasBeenFound>
+      <HasBeenActivated>true</HasBeenActivated>
+    </ConstructState>
+  </Constructs>
+  <CurrentDay>1</CurrentDay>
+  <CurrentHitPoint>6</CurrentHitPoint>
+  <EventCanceledInCurrentRegion>false</EventCanceledInCurrentRegion>
+  <FocusCharmInUseForConstructID>0</FocusCharmInUseForConstructID>
+  <GodsHandEnergy>0</GodsHandEnergy>
+  <Inventory>
+    <Stores>
+	  <Store ComponentId="1" Quantity="4"/>
+        <Store ComponentId="2" Quantity="4"/>
+        <Store ComponentId="3" Quantity="4"/>
+        <Store ComponentId="4" Quantity="4"/>
+      <Store ComponentId="5" Quantity="4"/>
+        <Store ComponentId="6" Quantity="4"/>
+    </Stores>
+    <DowsingRodCharged>true</DowsingRodCharged>
+    <ParalysisWandCharged>true</ParalysisWandCharged>
+    <FocusCharmCharged>true</FocusCharmCharged>
+  </Inventory>
+  <LastPlayed>2013-08-02T21:21:08.6429366-04:00</LastPlayed>
+  <NumberOfSkullsCrossed>0</NumberOfSkullsCrossed>
+  <ParalysisWandInUse>false</ParalysisWandInUse>
+  <RegionStates>
+    <RegionState Index="1">
+      <Events />
+      <SearchBoxes>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="4" ForcedValue="0" Top="1" />
+            <Column Bottom="5" ForcedValue="0" Top="6" />
+            <Column Bottom="2" ForcedValue="0" Top="3" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+      </SearchBoxes>
+      <LegendaryTreasureFound>false</LegendaryTreasureFound>
+    </RegionState>
+    <RegionState Index="2">
+      <Events />
+      <SearchBoxes>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+      </SearchBoxes>
+      <LegendaryTreasureFound>false</LegendaryTreasureFound>
+    </RegionState>
+    <RegionState Index="3">
+      <Events />
+      <SearchBoxes>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+      </SearchBoxes>
+      <LegendaryTreasureFound>false</LegendaryTreasureFound>
+    </RegionState>
+    <RegionState Index="4">
+      <Events />
+      <SearchBoxes>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+      </SearchBoxes>
+      <LegendaryTreasureFound>false</LegendaryTreasureFound>
+    </RegionState>
+    <RegionState Index="5">
+      <Events />
+      <SearchBoxes>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+      </SearchBoxes>
+      <LegendaryTreasureFound>false</LegendaryTreasureFound>
+    </RegionState>
+    <RegionState Index="6">
+      <Events />
+      <SearchBoxes>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+        <Table ForcedValue="0">
+          <Columns>
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+            <Column Bottom="0" ForcedValue="0" Top="0" />
+          </Columns>
+        </Table>
+      </SearchBoxes>
+      <LegendaryTreasureFound>false</LegendaryTreasureFound>
+    </RegionState>
+  </RegionStates>
+  <UnmodifiedPerfectZeroSearch>0</UnmodifiedPerfectZeroSearch>
+  <WasteBasket>0</WasteBasket>
+  <FinalActivationModifier>0</FinalActivationModifier>
+</GameState>

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ArrayOfQuote xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Quote>
+    <Text>
+      <LocalizedText Culture="US" Text="Doomsday is inevitable"/>
+      <LocalizedText Culture="FR" Text="La fin du monde est inévitable"/>
+    </Text>
+  </Quote>
+</ArrayOfQuote>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <include
+        android:id="@+id/cell1"
+        layout="@layout/topBar" />
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:textSize="20dp"
+        local:MvxBind="Click GoToSearchCommand"
+        android:text="Search"
+        android:scaleType="center" />
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:textSize="20dp"
+        local:MvxBind="Click RestCommand;Visibility CanRest,Converter=Visibility"
+        android:text="Rest"
+        android:scaleType="center" />
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:textSize="20dp"
+        local:MvxBind="Click ActivateCommand;Visibility CanActivate,Converter=Visibility"
+        android:text="Activate"
+        android:scaleType="center" />
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:textSize="20dp"
+        local:MvxBind="Click LinkCommand;Visibility CanActivate,Converter=Visibility"
+        android:text="Link"
+        android:scaleType="center" />
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:textSize="20dp"
+        local:MvxBind="Click FinalActivateCommand;Visibility CanActivate,Converter=Visibility"
+        android:text="Final Activatation"
+        android:scaleType="center" />
+</LinearLayout>

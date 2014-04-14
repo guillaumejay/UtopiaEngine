@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<GameDefinition ID="1" EventsActivated="true">
+  <MaxHitPoint>6</MaxHitPoint>
+  <NumberOfSkulls>8</NumberOfSkulls>
+  <TimeTrack>0,E,0,0,E,0,0,E,0,0,E,0,0,E,0,0,E,0,0,E,0,0</TimeTrack>
+  <LegendaryTreasures>
+    <LegendaryTreasure IndexRegion="1" ID="1">
+      <Name>
+        <LocalizedText Culture="US" Text="Ice Plate"/>
+        <LocalizedText Culture="FR" Text="Armure de Glace"/>
+      </Name>
+      <Ability>BetterDefense</Ability>
+    </LegendaryTreasure>
+    <LegendaryTreasure IndexRegion="2" ID="2">
+      <Name>
+        <LocalizedText Culture="US" Text="Bracelet of Ios"/>
+        <LocalizedText Culture="FR" Text="Bracelet d'Ios"/>
+      </Name>
+      <Ability>ChargeGodsHandOnActivation</Ability>
+    </LegendaryTreasure>
+    <LegendaryTreasure IndexRegion="3" ID="3">
+      <Name>
+        <LocalizedText Culture="US" Text="Shimmering Moonlace"/>
+        <LocalizedText Culture="FR" Text="Collier de Lune Scintillant"/>
+      </Name>
+      <Ability>IgnoreEncounter</Ability>
+    </LegendaryTreasure>
+    <LegendaryTreasure IndexRegion="4" ID="4">
+      <Name>
+        <LocalizedText Culture="US" Text="Scale of the Infinity Wurm"/>
+        <LocalizedText Culture="FR" Text="Écaille de la Vouivre d'Infinité"/>
+      </Name>
+      <Ability>RecoverHP</Ability>
+    </LegendaryTreasure>
+    <LegendaryTreasure IndexRegion="5" ID="5">
+      <Name>
+        <LocalizedText Culture="US" Text="The Ancient Record"/>
+        <LocalizedText Culture="FR" Text="Les Textes Anciens"/>
+      </Name>
+      <Ability>AutomaticallyConnect</Ability>
+    </LegendaryTreasure>
+    <LegendaryTreasure IndexRegion="6" ID="6">
+      <Name>
+        <LocalizedText Culture="US" Text="The Molten Shard"/>
+        <LocalizedText Culture="FR" Text="L'éclat en Fusion"/>
+      </Name>
+      <Ability>BetterAttack</Ability>
+    </LegendaryTreasure>
+  </LegendaryTreasures>
+  <Components>
+    <Component IndexRegion="1" ID="1">
+      <Name>
+        <LocalizedText Culture="US" Text="Silver"/>
+        <LocalizedText Culture="FR" Text="Argent"/>
+      </Name>
+    </Component>
+    <Component IndexRegion="2" ID="2">
+      <Name>
+        <LocalizedText Culture="US" Text="Quartz"/>
+        <LocalizedText Culture="FR" Text="Quartz"/>
+      </Name>
+    </Component>
+    <Component IndexRegion="3" ID="3">
+      <Name>
+        <LocalizedText Culture="US" Text="Gum"/>
+        <LocalizedText Culture="FR" Text="Gomme"/>
+      </Name>
+    </Component>
+    <Component IndexRegion="4" ID="4">
+      <Name>
+        <LocalizedText Culture="US" Text="Silica"/>
+        <LocalizedText Culture="FR" Text="Silice"/>
+      </Name>
+    </Component>
+    <Component IndexRegion="5" ID="5">
+      <Name>
+        <LocalizedText Culture="US" Text="Wax"/>
+        <LocalizedText Culture="FR" Text="Cire"/>
+      </Name>
+    </Component>
+    <Component IndexRegion="6" ID="6">
+      <Name>
+        <LocalizedText Culture="US" Text="Lead"/>
+        <LocalizedText Culture="FR" Text="Plomb"/>
+      </Name>
+    </Component>
+  </Components>
+    <Links>
+      <Link ID="1" Constructs="1,2" ComponentID="4"/>
+      <Link ID="2" Constructs="1,4" ComponentID="2"/>
+      <Link ID="3" Constructs="1,5" ComponentID="1"/>
+      <Link ID="4" Constructs="2,3" ComponentID="5"/>
+      <Link ID="5" Constructs="3,4" ComponentID="3"/>
+      <Link id="6" Constructs="4,6" ComponentID="6"/>
+    </Links>
+  <Regions>
+    <Region Index="1">
+      <TimeTrack>1,1,0,1,0,0</TimeTrack>
+      <Construct ID="1">
+        <Name>
+          <LocalizedText Culture="US" Text="Seal of Balance"/>
+          <LocalizedText Culture="FR" Text="Sceau de l'équilibre"/>
+        </Name>
+      </Construct>
+      <Name>
+        <LocalizedText Culture="US" Text="Halebeard Peak"/>
+        <LocalizedText Culture="FR" Text="Pic de la Barbe Robuste"/>
+      </Name>
+      <Encounters>
+        <Encounter Level="1" Attack="1" Hit="5">
+          <Name>
+            <LocalizedText Culture="US" Text="Ice Bear"/>
+            <LocalizedText Culture="FR" Text="Ours des Glaces"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="2" Attack="1" Hit="6">
+          <Name>
+            <LocalizedText Culture="US" Text="Roving Bandits"/>
+            <LocalizedText Culture="FR" Text="Bandits Errants"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="3" Attack="2" Hit="6">
+          <Name>
+            <LocalizedText Culture="US" Text="Blood Wolves"/>
+            <LocalizedText Culture="FR" Text="Loups Sanglants"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="4" Attack="3" Hit="6">
+          <Name>
+            <LocalizedText Culture="US" Text="Horse Eater Hawk"/>
+            <LocalizedText Culture="FR" Text="Faucon Mangeur de Cheval"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="5" Attack="4" Hit="6">
+          <Name>
+            <LocalizedText Culture="US" Text="Giant of the Peaks"/>
+            <LocalizedText Culture="FR" Text="Géant des Pics"/>
+          </Name>
+        </Encounter>
+      </Encounters>
+    </Region>
+    <Region Index="2">
+      <TimeTrack>1,0,0,1,0,0</TimeTrack>
+      <Name>
+        <LocalizedText Culture="US" Text="The Great Wilds"/>
+        <LocalizedText Culture="FR" Text="Étendues Sauvages"/>
+      </Name>
+      <Construct ID="2">
+        <Name>
+          <LocalizedText Culture="US" Text="Hermetic Mirror"/>
+          <LocalizedText Culture="FR" Text="Mirroir Hermétique"/>
+        </Name>
+        <Ability>HelpSearch16</Ability>
+      </Construct>
+      <Encounters>
+        <Encounter Level="1" Attack="2" Hit="5">
+          <Name>
+            <LocalizedText Culture="US" Text="Rogue Thief"/>
+            <LocalizedText Culture="FR" Text="Voleur Solitaire"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="2" Attack="1" Hit="6">
+          <Name>
+            <LocalizedText Culture="US" Text="Blanket of Crows"/>
+            <LocalizedText Culture="FR" Text="Nuée de Corneille"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="3" Attack="1" Hit="6">
+          <Name>
+            <LocalizedText Culture="US" Text="Hornback Bison"/>
+            <LocalizedText Culture="FR" Text="Bison au Dos Cornu"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="4" Attack="3" Hit="5">
+          <Name>
+            <LocalizedText Culture="US" Text="Grassyback Troll"/>
+            <LocalizedText Culture="FR" Text="Troll des Hautes Herbes"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="5" Attack="4" Hit="6" IsSpirit="1">
+          <Name>
+            <LocalizedText Culture="US" Text="Thunder King"/>
+            <LocalizedText Culture="FR" Text="Roi Tonnerre"/>
+          </Name>
+        </Encounter>
+      </Encounters>
+    </Region>
+    <Region Index="3">
+      <TimeTrack>1,0,1,0,1,0</TimeTrack>
+      <Name>
+        <LocalizedText Culture="US" Text="Root Strangled Marshes"/>
+        <LocalizedText Culture="FR" Text="Marais des Racines Étranglées"/>
+      </Name>
+      <Construct ID="3">
+        <Ability>RecoverFaster</Ability>
+        <Name>
+          <LocalizedText Culture="US" Text="Void Gate"/>
+          <LocalizedText Culture="FR" Text="Portail du Vide"/>
+        </Name>
+      </Construct>
+      <Encounters>
+        <Encounter Level="1" Attack="1" Hit="5">
+          <Name>
+            <LocalizedText Culture="US" Text="Gemscale Boa"/>
+            <LocalizedText Culture="FR" Text="Boa Gemmécaille"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="2" Attack="2" Hit="6">
+          <Name>
+            <LocalizedText Culture="US" Text="Ancient Alligator"/>
+            <LocalizedText Culture="FR" Text="Alligator Vénérable"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="3" Attack="2" Hit="6">
+          <Name>
+            <LocalizedText Culture="US" Text="Land Shark"/>
+            <LocalizedText Culture="FR" Text="Requin des terres"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="4" Attack="3" Hit="5">
+          <Name>
+            <LocalizedText Culture="US" Text="Abyssal Leech"/>
+            <LocalizedText Culture="FR" Text="Sangsue Abyssale"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="5" Attack="4" Hit="6">
+          <Name>
+            <LocalizedText Culture="US" Text="Dweller in the Tides"/>
+            <LocalizedText Culture="FR" Text="Celui qui Habite les Flots"/>
+          </Name>
+        </Encounter>
+      </Encounters>
+    </Region>
+    <Region Index="4">
+      <TimeTrack>1,0,1,0,1,0</TimeTrack>
+      <Construct ID="4">
+        <Ability>HelpAgainstSpirit</Ability>
+        <Name>
+          <LocalizedText Culture="US" Text="Golden Chassis"/>
+          <LocalizedText Culture="FR" Text="Chassis Doré"/>
+        </Name>
+      </Construct>
+      <Name>
+        <LocalizedText Culture="US" Text="Glassrock Canyon"/>
+        <LocalizedText Culture="FR" Text="Val des Rochers de Verre"/>
+      </Name>
+      <Encounters>
+        <Encounter Level="1" Attack="1" Hit="5">
+          <Name>
+            <LocalizedText Culture="US" Text="Feisty Gremlin"/>
+            <LocalizedText Culture="FR" Text="Gremlin Hargneux"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="2" Attack="1" Hit="6">
+          <Name>
+            <LocalizedText Culture="US" Text="Glasswing Drake"/>
+            <LocalizedText Culture="FR" Text="Drack AileDeVerre"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="3" Attack="2" Hit="6"  IsSpirit="1">
+          <Name>
+            <LocalizedText Culture="US" Text="Reaching Claws"/>
+            <LocalizedText Culture="FR" Text="Griffes Attrapeuses"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="4" Attack="3" Hit="6">
+          <Name>
+            <LocalizedText Culture="US" Text="Terrible Wurm"/>
+            <LocalizedText Culture="FR" Text="Wyrm Terrible"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="5" Attack="4" Hit="6">
+          <Name>
+            <LocalizedText Culture="US" Text="Leviathan Serpent"/>
+            <LocalizedText Culture="FR" Text="Serpent Léviathan"/>
+          </Name>
+        </Encounter>
+      </Encounters>
+    </Region>
+    <Region Index="5">
+      <TimeTrack>1,0,0,1,0,0</TimeTrack>
+      <Construct ID="5">
+        <Name>
+          <LocalizedText Culture="US" Text="Scrying Lens"/>
+          <LocalizedText Culture="FR" Text="Lunette de Divination"/>
+        </Name>
+        <Ability>HelpSearch34</Ability>
+      </Construct>
+      <Name>
+        <LocalizedText Culture="US" Text="Ruined City of The Ancients"/>
+        <LocalizedText Culture="FR" Text="Cité en Ruine Des Anciens"/>
+      </Name>
+      <Encounters>
+        <Encounter Level="1" Attack="1" Hit="5">
+          <Name>
+            <LocalizedText Culture="US" Text="Grave Robbers"/>
+            <LocalizedText Culture="FR" Text="Pilleurs de Tombe"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="2" Attack="1" Hit="6" IsSpirit="1">
+          <Name>
+            <LocalizedText Culture="US" Text="Ghost Lights"/>
+            <LocalizedText Culture="FR" Text="Lumiéres fantômes"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="3" Attack="2" Hit="6"  IsSpirit="1">
+          <Name>
+            <LocalizedText Culture="US" Text="Vengeful Shade"/>
+            <LocalizedText Culture="FR" Text="Ombre Vengeresse"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="4" Attack="3" Hit="6">
+          <Name>
+            <LocalizedText Culture="US" Text="Nightmare Crab"/>
+            <LocalizedText Culture="FR" Text="Crabe Cauchemar"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="5" Attack="4" Hit="6" IsSpirit="1">
+          <Name>
+            <LocalizedText Culture="US" Text="The Unnamed"/>
+            <LocalizedText Culture="FR" Text="Le Sans-Nom"/>
+          </Name>
+        </Encounter>
+      </Encounters>
+    </Region>
+    <Region Index="6">
+      <TimeTrack>1,1,0,1,0,0</TimeTrack>
+      <Name>
+        <LocalizedText Culture="US" Text="The Fiery Maw"/>
+        <LocalizedText Culture="FR" Text="Machoire de Flamme"/>
+      </Name>
+      <Construct ID="6">
+        <Name>
+          <LocalizedText Culture="US" Text="Crystal Battery"/>
+          <LocalizedText Culture="FR" Text="Batterie de Crystal"/>
+        </Name>
+      </Construct>
+      <Encounters>
+        <Encounter Level="1" Attack="1" Hit="5">
+          <Name>
+            <LocalizedText Culture="US" Text="Minor Imp"/>
+            <LocalizedText Culture="FR" Text="Diablotin mineur"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="2" Attack="2" Hit="5">
+          <Name>
+            <LocalizedText Culture="US" Text="Renegade Warlock"/>
+            <LocalizedText Culture="FR" Text="Sorcier renégat"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="3" Attack="3" Hit="5">
+          <Name>
+            <LocalizedText Culture="US" Text="Giant Flame Lizard"/>
+            <LocalizedText Culture="FR" Text="Lézard des Flammes Géant"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="4" Attack="3" Hit="6" IsSpirit="1">
+          <Name>
+            <LocalizedText Culture="US" Text="Spark Elemental"/>
+            <LocalizedText Culture="FR" Text="Etincelle Elémentale"/>
+          </Name>
+        </Encounter>
+        <Encounter Level="5" Attack="4" Hit="6" IsSpirit="1">
+          <Name>
+            <LocalizedText Culture="US" Text="Volcano Spirit"/>
+            <LocalizedText Culture="FR" Text="Elemental du Volcan"/>
+          </Name>
+        </Encounter>
+      </Encounters>
+    </Region>
+  </Regions>
+  <Events>
+    <RegionEvent ID="1" Ability="ActiveMonsters">
+       <Name>
+            <LocalizedText Culture="US" Text="Active Monsters"/>
+            <LocalizedText Culture="FR" Text="Monstres Actifs"/>
+          </Name>
+    </RegionEvent>
+  <RegionEvent ID="2" Ability="GoodFortune">
+       <Name>
+            <LocalizedText Culture="US" Text="Good Fortune"/>
+            <LocalizedText Culture="FR" Text="Heureux Hasard"/>
+          </Name>
+    </RegionEvent>
+  <RegionEvent ID="3" Ability="FleetingVisions">
+       <Name>
+            <LocalizedText Culture="US" Text="Fleeting Visions"/>
+            <LocalizedText Culture="FR" Text="Visions fortuites"/>
+          </Name>
+    </RegionEvent>
+  <RegionEvent ID="4" Ability="FoulWeather">
+       <Name>
+            <LocalizedText Culture="US" Text="FoulWeather"/>
+            <LocalizedText Culture="FR" Text="Mauvais Temps"/>
+          </Name>
+    </RegionEvent>
+  </Events>
+</GameDefinition>

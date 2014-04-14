@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+      <string name="btnNewGame">Nouvelle partie</string>
+       <string name="btnContinueGame">Continuer la partie</string>
+    <string name="ApplicationName">Machine Utopique</string>
+</resources>
