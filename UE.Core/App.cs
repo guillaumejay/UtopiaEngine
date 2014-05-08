@@ -11,7 +11,6 @@ namespace UE.Core
         {
             Mvx.RegisterType<IDiceRoller, RandomDice>();
             Mvx.RegisterType<IGameEngine, GameEngine>();
-            //  Mvx.RegisterType<IMvxFileStore, MVvxC>();
             Mvx.RegisterType<IRepository, MVVMRepository>();
             Mvx.RegisterSingleton<IGameEngine>(new GameEngine(Mvx.Resolve<IRepository>(), Mvx.Resolve<IDiceRoller>()));
             IGameEngine g = Mvx.Resolve<IGameEngine>();
