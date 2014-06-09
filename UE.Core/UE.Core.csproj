@@ -85,7 +85,6 @@
     <Compile Include="RandomDice.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="TwoDice.cs" />
-    <Compile Include="ViewModels\FirstViewModel.cs" />
     <Compile Include="ViewModels\SearchRegionViewModel.cs" />
     <Compile Include="ViewModels\StartSearchViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />

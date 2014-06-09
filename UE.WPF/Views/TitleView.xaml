@@ -5,15 +5,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                                    xmlns:views="clr-namespace:Cirrious.MvvmCross.Wpf.Views;assembly=Cirrious.MvvmCross.Wpf"
+                                   xmlns:valueConverters="clr-namespace:UE.WPF.ValueConverters"
                                    mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300"
-    local:MvxBind="Visibility PropertyName, Converter=Visibility"
-    >
+    
+             d:DesignHeight="300" d:DesignWidth="300"    >
+    <views:MvxWpfView.Resources>
+    <valueConverters:NativeVisibilityConverter x:Key="Visibility" ></valueConverters:NativeVisibilityConverter>
+    </views:MvxWpfView.Resources>
     <Grid>
         <StackPanel>
             <Button  Content="New Game" Command="{Binding NewGameCommand}"/>
-            <Button  Content="Continue Game" Command="{Binding ContinueGameCommand}
-                Visibility="{Binding IsGameInProgress, Converter={StaticResource Visibility}}""/>
+            <Button  Content="Continue Game" Command="{Binding ContinueGameCommand}"
+                Visibility="{Binding IsGameInProgress, Converter={StaticResource Visibility}}"
+                     />
         </StackPanel>
     </Grid>
 </views:MvxWpfView>

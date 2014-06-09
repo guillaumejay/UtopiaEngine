@@ -87,6 +87,7 @@
     <Compile Include="Bootstrap\VisibilityPluginBootstrap.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="Setup.cs" />
+    <Compile Include="ValueConverters\Converters.cs" />
     <Compile Include="Views\TitleView.xaml.cs">
       <DependentUpon>TitleView.xaml</DependentUpon>
     </Compile>
@@ -136,9 +137,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="ToDo-MvvmCross\_ Wpf UI.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UE.Core\UE.Core.csproj">

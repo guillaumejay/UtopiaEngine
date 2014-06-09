@@ -25,13 +25,8 @@ namespace UE.Core.ViewModels
         {
             _repository = repository;
             IsGameInProgress = _repository.IsAutoSaveAvailable;
-        //   DisplayGameLoad = (_repository.IsAutoSaveAvailable) ? MvxVisibility.Visible : MvxVisibility.Collapsed;
-        }
-
-//        public MvxVisibility DisplayGameLoad 
-//        {
-//            get; set; } 
-//        
+        
+        }  
  
         public bool IsGameInProgress { get; set; }
 
