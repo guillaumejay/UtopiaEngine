@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/UE.Nunit/">
+    <Project Path="UE.Nunit/UE.NUnit.csproj" />
+  </Folder>
+  <Project Path="UE.Core/UE.Core.csproj" />
+</Solution>

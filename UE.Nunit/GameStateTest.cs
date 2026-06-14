@@ -19,50 +19,50 @@ namespace Engine_Test
         public void StartOfGame()
         {
 
-            Assert.IsFalse(GameEngine.IsGameLost);
+            ClassicAssert.IsFalse(GameEngine.IsGameLost);
 
-            Assert.AreEqual(GameEngine.GameDefinition.MaxHitPoint, GameState.CurrentHitPoint);
-            Assert.AreEqual(0, GameState.CurrentDay);
-            Assert.AreEqual(0, GameState.NumberOfSkullsCrossed);
-            Assert.AreEqual(6, GameState.RegionStates.Count);
-            Assert.AreEqual(6, GameState.Constructs.Count);
-            Assert.IsTrue(GameState.Inventory.DowsingRodCharged);
-            Assert.IsTrue(GameState.Inventory.FocusCharmCharged);
-            Assert.IsTrue(GameState.Inventory.ParalysisWandCharged);
-            Assert.IsTrue(GameState.RegionStates.All(x => x.RemainingSearchBoxes == 6));
-            Assert.IsNull(GameState.LastPlayed);
+            ClassicAssert.AreEqual(GameEngine.GameDefinition.MaxHitPoint, GameState.CurrentHitPoint);
+            ClassicAssert.AreEqual(0, GameState.CurrentDay);
+            ClassicAssert.AreEqual(0, GameState.NumberOfSkullsCrossed);
+            ClassicAssert.AreEqual(6, GameState.RegionStates.Count);
+            ClassicAssert.AreEqual(6, GameState.Constructs.Count);
+            ClassicAssert.IsTrue(GameState.Inventory.DowsingRodCharged);
+            ClassicAssert.IsTrue(GameState.Inventory.FocusCharmCharged);
+            ClassicAssert.IsTrue(GameState.Inventory.ParalysisWandCharged);
+            ClassicAssert.IsTrue(GameState.RegionStates.All(x => x.RemainingSearchBoxes == 6));
+            ClassicAssert.IsNull(GameState.LastPlayed);
             AssertGameStateIsCorrectlyHydrated();
-          Assert.AreEqual(15,GameEngine.DaysRemaining);
-            Assert.IsTrue(GameState.Inventory.Stores.All(x=>x.Quantity==0));
+          ClassicAssert.AreEqual(15,GameEngine.DaysRemaining);
+            ClassicAssert.IsTrue(GameState.Inventory.Stores.All(x=>x.Quantity==0));
         }
 
         [Test]
         public void LostIfHitPointTooLow()
         {
             GameState.CurrentHitPoint = 0;
-            Assert.IsFalse(GameEngine.IsGameLost);
-            Assert.IsFalse(GameEngine.IsFinished);
+            ClassicAssert.IsFalse(GameEngine.IsGameLost);
+            ClassicAssert.IsFalse(GameEngine.IsFinished);
             GameState.CurrentHitPoint = -1;
-            Assert.IsTrue(GameEngine.IsGameLost);
+            ClassicAssert.IsTrue(GameEngine.IsGameLost);
         }
 
         [Test]
         public void LostBecauseOfTime()
         {
             GameState.CurrentDay = 14;
-            Assert.IsFalse(GameEngine.IsGameLost);
+            ClassicAssert.IsFalse(GameEngine.IsGameLost);
             GameState.CurrentDay = 1000;
-            Assert.IsTrue(GameEngine.IsGameLost);
+            ClassicAssert.IsTrue(GameEngine.IsGameLost);
         }
 
         [Test]
         public void MaximumTimeAvailable()
         {
             GameState.CurrentDay = GameEngine.GameDefinition.FirstTheoricalLosingDay;
-            Assert.AreEqual(15, GameState.CurrentDay);
-            Assert.IsTrue(GameEngine.IsGameLost);
+            ClassicAssert.AreEqual(15, GameState.CurrentDay);
+            ClassicAssert.IsTrue(GameEngine.IsGameLost);
             GameState.NumberOfSkullsCrossed = 1;
-            Assert.IsFalse(GameEngine.IsGameLost);
+            ClassicAssert.IsFalse(GameEngine.IsGameLost);
         }
 
         [Test]
@@ -70,24 +70,24 @@ namespace Engine_Test
         {         
             GameState.NumberOfSkullsCrossed = GameEngine.GameDefinition.NumberOfSkulls;
             GameState.CurrentDay = GameEngine.GameDefinition.MaximumNumberOfDays;
-            Assert.IsTrue(GameEngine.IsGameLost);
+            ClassicAssert.IsTrue(GameEngine.IsGameLost);
             GameState.CurrentDay = GameEngine.GameDefinition.MaximumNumberOfDays - 1;
-            Assert.IsFalse(GameEngine.IsGameLost);
+            ClassicAssert.IsFalse(GameEngine.IsGameLost);
             GameState.NumberOfSkullsCrossed = GameEngine.GameDefinition.NumberOfSkulls - 1;
-            Assert.IsFalse(GameEngine.IsGameLost);
+            ClassicAssert.IsFalse(GameEngine.IsGameLost);
         }
 
         [Test]
         public void LostBecauseOfTimeSpecificDays()
         {
             GameState.CurrentDay = 15;
-            Assert.IsTrue(GameEngine.IsGameLost);
+            ClassicAssert.IsTrue(GameEngine.IsGameLost);
             GameState.NumberOfSkullsCrossed = 1;
-            Assert.IsFalse(GameEngine.IsGameLost);
+            ClassicAssert.IsFalse(GameEngine.IsGameLost);
             GameState.CurrentDay = 21;
-            Assert.IsTrue(GameEngine.IsGameLost);
+            ClassicAssert.IsTrue(GameEngine.IsGameLost);
             GameState.NumberOfSkullsCrossed = 7;
-            Assert.IsFalse(GameEngine.IsGameLost);
+            ClassicAssert.IsFalse(GameEngine.IsGameLost);
 
         }
 
@@ -96,12 +96,12 @@ namespace Engine_Test
         public void CanUseDowsingRod()
         {
             int result = 100;
-            Assert.IsTrue(GameEngine.CanModifySearchResult(result,1).CanModify);
+            ClassicAssert.IsTrue(GameEngine.CanModifySearchResult(result,1).CanModify);
             GameState.Inventory.DowsingRodCharged = false;
-			Assert.IsFalse(GameEngine.CanModifySearchResult(result,1).CanModify);
+			ClassicAssert.IsFalse(GameEngine.CanModifySearchResult(result,1).CanModify);
             GameState.Inventory.DowsingRodCharged = true;
             result = 1;
-			Assert.IsFalse(GameEngine.CanModifySearchResult(result,1).CanModify);
+			ClassicAssert.IsFalse(GameEngine.CanModifySearchResult(result,1).CanModify);
         }
     }
 }

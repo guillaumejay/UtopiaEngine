@@ -38,16 +38,16 @@ namespace UE.NUnit
 
         protected void AssertGameStateIsCorrectlyHydrated()
         {
-            Assert.IsTrue(GameState.RegionStates.All(x => x.SearchBoxes.Count == 6));
-            Assert.IsNotNull(GameState.Inventory);
-            Assert.IsTrue(GameState.RegionStates.All(x => x.Region != null));
-            Assert.IsTrue(GameState.RegionStates.All(x => x.LegendaryTreasure != null));
-            Assert.IsTrue(GameState.Constructs.All(x => x.Construct != null));
-            Assert.IsTrue(GameState.LinkStates.All(x => x.Link != null));
-            Assert.IsTrue(GameState.LinkStates.All(x => x.Construct1 != null));
-            Assert.IsTrue(GameState.LinkStates.All(x => x.Construct2 != null));
-            Assert.IsTrue(GameState.Inventory.Components != null );
-            Assert.AreEqual(GameEngine.GameDefinition.Components.Count, GameState.Inventory.Stores.Count());
+            ClassicAssert.IsTrue(GameState.RegionStates.All(x => x.SearchBoxes.Count == 6));
+            ClassicAssert.IsNotNull(GameState.Inventory);
+            ClassicAssert.IsTrue(GameState.RegionStates.All(x => x.Region != null));
+            ClassicAssert.IsTrue(GameState.RegionStates.All(x => x.LegendaryTreasure != null));
+            ClassicAssert.IsTrue(GameState.Constructs.All(x => x.Construct != null));
+            ClassicAssert.IsTrue(GameState.LinkStates.All(x => x.Link != null));
+            ClassicAssert.IsTrue(GameState.LinkStates.All(x => x.Construct1 != null));
+            ClassicAssert.IsTrue(GameState.LinkStates.All(x => x.Construct2 != null));
+            ClassicAssert.IsTrue(GameState.Inventory.Components != null );
+            ClassicAssert.AreEqual(GameEngine.GameDefinition.Components.Count, GameState.Inventory.Stores.Count());
         }
 
         protected void CreateConnection(LinkState ls, int nbLinks = 5)
@@ -56,10 +56,10 @@ namespace UE.NUnit
             for (int i = 1; i <= nbLinks; i++)
             {
                 lr = GameEngine.WorkToLink(ls.ID, i, 2,false);
-                Assert.AreEqual(false, lr.HasFailed);
-                Assert.AreEqual((i == 6) ? true : false, lr.IsLinkFinished);
-                Assert.AreEqual((i == 1) ? 1 : 0, lr.ComponentLost);
-                Assert.AreEqual(0, lr.HitPointLost);
+                ClassicAssert.AreEqual(false, lr.HasFailed);
+                ClassicAssert.AreEqual((i == 6) ? true : false, lr.IsLinkFinished);
+                ClassicAssert.AreEqual((i == 1) ? 1 : 0, lr.ComponentLost);
+                ClassicAssert.AreEqual(0, lr.HitPointLost);
             }
 
         }
@@ -73,22 +73,22 @@ namespace UE.NUnit
             {
                 GameEngine.FindConstruct(rs, true);
             }
-            Assert.AreEqual(6, GameEngine.GameState.ConstructsActivated.Count());
-            Assert.AreEqual(6, GameEngine.GameState.PossibleLinks.Count());
+            ClassicAssert.AreEqual(6, GameEngine.GameState.ConstructsActivated.Count());
+            ClassicAssert.AreEqual(6, GameEngine.GameState.PossibleLinks.Count());
         }
 
         protected LinkState ActivateTwoConstructs()
         {
             GameEngine.AddComponent(1, 4);
-            Assert.AreEqual(0, GameState.PossibleLinks.Count());
+            ClassicAssert.AreEqual(0, GameState.PossibleLinks.Count());
             RegionState rs = GameEngine.GetRegionStateFor(1);
             ConstructState cs = GameEngine.FindConstruct(rs, true);
             rs = GameEngine.GetRegionStateFor(2);
             ConstructState cs2 = GameEngine.FindConstruct(rs, true);
-            Assert.AreEqual(1, GameState.PossibleLinks.Count());
+            ClassicAssert.AreEqual(1, GameState.PossibleLinks.Count());
             LinkState l = GameState.PossibleLinks.Single();
-            Assert.AreEqual(cs.ID, l.Construct1.ID);
-            Assert.AreEqual(cs2.ID, l.Construct2.ID);
+            ClassicAssert.AreEqual(cs.ID, l.Construct1.ID);
+            ClassicAssert.AreEqual(cs2.ID, l.Construct2.ID);
             return l;
         }
     }

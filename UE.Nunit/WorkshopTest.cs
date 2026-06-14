@@ -31,38 +31,38 @@ namespace UE.NUnit
             RegionState rs = GameEngine.GetRegionStateFor(1);
             ConstructState cs = GameEngine.FindConstruct(rs, false);
             ActivationResult ar = GameEngine.WorkToActivate(cs, 1, 6);
-            Assert.IsNull(ar.CurrentColumnValue);
+            ClassicAssert.IsNull(ar.CurrentColumnValue);
             ar = GameEngine.WorkToActivate(cs, 2, 5);
-            Assert.IsNull(ar.CurrentColumnValue);
+            ClassicAssert.IsNull(ar.CurrentColumnValue);
             ar = GameEngine.WorkToActivate(cs, 5, 1);
-            Assert.IsNotNull(ar.CurrentColumnValue);
-            Assert.AreEqual(2, ar.CurrentColumnValue);
-            Assert.AreEqual(2, ar.EnergyPoints);
+            ClassicAssert.IsNotNull(ar.CurrentColumnValue);
+            ClassicAssert.AreEqual(2, ar.CurrentColumnValue);
+            ClassicAssert.AreEqual(2, ar.EnergyPoints);
             ar = GameEngine.WorkToActivate(cs, 6, 1);
-            Assert.IsNotNull(ar.CurrentColumnValue);
-            Assert.AreEqual(1, ar.CurrentColumnValue);
-            Assert.AreEqual(3, ar.EnergyPoints);
+            ClassicAssert.IsNotNull(ar.CurrentColumnValue);
+            ClassicAssert.AreEqual(1, ar.CurrentColumnValue);
+            ClassicAssert.AreEqual(3, ar.EnergyPoints);
             ar = GameEngine.WorkToActivate(cs, 3, 1);
-            Assert.IsNull(ar.CurrentColumnValue);
-            Assert.IsFalse(cs.CurrentActivationTable.Columns[2].IsEmpty);
+            ClassicAssert.IsNull(ar.CurrentColumnValue);
+            ClassicAssert.IsFalse(cs.CurrentActivationTable.Columns[2].IsEmpty);
             ar = GameEngine.WorkToActivate(cs, 7, 1);
-            Assert.IsNotNull(ar.CurrentColumnValue);
-            Assert.AreEqual(0, ar.CurrentColumnValue);
-            Assert.IsTrue(cs.CurrentActivationTable.Columns[2].IsEmpty);
+            ClassicAssert.IsNotNull(ar.CurrentColumnValue);
+            ClassicAssert.AreEqual(0, ar.CurrentColumnValue);
+            ClassicAssert.IsTrue(cs.CurrentActivationTable.Columns[2].IsEmpty);
             ar = GameEngine.WorkToActivate(cs, 3, 1);
-            Assert.IsNull(ar.CurrentColumnValue);
-            Assert.AreEqual(GameState.CurrentHitPoint, CurrentHP);
+            ClassicAssert.IsNull(ar.CurrentColumnValue);
+            ClassicAssert.AreEqual(GameState.CurrentHitPoint, CurrentHP);
             ar = GameEngine.WorkToActivate(cs, 7, 2);
-            Assert.AreEqual(3, ar.EnergyPoints);
-            Assert.IsNotNull(ar.CurrentColumnValue);
-            Assert.AreEqual(-1, ar.CurrentColumnValue);
-            Assert.AreEqual(GameState.CurrentHitPoint, CurrentHP - 1);
+            ClassicAssert.AreEqual(3, ar.EnergyPoints);
+            ClassicAssert.IsNotNull(ar.CurrentColumnValue);
+            ClassicAssert.AreEqual(-1, ar.CurrentColumnValue);
+            ClassicAssert.AreEqual(GameState.CurrentHitPoint, CurrentHP - 1);
             ar = GameEngine.WorkToActivate(cs, 4, 5);
             ar = GameEngine.WorkToActivate(cs, 8, 1);
-            Assert.AreEqual(4, ar.EnergyPoints);
-            Assert.AreEqual(0, ar.DaysPassed);
-            Assert.AreEqual(true, ar.IsFieldFilled);
-            Assert.AreEqual(true, ar.IsConstructActivated);
+            ClassicAssert.AreEqual(4, ar.EnergyPoints);
+            ClassicAssert.AreEqual(0, ar.DaysPassed);
+            ClassicAssert.AreEqual(true, ar.IsFieldFilled);
+            ClassicAssert.AreEqual(true, ar.IsConstructActivated);
         }
 
         [Test]
@@ -76,17 +76,17 @@ namespace UE.NUnit
             {
                 ar = GameEngine.WorkToActivate(cs, i, die.Dequeue());
             }
-            Assert.IsFalse(ar.IsConstructActivated);
-            Assert.IsTrue(ar.IsFieldFilled);
-            Assert.AreEqual(1, ar.DaysPassed);
+            ClassicAssert.IsFalse(ar.IsConstructActivated);
+            ClassicAssert.IsTrue(ar.IsFieldFilled);
+            ClassicAssert.AreEqual(1, ar.DaysPassed);
             for (int i = 1; i <= 8; i++)
             {
                 ar = GameEngine.WorkToActivate(cs, i, die.Dequeue());
             }
-            Assert.AreEqual(4, ar.EnergyPoints);
-            Assert.IsTrue(ar.IsConstructActivated);
-            Assert.IsTrue(ar.IsFieldFilled);
-            Assert.AreEqual(0, ar.DaysPassed);
+            ClassicAssert.AreEqual(4, ar.EnergyPoints);
+            ClassicAssert.IsTrue(ar.IsConstructActivated);
+            ClassicAssert.IsTrue(ar.IsFieldFilled);
+            ClassicAssert.AreEqual(0, ar.DaysPassed);
         }
 
 
@@ -102,22 +102,22 @@ namespace UE.NUnit
             {
                 ar = GameEngine.WorkToActivate(cs, i, die.Dequeue());
             }
-            Assert.AreEqual(1, ar.DaysPassed);
+            ClassicAssert.AreEqual(1, ar.DaysPassed);
             for (int i = 1; i <= 8; i++)
             {
                 ar = GameEngine.WorkToActivate(cs, i, die.Dequeue());
             }
-            Assert.AreEqual(3, ar.EnergyPoints);
-            Assert.IsTrue(ar.IsConstructActivated);
-            Assert.IsTrue(ar.IsFieldFilled);
-            Assert.AreEqual(1, ar.DaysPassed);
+            ClassicAssert.AreEqual(3, ar.EnergyPoints);
+            ClassicAssert.IsTrue(ar.IsConstructActivated);
+            ClassicAssert.IsTrue(ar.IsFieldFilled);
+            ClassicAssert.AreEqual(1, ar.DaysPassed);
         }
 
         [Test]
         public void ActivateConstructHelpsGodsHand()
         {
             AddResults(2, 2, 2, 2);
-            Assert.AreEqual(0, GameState.GodsHandEnergy);
+            ClassicAssert.AreEqual(0, GameState.GodsHandEnergy);
             RegionState rs = GameEngine.GetRegionStateFor(1);
             ConstructState cs = GameEngine.FindConstruct(rs, false);
             Queue<int> die = new Queue<int>(new List<int> { 6, 6, 5, 5, 1, 1, 1, 1 });
@@ -126,10 +126,10 @@ namespace UE.NUnit
             {
                 ar = GameEngine.WorkToActivate(cs, i, die.Dequeue());
             }
-            Assert.AreEqual(0, ar.DaysPassed);
-            Assert.AreEqual(6, ar.EnergyPoints);
-            Assert.IsTrue(ar.IsConstructActivated);
-            Assert.AreEqual(2, GameState.GodsHandEnergy);
+            ClassicAssert.AreEqual(0, ar.DaysPassed);
+            ClassicAssert.AreEqual(6, ar.EnergyPoints);
+            ClassicAssert.IsTrue(ar.IsConstructActivated);
+            ClassicAssert.AreEqual(2, GameState.GodsHandEnergy);
         }
 
         [Test]
@@ -139,7 +139,7 @@ namespace UE.NUnit
             ConstructState cs = GameEngine.FindConstruct(rs, false);
             GameEngine.UseFocusCharm(1);
             ActivationResult ar = GameEngine.WorkToActivate(cs, 1, 1);
-            Assert.AreEqual(2, ar.EnergyPoints);
+            ClassicAssert.AreEqual(2, ar.EnergyPoints);
 
         }
 
@@ -148,8 +148,8 @@ namespace UE.NUnit
         {
             ActivateTwoConstructs();
             GameEngine.AddComponent(-1, 4);
-            Assert.AreEqual(0, GameState.PossibleLinks.Count());
-            Assert.AreEqual(0, GameState.ConnectedLinks.Count());
+            ClassicAssert.AreEqual(0, GameState.PossibleLinks.Count());
+            ClassicAssert.AreEqual(0, GameState.ConnectedLinks.Count());
         }
 
         [Test]
@@ -157,16 +157,16 @@ namespace UE.NUnit
         {
             LinkState ls = ActivateTwoConstructs();
             CreateConnection(ls);
-            Assert.AreEqual(0, GameState.NumberOfComponents(ls.Link.ComponentID));
+            ClassicAssert.AreEqual(0, GameState.NumberOfComponents(ls.Link.ComponentID));
             LinkResult lr = GameEngine.WorkToLink(ls.ID, 6, 1,false);
-            Assert.AreEqual(1, lr.LinkBox);
-            Assert.AreEqual(false, lr.HasFailed);
-            Assert.AreEqual(true, lr.IsLinkFinished);
-            Assert.AreEqual(0, lr.ComponentLost);
-            Assert.AreEqual(0, lr.HitPointLost);
-            Assert.AreEqual(0, GameState.NumberOfComponents(ls.Link.ComponentID));
-            Assert.AreEqual(true, lr.Connected);
-            Assert.AreEqual(1,GameState.ConnectedLinks.Count());
+            ClassicAssert.AreEqual(1, lr.LinkBox);
+            ClassicAssert.AreEqual(false, lr.HasFailed);
+            ClassicAssert.AreEqual(true, lr.IsLinkFinished);
+            ClassicAssert.AreEqual(0, lr.ComponentLost);
+            ClassicAssert.AreEqual(0, lr.HitPointLost);
+            ClassicAssert.AreEqual(0, GameState.NumberOfComponents(ls.Link.ComponentID));
+            ClassicAssert.AreEqual(true, lr.Connected);
+            ClassicAssert.AreEqual(1,GameState.ConnectedLinks.Count());
         }
 
         [Test]
@@ -176,15 +176,15 @@ namespace UE.NUnit
             CreateConnection(ls);
             GameEngine.AddComponent(1, ls.Link.ComponentID);
             LinkResult lr = GameEngine.WorkToLink(ls.ID, 6, 3,false);
-            Assert.AreEqual(2, lr.LinkBox,"Invalid LinkBox result");
-            Assert.AreEqual(false, lr.HasFailed);
-            Assert.AreEqual(true, lr.IsLinkFinished);
-            Assert.AreEqual(1, lr.ComponentLost);
-            Assert.AreEqual(1, lr.HitPointLost);
-            Assert.AreEqual(5, GameState.CurrentHitPoint);
-            Assert.AreEqual(0, GameState.NumberOfComponents(ls.Link.ComponentID));
-            Assert.AreEqual(true,lr.Connected);
-            Assert.AreEqual(1, GameState.ConnectedLinks.Count());
+            ClassicAssert.AreEqual(2, lr.LinkBox,"Invalid LinkBox result");
+            ClassicAssert.AreEqual(false, lr.HasFailed);
+            ClassicAssert.AreEqual(true, lr.IsLinkFinished);
+            ClassicAssert.AreEqual(1, lr.ComponentLost);
+            ClassicAssert.AreEqual(1, lr.HitPointLost);
+            ClassicAssert.AreEqual(5, GameState.CurrentHitPoint);
+            ClassicAssert.AreEqual(0, GameState.NumberOfComponents(ls.Link.ComponentID));
+            ClassicAssert.AreEqual(true,lr.Connected);
+            ClassicAssert.AreEqual(1, GameState.ConnectedLinks.Count());
         }
 
         [Test]
@@ -193,16 +193,16 @@ namespace UE.NUnit
             LinkState ls = ActivateTwoConstructs();
             CreateConnection(ls);
             LinkResult lr = GameEngine.WorkToLink(ls.ID, 6, 3,false);
-            Assert.AreEqual(0, lr.LinkBox, "Invalid LinkBox result");
-            Assert.AreEqual(true, lr.HasFailed);
-            Assert.AreEqual(true, lr.IsLinkFinished);
-            Assert.AreEqual(0, lr.ComponentLost);
-            Assert.AreEqual(1, lr.HitPointLost);
-            Assert.AreEqual(5, GameState.CurrentHitPoint);
-            Assert.AreEqual(0, GameState.NumberOfComponents(ls.Link.ComponentID));
-            Assert.AreEqual(false, lr.Connected);
-            Assert.AreEqual(0, GameState.ConnectedLinks.Count());
-            Assert.IsTrue(ls.Connection.IsEmpty);
+            ClassicAssert.AreEqual(0, lr.LinkBox, "Invalid LinkBox result");
+            ClassicAssert.AreEqual(true, lr.HasFailed);
+            ClassicAssert.AreEqual(true, lr.IsLinkFinished);
+            ClassicAssert.AreEqual(0, lr.ComponentLost);
+            ClassicAssert.AreEqual(1, lr.HitPointLost);
+            ClassicAssert.AreEqual(5, GameState.CurrentHitPoint);
+            ClassicAssert.AreEqual(0, GameState.NumberOfComponents(ls.Link.ComponentID));
+            ClassicAssert.AreEqual(false, lr.Connected);
+            ClassicAssert.AreEqual(0, GameState.ConnectedLinks.Count());
+            ClassicAssert.IsTrue(ls.Connection.IsEmpty);
         }
 
         [Test]
@@ -213,13 +213,13 @@ namespace UE.NUnit
             {
                 CreateConnection(ls,6);
             }
-            Assert.AreEqual(6,GameState.ConnectedLinks.Count());
-            Assert.IsTrue(GameEngine.IsFinalActivationPossible);
+            ClassicAssert.AreEqual(6,GameState.ConnectedLinks.Count());
+            ClassicAssert.IsTrue(GameEngine.IsFinalActivationPossible);
             AddResults(1,2);
             FinalActivationResult t = GameEngine.WorkForfinalActivation();
-            Assert.IsFalse(t.GameLost);
-            Assert.IsTrue(t.GameWon);
-            Assert.IsTrue(GameEngine.IsGameWon);
+            ClassicAssert.IsFalse(t.GameLost);
+            ClassicAssert.IsTrue(t.GameWon);
+            ClassicAssert.IsTrue(GameEngine.IsGameWon);
         }
 
         [Test]
@@ -228,7 +228,7 @@ namespace UE.NUnit
 
             CreateImpossibleFinalActivation();
             GameEngine.SpendHPToReduceActivationDifficulty(6);
-            Assert.AreEqual(30, GameState.FinalActivationDifficulty);
+            ClassicAssert.AreEqual(30, GameState.FinalActivationDifficulty);
         }
 
         private void CreateImpossibleFinalActivation()
@@ -242,7 +242,7 @@ namespace UE.NUnit
                     col.ForcedValue = 2;
                 }
             }
-            Assert.AreEqual(36, GameState.FinalActivationDifficulty);
+            ClassicAssert.AreEqual(36, GameState.FinalActivationDifficulty);
         }
 
         [Test]
@@ -252,11 +252,11 @@ namespace UE.NUnit
             GameState.CurrentHitPoint = 0;
             AddResults(5,5);
             FinalActivationResult far = GameEngine.WorkForfinalActivation();
-            Assert.IsTrue(far.GameLost);
-            Assert.IsFalse(far.GameWon);
-            Assert.IsTrue(GameEngine.IsFinished);
-            Assert.IsTrue(GameEngine.IsGameLost);
-            Assert.AreEqual(-1,GameState.CurrentHitPoint);
+            ClassicAssert.IsTrue(far.GameLost);
+            ClassicAssert.IsFalse(far.GameWon);
+            ClassicAssert.IsTrue(GameEngine.IsFinished);
+            ClassicAssert.IsTrue(GameEngine.IsGameLost);
+            ClassicAssert.AreEqual(-1,GameState.CurrentHitPoint);
         }
 
         [Test]
@@ -266,13 +266,13 @@ namespace UE.NUnit
             GameState.CurrentDay = GameEngine.GameDefinition.FirstTheoricalLosingDay - 2;
             AddResults(5, 5,5,5,1,2,3,4);
             FinalActivationResult far = GameEngine.WorkForfinalActivation();
-            Assert.IsFalse(far.GameLost);
-            Assert.IsFalse(far.GameWon);
+            ClassicAssert.IsFalse(far.GameLost);
+            ClassicAssert.IsFalse(far.GameWon);
             far = GameEngine.WorkForfinalActivation();
-            Assert.IsTrue(GameEngine.IsGameLost);
-            Assert.IsTrue(far.GameLost);
-            Assert.IsTrue(GameEngine.IsFinished);
-            Assert.IsFalse(far.GameWon);
+            ClassicAssert.IsTrue(GameEngine.IsGameLost);
+            ClassicAssert.IsTrue(far.GameLost);
+            ClassicAssert.IsTrue(GameEngine.IsFinished);
+            ClassicAssert.IsFalse(far.GameWon);
         }
 
     }
