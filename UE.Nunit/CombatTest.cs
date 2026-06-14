@@ -22,26 +22,26 @@ namespace UE.NUnit
         {
             AddResults(1, 2);
             var cr = DoCombatTurn(1, 1);
-            Assert.AreEqual(1, cr.DiceRoll.First);
-            Assert.AreEqual(2, cr.DiceRoll.Second);
-            Assert.AreEqual(1, cr.HitpointLost);
-            Assert.IsFalse(cr.EncounterDead);
-            Assert.IsFalse(cr.LegendaryTreasureFound);
-            Assert.IsFalse(cr.ComponentFound);
-            Assert.AreEqual(5, GameState.CurrentHitPoint);
+            ClassicAssert.AreEqual(1, cr.DiceRoll.First);
+            ClassicAssert.AreEqual(2, cr.DiceRoll.Second);
+            ClassicAssert.AreEqual(1, cr.HitpointLost);
+            ClassicAssert.IsFalse(cr.EncounterDead);
+            ClassicAssert.IsFalse(cr.LegendaryTreasureFound);
+            ClassicAssert.IsFalse(cr.ComponentFound);
+            ClassicAssert.AreEqual(5, GameState.CurrentHitPoint);
         }
         [Test]
         public void Test2HitPointLost()
         {
             AddResults(1, 1);
             var cr = DoCombatTurn(1, 1);
-            Assert.AreEqual(1, cr.DiceRoll.First);
-            Assert.AreEqual(1, cr.DiceRoll.Second);
-            Assert.AreEqual(2, cr.HitpointLost);
-            Assert.IsFalse(cr.EncounterDead);
-            Assert.IsFalse(cr.LegendaryTreasureFound);
-            Assert.IsFalse(cr.ComponentFound);
-            Assert.AreEqual(4, GameState.CurrentHitPoint);
+            ClassicAssert.AreEqual(1, cr.DiceRoll.First);
+            ClassicAssert.AreEqual(1, cr.DiceRoll.Second);
+            ClassicAssert.AreEqual(2, cr.HitpointLost);
+            ClassicAssert.IsFalse(cr.EncounterDead);
+            ClassicAssert.IsFalse(cr.LegendaryTreasureFound);
+            ClassicAssert.IsFalse(cr.ComponentFound);
+            ClassicAssert.AreEqual(4, GameState.CurrentHitPoint);
         }
 
         [Test]
@@ -49,13 +49,13 @@ namespace UE.NUnit
         {
             AddResults(1, 5, 2);
             var cr = DoCombatTurn(1, 1);
-            Assert.AreEqual(1, cr.DiceRoll.First);
-            Assert.AreEqual(5, cr.DiceRoll.Second);
-            Assert.AreEqual(1, cr.HitpointLost);
-            Assert.IsTrue(cr.EncounterDead);
-            Assert.IsFalse(cr.LegendaryTreasureFound);
-            Assert.IsFalse(cr.ComponentFound);
-            Assert.AreEqual(5, GameState.CurrentHitPoint);
+            ClassicAssert.AreEqual(1, cr.DiceRoll.First);
+            ClassicAssert.AreEqual(5, cr.DiceRoll.Second);
+            ClassicAssert.AreEqual(1, cr.HitpointLost);
+            ClassicAssert.IsTrue(cr.EncounterDead);
+            ClassicAssert.IsFalse(cr.LegendaryTreasureFound);
+            ClassicAssert.IsFalse(cr.ComponentFound);
+            ClassicAssert.AreEqual(5, GameState.CurrentHitPoint);
         }
 
         [Test]
@@ -63,11 +63,11 @@ namespace UE.NUnit
         {
             AddResults(5, 1, 2);
             var cr = DoCombatTurn(1, 1);
-            Assert.AreEqual(1, cr.HitpointLost);
-            Assert.IsTrue(cr.EncounterDead);
-            Assert.IsFalse(cr.LegendaryTreasureFound);
-            Assert.IsFalse(cr.ComponentFound);
-            Assert.AreEqual(5, GameState.CurrentHitPoint);
+            ClassicAssert.AreEqual(1, cr.HitpointLost);
+            ClassicAssert.IsTrue(cr.EncounterDead);
+            ClassicAssert.IsFalse(cr.LegendaryTreasureFound);
+            ClassicAssert.IsFalse(cr.ComponentFound);
+            ClassicAssert.AreEqual(5, GameState.CurrentHitPoint);
         }
 
         [Test]
@@ -76,38 +76,38 @@ namespace UE.NUnit
             AddResults(1, 5, 6);
             GameEngine.UseParalysisWand();
             var cr = DoCombatTurn(1, 5);
-            Assert.AreEqual(3, cr.DiceRoll.First);
-            Assert.AreEqual(7, cr.DiceRoll.Second);
-            Assert.AreEqual(1, cr.HitpointLost, "Lost != 1 HP");
-            Assert.IsTrue(cr.EncounterDead);
-            Assert.IsFalse(cr.LegendaryTreasureFound);
-            Assert.IsFalse(cr.ComponentFound);
-            Assert.AreEqual(5, GameState.CurrentHitPoint);
+            ClassicAssert.AreEqual(3, cr.DiceRoll.First);
+            ClassicAssert.AreEqual(7, cr.DiceRoll.Second);
+            ClassicAssert.AreEqual(1, cr.HitpointLost, "Lost != 1 HP");
+            ClassicAssert.IsTrue(cr.EncounterDead);
+            ClassicAssert.IsFalse(cr.LegendaryTreasureFound);
+            ClassicAssert.IsFalse(cr.ComponentFound);
+            ClassicAssert.AreEqual(5, GameState.CurrentHitPoint);
         }
         [Test]
         public void TestHncounterDeadWithLoot()
         {
             AddResults(1, 5, 1);
-            Assert.AreEqual(0, GameState.Inventory.Stores.Single(x => x.ComponentId == GetRegion(1).Component.ID).Quantity);
+            ClassicAssert.AreEqual(0, GameState.Inventory.Stores.Single(x => x.ComponentId == GetRegion(1).Component.ID).Quantity);
             var cr = DoCombatTurn(1, 1);
-            Assert.AreEqual(1, cr.DiceRoll.First, "First dice should be 1");
-            Assert.AreEqual(5, cr.DiceRoll.Second);
-            Assert.AreEqual(1, cr.HitpointLost, "Lost != 1 HP");
-            Assert.IsTrue(cr.EncounterDead);
-            Assert.IsFalse(cr.LegendaryTreasureFound);
-            Assert.IsTrue(cr.ComponentFound);
-            Assert.AreEqual(5, GameState.CurrentHitPoint);
-            Assert.AreEqual(1, GameState.Inventory.Stores.Single(x => x.ComponentId == GetRegion(1).Component.ID).Quantity);
+            ClassicAssert.AreEqual(1, cr.DiceRoll.First, "First dice should be 1");
+            ClassicAssert.AreEqual(5, cr.DiceRoll.Second);
+            ClassicAssert.AreEqual(1, cr.HitpointLost, "Lost != 1 HP");
+            ClassicAssert.IsTrue(cr.EncounterDead);
+            ClassicAssert.IsFalse(cr.LegendaryTreasureFound);
+            ClassicAssert.IsTrue(cr.ComponentFound);
+            ClassicAssert.AreEqual(5, GameState.CurrentHitPoint);
+            ClassicAssert.AreEqual(1, GameState.Inventory.Stores.Single(x => x.ComponentId == GetRegion(1).Component.ID).Quantity);
         }
 
         [Test]
         public void FindTreasureAddsAbility()
         {
-            Assert.IsFalse(GameEngine.HasAbility(Ability.BetterDefense));
+            ClassicAssert.IsFalse(GameEngine.HasAbility(Ability.BetterDefense));
             FindLT(true);
-            Assert.IsTrue(GameEngine.HasAbility(Ability.BetterDefense));
+            ClassicAssert.IsTrue(GameEngine.HasAbility(Ability.BetterDefense));
             FindLT(false);
-            Assert.IsTrue(GameEngine.HasAbility(Ability.BetterDefense));
+            ClassicAssert.IsTrue(GameEngine.HasAbility(Ability.BetterDefense));
         }
 
 
@@ -117,10 +117,10 @@ namespace UE.NUnit
         {
             AddResults(4, 6, 2);
             int indexRegion = 1;
-            Assert.IsTrue(GameEngine.TreasureIsFound(GetRegion(indexRegion)));
+            ClassicAssert.IsTrue(GameEngine.TreasureIsFound(GetRegion(indexRegion)));
             var cr = DoCombatTurn(indexRegion, 5);
 
-            Assert.AreEqual(0, cr.HitpointLost);
+            ClassicAssert.AreEqual(0, cr.HitpointLost);
         }
 
         [Test]
@@ -128,12 +128,12 @@ namespace UE.NUnit
         {
             AddResults(5, 5);
             var cr = DoCombatTurn(4, 3);
-            Assert.AreEqual(false, cr.EncounterDead);
+            ClassicAssert.AreEqual(false, cr.EncounterDead);
             AddResults(5, 5, 4);
             GameEngine.FindConstruct(GameEngine.GetRegionStateFor(4), true);
-            Assert.IsTrue(GameEngine.HasAbility(Ability.HelpAgainstSpirit));
+            ClassicAssert.IsTrue(GameEngine.HasAbility(Ability.HelpAgainstSpirit));
             cr = DoCombatTurn(4, 3);
-            Assert.AreEqual(true, cr.EncounterDead);
+            ClassicAssert.AreEqual(true, cr.EncounterDead);
         }
 
         [Test]
@@ -141,9 +141,9 @@ namespace UE.NUnit
         {
             AddResults(5, 5, 2);
             int indexRegion = 1;
-            Assert.IsTrue(GameEngine.TreasureIsFound(GetRegion(6)));
+            ClassicAssert.IsTrue(GameEngine.TreasureIsFound(GetRegion(6)));
             var cr = DoCombatTurn(indexRegion, 5);
-            Assert.AreEqual(true, cr.EncounterDead);
+            ClassicAssert.AreEqual(true, cr.EncounterDead);
         }
 
         private void FindLT(bool expectToFindLT)
@@ -151,14 +151,14 @@ namespace UE.NUnit
             AddResults(3, 6, 2);
             int indexRegion = 1;
             var cr = DoCombatTurn(indexRegion, 5);
-            Assert.AreEqual(3, cr.DiceRoll.First);
-            Assert.AreEqual(6, cr.DiceRoll.Second);
-            Assert.AreEqual(1, cr.HitpointLost);
-            Assert.IsTrue(cr.EncounterDead);
-            Assert.AreEqual(expectToFindLT, cr.LegendaryTreasureFound);
-            Assert.IsFalse(cr.ComponentFound);
+            ClassicAssert.AreEqual(3, cr.DiceRoll.First);
+            ClassicAssert.AreEqual(6, cr.DiceRoll.Second);
+            ClassicAssert.AreEqual(1, cr.HitpointLost);
+            ClassicAssert.IsTrue(cr.EncounterDead);
+            ClassicAssert.AreEqual(expectToFindLT, cr.LegendaryTreasureFound);
+            ClassicAssert.IsFalse(cr.ComponentFound);
             RegionState rs = GameEngine.GetRegionStateFor(indexRegion);
-            Assert.AreEqual(true, rs.LegendaryTreasureFound);
+            ClassicAssert.AreEqual(true, rs.LegendaryTreasureFound);
 
         }
         private CombatResult DoCombatTurn(int indexRegion, int encounterLevel)

@@ -21,7 +21,7 @@ namespace Engine_Test
         {
           
             GameEngine.SaveGameState(file);
-            Assert.IsTrue(File.Exists(file));
+            ClassicAssert.IsTrue(File.Exists(file));
         }
 
         [Test]
@@ -31,7 +31,7 @@ namespace Engine_Test
             SaveGS();
             GameEngine.LoadGameState(file);
             AssertGameStateIsCorrectlyHydrated();
-            Assert.AreEqual(id, GameEngine.GameState.DefinitionID);
+            ClassicAssert.AreEqual(id, GameEngine.GameState.DefinitionID);
         }
         [Test]
         public void SaveGameStateBasicValues()
@@ -44,24 +44,24 @@ namespace Engine_Test
             GameEngine.SaveGameState(file);
             GameEngine.ResetGameState();
             GameEngine.LoadGameState(file);
-            Assert.AreEqual(4,GameState.CurrentHitPoint);
-            Assert.AreEqual(5, GameState.CurrentDay);
-            Assert.AreEqual(2, GameState.GodsHandEnergy);
-            Assert.AreEqual(1, GameState.NumberOfSkullsCrossed);
+            ClassicAssert.AreEqual(4,GameState.CurrentHitPoint);
+            ClassicAssert.AreEqual(5, GameState.CurrentDay);
+            ClassicAssert.AreEqual(2, GameState.GodsHandEnergy);
+            ClassicAssert.AreEqual(1, GameState.NumberOfSkullsCrossed);
         }
 
         [Test]
         public void SaveConstructFound()
         {
             RegionState rs = GameEngine.GetRegionStateFor(1);
-            Assert.IsFalse(rs.ConstructFound);
+            ClassicAssert.IsFalse(rs.ConstructFound);
             GameEngine.FindConstruct(rs, false);
-            Assert.IsTrue(rs.ConstructFound);
+            ClassicAssert.IsTrue(rs.ConstructFound);
             GameEngine.SaveGameState(file);
             GameEngine.ResetGameState();
             GameEngine.LoadGameState(file);
             rs = GameEngine.GetRegionStateFor(1);
-            Assert.IsTrue(rs.ConstructFound);
+            ClassicAssert.IsTrue(rs.ConstructFound);
         }
 
         [Test]
@@ -73,7 +73,7 @@ namespace Engine_Test
             GameEngine.ResetGameState();
             GameEngine.LoadGameState(file);
             string eventsLoaded = GameState.RegionStates.Aggregate(string.Empty, (current, rs) => current + string.Join("-", rs.Events.Select(x => x.ID.ToString() + rs.Index.ToString())));
-            Assert.AreEqual(events,eventsLoaded);
+            ClassicAssert.AreEqual(events,eventsLoaded);
         }
     }
 }

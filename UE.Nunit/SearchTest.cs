@@ -22,33 +22,33 @@ namespace UE.NUnit
         public void PlaceNumbersOnSearchRegion()
         {
             int indexRegion = 1;
-            Assert.AreEqual(6, GameEngine.NumberOfAvailableSearchesBoxesFor(indexRegion));
+            ClassicAssert.AreEqual(6, GameEngine.NumberOfAvailableSearchesBoxesFor(indexRegion));
             GameEngine.PlaceSearchNumberOnRegion(indexRegion,1,1);
-            Assert.AreEqual(6, GameEngine.NumberOfAvailableSearchesBoxesFor(indexRegion));
+            ClassicAssert.AreEqual(6, GameEngine.NumberOfAvailableSearchesBoxesFor(indexRegion));
             Table search = GameEngine.CurrentSearchBoxForRegion(indexRegion);
-            Assert.IsTrue(search.IsStarted);
-            Assert.AreEqual(1,search.Columns[0].Top);
-            Assert.AreEqual(1, GameEngine.GetRegionStateFor(indexRegion).SearchBoxes.Count(x => x.IsStarted));
+            ClassicAssert.IsTrue(search.IsStarted);
+            ClassicAssert.AreEqual(1,search.Columns[0].Top);
+            ClassicAssert.AreEqual(1, GameEngine.GetRegionStateFor(indexRegion).SearchBoxes.Count(x => x.IsStarted));
             for (int i = 2; i <= 6; i++)
             {
                 GameEngine.PlaceSearchNumberOnRegion(indexRegion, i, i);
                 int actual = GameEngine.GetRegionStateFor(indexRegion).SearchBoxes.Count(x => x.IsStarted);
-                Assert.AreEqual(1, actual,"Is Started = " + actual + " on " + i);
+                ClassicAssert.AreEqual(1, actual,"Is Started = " + actual + " on " + i);
             }
-            Assert.IsTrue(search.IsFull);
-            Assert.AreEqual(5, GameEngine.NumberOfAvailableSearchesBoxesFor(indexRegion));
-            Assert.AreEqual(1, GameEngine.GetRegionStateFor(indexRegion).SearchBoxes.Count(x => x.IsStarted));
+            ClassicAssert.IsTrue(search.IsFull);
+            ClassicAssert.AreEqual(5, GameEngine.NumberOfAvailableSearchesBoxesFor(indexRegion));
+            ClassicAssert.AreEqual(1, GameEngine.GetRegionStateFor(indexRegion).SearchBoxes.Count(x => x.IsStarted));
         }
         [Test]
         public void UseDowsingRod()
         {
 
-            Assert.IsFalse(GameEngine.CanModifySearchResult(1,1).CanUseDowsingRod);
-			Assert.IsTrue(GameEngine.CanModifySearchResult(-1,1).CanUseDowsingRod);
-			Assert.IsTrue(GameEngine.CanModifySearchResult(50,1).CanUseDowsingRod);
-		    Assert.AreEqual(30, GameEngine.UseDowsingRod(50, 20));
-			Assert.IsFalse(GameEngine.CanModifySearchResult(50,1).CanUseDowsingRod);
-            Assert.IsFalse(GameEngine.GameState.Inventory.DowsingRodCharged);
+            ClassicAssert.IsFalse(GameEngine.CanModifySearchResult(1,1).CanUseDowsingRod);
+			ClassicAssert.IsTrue(GameEngine.CanModifySearchResult(-1,1).CanUseDowsingRod);
+			ClassicAssert.IsTrue(GameEngine.CanModifySearchResult(50,1).CanUseDowsingRod);
+		    ClassicAssert.AreEqual(30, GameEngine.UseDowsingRod(50, 20));
+			ClassicAssert.IsFalse(GameEngine.CanModifySearchResult(50,1).CanUseDowsingRod);
+            ClassicAssert.IsFalse(GameEngine.GameState.Inventory.DowsingRodCharged);
         }
 
         [Test]
@@ -57,16 +57,16 @@ namespace UE.NUnit
             AddResults(6,6,6,6,6,6,6,6,6,6);
             Region r = GameEngine.GameDefinition.GetRegion(1);
             TimePassed t = GameEngine.CrossRegionTracker(r);
-            Assert.AreEqual(1,t.DaysPassed);
-            Assert.AreEqual(false, t.eventOccured);
+            ClassicAssert.AreEqual(1,t.DaysPassed);
+            ClassicAssert.AreEqual(false, t.eventOccured);
             FillCurrentSearchBox(1);
             t = GameEngine.CrossRegionTracker(r);
-            Assert.AreEqual(1, t.DaysPassed);
-            Assert.AreEqual(true, t.eventOccured);
+            ClassicAssert.AreEqual(1, t.DaysPassed);
+            ClassicAssert.AreEqual(true, t.eventOccured);
             FillCurrentSearchBox(1);
             t = GameEngine.CrossRegionTracker(r);
-            Assert.AreEqual(0, t.DaysPassed);
-            Assert.AreEqual(false, t.eventOccured);
+            ClassicAssert.AreEqual(0, t.DaysPassed);
+            ClassicAssert.AreEqual(false, t.eventOccured);
         }
 
         private void FillCurrentSearchBox(int indexRegion)
@@ -82,39 +82,39 @@ namespace UE.NUnit
         {
             Region r = GameEngine.GameDefinition.GetRegion(1);
             SearchResult sr = GameEngine.ApplySearch(80, r, false);
-            Assert.AreEqual(0,sr.MonsterLevel);
-            Assert.AreEqual(1,sr.NumberOfComposantFound);
-            Assert.IsFalse(sr.ConstructFound);
+            ClassicAssert.AreEqual(0,sr.MonsterLevel);
+            ClassicAssert.AreEqual(1,sr.NumberOfComposantFound);
+            ClassicAssert.IsFalse(sr.ConstructFound);
             sr = GameEngine.ApplySearch(8, r, false);
-            Assert.AreEqual(0,sr.MonsterLevel);
-            Assert.AreEqual(0,sr.NumberOfComposantFound);
-            Assert.IsTrue(sr.ConstructFound);
-            Assert.AreEqual(1,GameState.ConstructsFound.Count() );
-            Assert.AreEqual(1, GameState.ConstructsUnactivated.Count());
-            Assert.AreEqual(0, GameState.ConstructsActivated.Count());
+            ClassicAssert.AreEqual(0,sr.MonsterLevel);
+            ClassicAssert.AreEqual(0,sr.NumberOfComposantFound);
+            ClassicAssert.IsTrue(sr.ConstructFound);
+            ClassicAssert.AreEqual(1,GameState.ConstructsFound.Count() );
+            ClassicAssert.AreEqual(1, GameState.ConstructsUnactivated.Count());
+            ClassicAssert.AreEqual(0, GameState.ConstructsActivated.Count());
             sr = GameEngine.ApplySearch(8, r, false);
-            Assert.AreEqual(0, sr.MonsterLevel);
-            Assert.AreEqual(2, sr.NumberOfComposantFound);
-            Assert.IsFalse(sr.ConstructFound);
+            ClassicAssert.AreEqual(0, sr.MonsterLevel);
+            ClassicAssert.AreEqual(2, sr.NumberOfComposantFound);
+            ClassicAssert.IsFalse(sr.ConstructFound);
             sr = GameEngine.ApplySearch(208,r, false);
-            Assert.AreEqual(2, sr.MonsterLevel);
-            Assert.AreEqual(0, sr.NumberOfComposantFound);
-            Assert.IsFalse(sr.ConstructFound);
+            ClassicAssert.AreEqual(2, sr.MonsterLevel);
+            ClassicAssert.AreEqual(0, sr.NumberOfComposantFound);
+            ClassicAssert.IsFalse(sr.ConstructFound);
         }
 
         [Test]
         public void SearchResult0GivesActivatedConstruct()
         {
-            Assert.AreEqual(0, GameState.NumberOfSkullsCrossed);
+            ClassicAssert.AreEqual(0, GameState.NumberOfSkullsCrossed);
             Region r = GameEngine.GameDefinition.GetRegion(1);
             SearchResult sr = GameEngine.ApplySearch(0, r, false);
-            Assert.AreEqual(1, GameState.ConstructsFound.Count());
-            Assert.AreEqual(0, GameState.ConstructsUnactivated.Count());
-            Assert.AreEqual(1, GameState.ConstructsActivated.Count());
-            Assert.AreEqual(2, GameState.GodsHandEnergy);
-            Assert.AreEqual(1,GameState.NumberOfSkullsCrossed);
-            Assert.AreEqual(true, sr.ConstructFound);
-            Assert.AreEqual(0, sr.NumberOfComposantFound);
+            ClassicAssert.AreEqual(1, GameState.ConstructsFound.Count());
+            ClassicAssert.AreEqual(0, GameState.ConstructsUnactivated.Count());
+            ClassicAssert.AreEqual(1, GameState.ConstructsActivated.Count());
+            ClassicAssert.AreEqual(2, GameState.GodsHandEnergy);
+            ClassicAssert.AreEqual(1,GameState.NumberOfSkullsCrossed);
+            ClassicAssert.AreEqual(true, sr.ConstructFound);
+            ClassicAssert.AreEqual(0, sr.NumberOfComposantFound);
         }
 
         [Test]
@@ -122,12 +122,12 @@ namespace UE.NUnit
         {
             RegionState rs = GameEngine.GetRegionStateFor(1);
             GameEngine.FindConstruct(rs, false);
-            Assert.IsTrue(rs.ConstructFound);
-            Assert.AreEqual(1, GameState.ConstructsFound.Count());
+            ClassicAssert.IsTrue(rs.ConstructFound);
+            ClassicAssert.AreEqual(1, GameState.ConstructsFound.Count());
             SearchResult sr = GameEngine.ApplySearch(0, rs.Region, false);
-            Assert.AreEqual(1, GameState.ConstructsFound.Count());
-          Assert.AreEqual(false,sr.ConstructFound);
-            Assert.AreEqual(2,sr.NumberOfComposantFound);
+            ClassicAssert.AreEqual(1, GameState.ConstructsFound.Count());
+          ClassicAssert.AreEqual(false,sr.ConstructFound);
+            ClassicAssert.AreEqual(2,sr.NumberOfComposantFound);
         }
     }
 }
