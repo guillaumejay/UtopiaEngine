@@ -7,6 +7,7 @@ using NUnit.Framework;
 using UE.Core;
 using UE.Core.Architecture;
 using UE.Core.Entities;
+using UE.Core.Repository;
 
 namespace UE.NUnit
 {

@@ -4,6 +4,7 @@ using UE.Core;
 using UE.Core.Architecture.Messages;
 using UE.Core.Entities;
 using UE.Core.Interfaces;
+using UE.Core.Repository;
 
 namespace UE.NUnit
 {

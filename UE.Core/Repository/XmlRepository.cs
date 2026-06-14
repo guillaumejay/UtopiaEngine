@@ -1,14 +1,14 @@
-﻿using System.IO;
+using System.IO;
 using System.Xml.Serialization;
 using UE.Core.Entities;
-using UE.Core.Repository;
 
-namespace UE.NUnit
+namespace UE.Core.Repository
 {
-    public class XmlRepository:BaseRepository
+    /// <summary>
+    /// File-based XML persistence for game states. UI-agnostic; usable by any front-end.
+    /// </summary>
+    public class XmlRepository : BaseRepository
     {
-       
-
         public override void SaveGameState(string save, GameState gameState)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(GameState));
@@ -18,29 +18,26 @@ namespace UE.NUnit
             }
         }
 
-
         public override GameState LoadGameState(string file)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(GameState));
-            GameState def;
-
             using (Stream reader = new FileStream(file, FileMode.Open, FileAccess.Read))
             {
-                def = (GameState)serializer.Deserialize(reader);
+                return (GameState)serializer.Deserialize(reader);
             }
-            return def;
         }
-
 
         public override bool IsAutoSaveAvailable
         {
-            get { throw new System.NotImplementedException(); }
+            get { return File.Exists(_autosaveFileName); }
         }
 
-
-        public override  bool DeleteAutoSave()
+        public override bool DeleteAutoSave()
         {
-            throw new System.NotImplementedException();
+            if (!File.Exists(_autosaveFileName))
+                return false;
+            File.Delete(_autosaveFileName);
+            return true;
         }
     }
 }
