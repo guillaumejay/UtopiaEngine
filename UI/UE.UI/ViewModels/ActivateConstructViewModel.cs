@@ -5,6 +5,7 @@ using UE.Core.Architecture;
 using UE.Core.Architecture.Messages;
 using UE.Core.Entities;
 using UE.Core.Interfaces;
+using UE.UI.Localization;
 
 namespace UE.UI.ViewModels;
 
@@ -17,8 +18,8 @@ public partial class ActivateConstructViewModel : DicePlacementPageViewModel, IH
     public string Title { get; }
 
     [ObservableProperty] private string _infoMessage = string.Empty;
-    [ObservableProperty] private string _energyText = "Énergie : 0 / 4";
-    [ObservableProperty] private string _tableLabel = "Tentative 1 sur 2";
+    [ObservableProperty] private string _energyText = string.Format(L.EnergyLabel, 0);
+    [ObservableProperty] private string _tableLabel = L.Attempt1;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsPlacing))]
@@ -33,7 +34,7 @@ public partial class ActivateConstructViewModel : DicePlacementPageViewModel, IH
         : base(engine, shell)
     {
         _cs = cs;
-        Title = $"Activation de {cs.Construct.Name.Text}";
+        Title = string.Format(L.ActivationTitle, cs.Construct.Name.Text);
         CanUseFocusCharm = engine.GameState.Inventory.FocusCharmCharged;
         UpdateTableLabel();
         SyncCells(8, i => _cs.CurrentActivationTable[i]);
@@ -41,14 +42,14 @@ public partial class ActivateConstructViewModel : DicePlacementPageViewModel, IH
     }
 
     private void UpdateTableLabel() =>
-        TableLabel = _cs.ActivationTable1.IsFull ? "Tentative 2 sur 2" : "Tentative 1 sur 2";
+        TableLabel = _cs.ActivationTable1.IsFull ? L.Attempt2 : L.Attempt1;
 
     [RelayCommand]
     private void UseFocusCharm()
     {
         EngineRef.UseFocusCharm(_cs.Construct.ID);
         CanUseFocusCharm = false;
-        InfoMessage = "Charme de concentration : +2 énergie sur cette activation.";
+        InfoMessage = L.FocusCharmUsed;
         Shell.RefreshStatus();
     }
 
@@ -62,19 +63,19 @@ public partial class ActivateConstructViewModel : DicePlacementPageViewModel, IH
 
         var info = new List<string>();
         if (ar.CurrentColumnValue is 1 or 2)
-            info.Add($"Colonne terminée : +{ar.CurrentColumnValue} énergie.");
+            info.Add(string.Format(L.ColumnEnergy, ar.CurrentColumnValue));
         if (ar.CurrentColumnValue == 0)
-            info.Add("Colonne nulle : elle est effacée, à refaire.");
+            info.Add(L.ColumnZero);
         if (ar.CurrentColumnValue == -1)
-            info.Add("Contrecoup ! Colonne perdue et −1 PV.");
+            info.Add(L.ColumnBacklash);
         if (ar.eventOccured)
             info.Add(UiMessages.EventsRolled);
-        EnergyText = $"Énergie : {ar.EnergyPoints} / 4";
+        EnergyText = string.Format(L.EnergyLabel, ar.EnergyPoints);
 
         switch (ResolveHpAftermath(out string hpMessage))
         {
             case HpAftermath.Dead:
-                Finish(UiMessages.GameLost("vous succombez au contrecoup"));
+                Finish(UiMessages.GameLost(L.DiedToBacklash));
                 return;
             case HpAftermath.TimeOut:
                 Finish(hpMessage + " " + UiMessages.GameLost(UiMessages.GameLostTime));
@@ -87,18 +88,18 @@ public partial class ActivateConstructViewModel : DicePlacementPageViewModel, IH
         if (ar.IsConstructActivated)
         {
             string bonus = ar.IsFieldFilled && ar.EnergyPoints > 4
-                ? $" Le surplus ({ar.EnergyPoints - 4}) charge la God's Hand."
+                ? string.Format(L.SurplusToGodsHand, ar.EnergyPoints - 4)
                 : string.Empty;
             string auto = ar.IsFieldFilled && ar.EnergyPoints < 4
-                ? " Les deux tentatives sont épuisées : le construct s'active de justesse, épuisé."
+                ? L.ExhaustedActivation
                 : string.Empty;
-            Finish($"{_cs.Construct.Name.Text} est activé !{bonus}{auto}");
+            Finish(string.Format(L.ConstructActivated, _cs.Construct.Name.Text) + bonus + auto);
             return;
         }
 
         if (ar.IsFieldFilled)
         {
-            info.Add($"Tentative ratée ({ar.EnergyPoints} énergie sur 4 requises) : +1 jour, on repart sur la seconde table.");
+            info.Add(string.Format(L.AttemptFailed, ar.EnergyPoints));
             if (EngineRef.IsGameLost)
             {
                 Finish(UiMessages.GameLost(UiMessages.GameLostTime));

@@ -3,6 +3,7 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:vm="using:UE.UI.ViewModels"
+                xmlns:loc="using:UE.UI.Localization"
                 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                 x:Class="UE.UI.Views.LinksView"
                 x:DataType="vm:LinksViewModel">
@@ -19,16 +20,16 @@
                                     <TextBlock Text="{Binding Name}" FontWeight="Bold" TextWrapping="Wrap"/>
                                     <TextBlock Text="{Binding Status}" TextWrapping="Wrap"/>
                                 </StackPanel>
-                                <Button Grid.Column="1" Content="Relier" Command="{Binding ConnectCommand}"
+                                <Button Grid.Column="1" Content="{x:Static loc:L.ConnectAction}" Command="{Binding ConnectCommand}"
                                         IsVisible="{Binding CanConnect}" VerticalAlignment="Center"/>
                             </Grid>
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <Button Content="⚡ Activation finale !" Command="{Binding FinalActivationCommand}"
+            <Button Content="{x:Static loc:L.FinalActivationButton}" Command="{Binding FinalActivationCommand}"
                     IsVisible="{Binding CanFinalActivate}" FontSize="16" Padding="16,8"/>
-            <Button Content="Retour aux régions" Command="{Binding BackCommand}"/>
+            <Button Content="{x:Static loc:L.BackToRegions}" Command="{Binding BackCommand}"/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

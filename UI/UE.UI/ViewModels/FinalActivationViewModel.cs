@@ -2,6 +2,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using UE.Core.Architecture.Messages;
 using UE.Core.Interfaces;
+using UE.UI.Localization;
 
 namespace UE.UI.ViewModels;
 
@@ -29,18 +30,18 @@ public partial class FinalActivationViewModel : ViewModelBase, IHelpContextProvi
     {
         _engine = engine;
         _shell = shell;
-        Log = "Les six constructs sont reliés : l'Utopia Engine est prêt. Lancez 2d6 — atteignez ou dépassez la difficulté pour sauver le monde. Chaque échec coûte 1 PV et 1 jour.";
+        Log = L.FinalIntro;
         CanSpendHp = engine.GameState.CurrentHitPoint > 0;
         MaxHpToSpend = engine.GameState.CurrentHitPoint;
         RefreshDifficulty();
     }
 
-    public string Title => "Activation finale";
+    public string Title => L.FinalTitle;
 
     public int MaxHpToSpend { get; }
 
     private void RefreshDifficulty() =>
-        DifficultyText = $"Difficulté : {_engine.GameState.FinalActivationDifficulty} (2d6, somme à atteindre)";
+        DifficultyText = string.Format(L.FinalDifficulty, _engine.GameState.FinalActivationDifficulty);
 
     private void AppendLog(string line) => Log += "\n" + line;
 
@@ -54,7 +55,7 @@ public partial class FinalActivationViewModel : ViewModelBase, IHelpContextProvi
         CanSpendHp = false;
         _shell.RefreshStatus();
         RefreshDifficulty();
-        AppendLog($"Vous canalisez votre énergie vitale : −{hp} PV, difficulté réduite d'autant. Il n'y aura pas de second sacrifice.");
+        AppendLog(string.Format(L.SacrificeDone, hp));
     }
 
     [RelayCommand]
@@ -62,24 +63,24 @@ public partial class FinalActivationViewModel : ViewModelBase, IHelpContextProvi
     {
         FinalActivationResult far = _engine.WorkForfinalActivation();
         _shell.RefreshStatus();
-        AppendLog($"Vous lancez {far.Roll.First} et {far.Roll.Second} : {far.Roll.Sum}.");
+        AppendLog(string.Format(L.FinalRollLine, far.Roll.First, far.Roll.Second, far.Roll.Sum));
 
         if (far.GameWon)
         {
-            Finish($"L'UTOPIA ENGINE S'ÉVEILLE — le monde est sauvé !\nScore final : {_engine.Score}.");
+            Finish(L.Victory + "\n" + string.Format(L.FinalScore, _engine.Score));
             return;
         }
 
-        AppendLog("L'Engine gronde mais ne démarre pas : −1 PV, +1 jour.");
+        AppendLog(L.FinalFail);
         if (far.eventOccured)
             AppendLog(UiMessages.EventsRolled);
 
         if (_engine.IsGameLost)
         {
             string reason = _engine.GameState.CurrentHitPoint < 0
-                ? "votre énergie vitale est épuisée"
+                ? L.LifeExhausted
                 : UiMessages.GameLostTime;
-            Finish(UiMessages.GameLost(reason) + $"\nScore final : {_engine.Score}.");
+            Finish(UiMessages.GameLost(reason) + "\n" + string.Format(L.FinalScore, _engine.Score));
             return;
         }
 

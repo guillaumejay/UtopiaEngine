@@ -8,17 +8,16 @@ using UE.Core.Interfaces;
 
 namespace UE.UI.ViewModels;
 
-/// <summary>Messages joueur partagés entre les écrans (une seule source pour les textes récurrents).</summary>
+/// <summary>Messages joueur partagés entre les écrans, adossés aux ressources localisées.</summary>
 public static class UiMessages
 {
-    public const string EventsRolled = "De nouveaux événements se produisent dans les régions !";
+    public static string EventsRolled => Localization.L.EventsRolled;
 
-    public const string GameLostTime = "le temps vous a rattrapé";
+    public static string GameLostTime => Localization.L.GameLostTime;
 
-    public static string Unconscious(int days) =>
-        $"Inconscient ! Vous vous réveillez après {days} jour(s), soigné.";
+    public static string Unconscious(int days) => string.Format(Localization.L.UnconsciousMsg, days);
 
-    public static string GameLost(string reason) => $"Partie perdue — {reason}.";
+    public static string GameLost(string reason) => string.Format(Localization.L.GameLostFmt, reason);
 }
 
 /// <summary>Issue de la résolution des PV après une action qui peut en coûter.</summary>

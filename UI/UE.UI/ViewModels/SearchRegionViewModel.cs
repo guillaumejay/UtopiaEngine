@@ -6,6 +6,7 @@ using UE.Core.Architecture;
 using UE.Core.Architecture.Messages;
 using UE.Core.Entities;
 using UE.Core.Interfaces;
+using UE.UI.Localization;
 
 namespace UE.UI.ViewModels;
 
@@ -56,6 +57,8 @@ public partial class SearchRegionViewModel : DicePlacementPageViewModel, IHelpCo
     [ObservableProperty] private decimal _dowsingRodNumber = 50;
     [ObservableProperty] private bool _canContinue;
 
+    public string UseWandLabel { get; } = string.Format(L.UseWandButton, GameEngine.ParalysisWandBonus);
+
     private Encounter? _encounter;
     private TwoDice? _combatDice;
 
@@ -68,7 +71,7 @@ public partial class SearchRegionViewModel : DicePlacementPageViewModel, IHelpCo
         : base(engine, shell)
     {
         _region = engine.GetRegion(regionIndex);
-        RegionName = $"{_region.Name.Text} — à la recherche de {_region.Construct.Name.Text}";
+        RegionName = string.Format(L.SearchingFor, _region.Name.Text, _region.Construct.Name.Text);
         engine.EnterRegionForSearch(regionIndex);
         StartBox();
     }
@@ -77,7 +80,7 @@ public partial class SearchRegionViewModel : DicePlacementPageViewModel, IHelpCo
     {
         if (EngineRef.NumberOfAvailableSearchesBoxesFor(_region.Index) == 0)
         {
-            FinishBox("Région entièrement fouillée.", canContinue: false);
+            FinishBox(L.RegionExhausted, canContinue: false);
             return;
         }
 
@@ -85,7 +88,7 @@ public partial class SearchRegionViewModel : DicePlacementPageViewModel, IHelpCo
         TimePassed t = EngineRef.CrossRegionTracker(_region);
         var info = new List<string>();
         if (t.DaysPassed > 0)
-            info.Add($"Cette fouille coûte {t.DaysPassed} jour(s).");
+            info.Add(string.Format(L.SearchCostsDays, t.DaysPassed));
         if (t.eventOccured)
             info.Add(UiMessages.EventsRolled);
         InfoMessage = string.Join(" ", info);
@@ -123,7 +126,7 @@ public partial class SearchRegionViewModel : DicePlacementPageViewModel, IHelpCo
     private void BoxFilled()
     {
         _result = _box!.SearchResult;
-        ResultText = $"Résultat de fouille : {_result}";
+        ResultText = string.Format(L.SearchResultLabel, _result);
         CanSearchResult crs = EngineRef.CanModifySearchResult(_result, _region.Index);
         CanUseDowsingRod = crs.CanModify && crs.CanUseDowsingRod;
         Phase = SearchPhase.BoxFull;
@@ -135,7 +138,7 @@ public partial class SearchRegionViewModel : DicePlacementPageViewModel, IHelpCo
         _result = EngineRef.UseDowsingRod(_result, (int)DowsingRodNumber);
         _modified = true;
         CanUseDowsingRod = false;
-        ResultText = $"Résultat de fouille : {_result} (modifié par la baguette)";
+        ResultText = string.Format(L.SearchResultModified, _result);
     }
 
     [RelayCommand]
@@ -146,18 +149,18 @@ public partial class SearchRegionViewModel : DicePlacementPageViewModel, IHelpCo
 
         var lines = new List<string>();
         if (sr.ConstructFound)
-            lines.Add(sr.FinalResult == 0
-                ? $"{_region.Construct.Name.Text} trouvé et activé (zéro parfait, +5 énergie God's Hand) !"
-                : $"{_region.Construct.Name.Text} trouvé !");
+            lines.Add(string.Format(
+                sr.FinalResult == 0 ? L.ConstructFoundPerfect : L.ConstructFoundMsg,
+                _region.Construct.Name.Text));
         if (sr.NumberOfComposantFound > 0)
-            lines.Add($"{sr.NumberOfComposantFound} × {_region.Component.Name.Text} trouvé(s).");
+            lines.Add(string.Format(L.ComponentsFoundMsg, sr.NumberOfComposantFound, _region.Component.Name.Text));
         if (sr.MonsterLevel > 0)
         {
             StartCombat(_region.GetEncounter(sr.MonsterLevel));
             return;
         }
         if (lines.Count == 0)
-            lines.Add("Rien trouvé cette fois-ci.");
+            lines.Add(L.NothingFound);
 
         if (EngineRef.IsGameLost)
         {
@@ -172,7 +175,7 @@ public partial class SearchRegionViewModel : DicePlacementPageViewModel, IHelpCo
     {
         _encounter = e;
         EngineRef.StartFight();
-        CombatLog = $"Vous devez combattre {e.Name.Text} (attaque sur {e.AttackText}, touché sur {e.HitText}{(e.IsSpirit ? ", esprit" : "")}).";
+        CombatLog = string.Format(L.MustFight, e.Name.Text, e.AttackText, e.HitText, e.IsSpirit ? L.SpiritSuffix : string.Empty);
         CanFlee = EngineRef.HasAbility(Ability.IgnoreEncounter);
         CanRollCombat = true;
         ShowWandChoice = false;
@@ -185,7 +188,7 @@ public partial class SearchRegionViewModel : DicePlacementPageViewModel, IHelpCo
     private void RollCombat()
     {
         _combatDice = EngineRef.RollCombatDice(_encounter!);
-        AppendCombatLog($"Vous lancez {_combatDice.First} et {_combatDice.Second}.");
+        AppendCombatLog(string.Format(L.YouRoll, _combatDice.First, _combatDice.Second));
         CanRollCombat = false;
         if (EngineRef.GameState.Inventory.ParalysisWandCharged && !EngineRef.GameState.ParalysisWandInUse)
             ShowWandChoice = true;
@@ -198,7 +201,7 @@ public partial class SearchRegionViewModel : DicePlacementPageViewModel, IHelpCo
     {
         EngineRef.UseParalysisWand();
         _combatDice!.ModifyBothDie(GameEngine.ParalysisWandBonus);
-        AppendCombatLog($"Baguette de paralysie : +{GameEngine.ParalysisWandBonus} aux dés pour tout le combat, soit {_combatDice.First} et {_combatDice.Second}.");
+        AppendCombatLog(string.Format(L.WandApplied, GameEngine.ParalysisWandBonus, _combatDice.First, _combatDice.Second));
         ShowWandChoice = false;
         ResolveCombatTurn();
     }
@@ -213,7 +216,7 @@ public partial class SearchRegionViewModel : DicePlacementPageViewModel, IHelpCo
     [RelayCommand]
     private void Flee()
     {
-        AppendCombatLog("Vous fuyez le combat.");
+        AppendCombatLog(L.YouFlee);
         EndCombat();
     }
 
@@ -222,22 +225,22 @@ public partial class SearchRegionViewModel : DicePlacementPageViewModel, IHelpCo
         CombatResult cr = EngineRef.ApplyCombatRoll(_combatDice!, _encounter!, _region);
         Shell.RefreshStatus();
         if (cr.HitpointLost > 0)
-            AppendCombatLog($"Vous perdez {cr.HitpointLost} PV.");
+            AppendCombatLog(string.Format(L.YouLoseHp, cr.HitpointLost));
 
         if (cr.EncounterDead)
         {
-            AppendCombatLog($"{_encounter!.Name.Text} est vaincu !");
+            AppendCombatLog(string.Format(L.EncounterDefeated, _encounter!.Name.Text));
             if (cr.ComponentFound)
-                AppendCombatLog($"Butin : 1 × {_region.Component.Name.Text}.");
+                AppendCombatLog(string.Format(L.LootComponent, _region.Component.Name.Text));
             if (cr.LegendaryTreasureFound)
-                AppendCombatLog($"Butin : {_region.LegendaryTreasure.Name.Text} (trésor légendaire) !");
+                AppendCombatLog(string.Format(L.LootTreasure, _region.LegendaryTreasure.Name.Text));
             Shell.RefreshStatus();
         }
 
         switch (ResolveHpAftermath(out string hpMessage))
         {
             case HpAftermath.Dead:
-                GameLost("vous succombez à vos blessures");
+                GameLost(L.DiedToWounds);
                 return;
             case HpAftermath.TimeOut:
                 AppendCombatLog(hpMessage);
@@ -273,8 +276,9 @@ public partial class SearchRegionViewModel : DicePlacementPageViewModel, IHelpCo
     [RelayCommand]
     private void Back() => Shell.ShowRegions();
 
-    private void GameLost(string reason = UiMessages.GameLostTime)
+    private void GameLost(string? reason = null)
     {
+        reason ??= UiMessages.GameLostTime;
         string prefix = IsCombat ? CombatLog + "\n" : string.Empty;
         FinishBox(prefix + UiMessages.GameLost(reason), canContinue: false);
     }

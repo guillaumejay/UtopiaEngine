@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Help" xml:space="preserve">
+    <value>Aide</value>
+  </data>
+  <data name="StatusHp" xml:space="preserve">
+    <value>PV : {0}</value>
+  </data>
+  <data name="StatusDay" xml:space="preserve">
+    <value>Jour : {0}</value>
+  </data>
+  <data name="StatusDaysRemaining" xml:space="preserve">
+    <value>Jours restants : {0}</value>
+  </data>
+  <data name="StatusScore" xml:space="preserve">
+    <value>Score : {0}</value>
+  </data>
+  <data name="StatusGodsHand" xml:space="preserve">
+    <value>Énergie GH : {0}</value>
+  </data>
+  <data name="HomeTagline" xml:space="preserve">
+    <value>Reconstruisez l&#x27;Utopia Engine avant la fin du monde.</value>
+  </data>
+  <data name="NewGame" xml:space="preserve">
+    <value>Nouvelle partie</value>
+  </data>
+  <data name="ContinueSaved" xml:space="preserve">
+    <value>Continuer la partie sauvegardée</value>
+  </data>
+  <data name="Camp" xml:space="preserve">
+    <value>Campement</value>
+  </data>
+  <data name="SearchAction" xml:space="preserve">
+    <value>Fouiller</value>
+  </data>
+  <data name="ConstructsToActivate" xml:space="preserve">
+    <value>Constructs ({0} à activer)</value>
+  </data>
+  <data name="ConstructsFoundLabel" xml:space="preserve">
+    <value>Constructs ({0} trouvé(s))</value>
+  </data>
+  <data name="LinksPossibleLabel" xml:space="preserve">
+    <value>Liens ({0} possible(s))</value>
+  </data>
+  <data name="LinksConnectedLabel" xml:space="preserve">
+    <value>Liens ({0} connecté(s))</value>
+  </data>
+  <data name="ComponentInfo" xml:space="preserve">
+    <value>Composant : {0} ({1})</value>
+  </data>
+  <data name="ConstructInfo" xml:space="preserve">
+    <value>Construct : {0} ({1})</value>
+  </data>
+  <data name="TreasureInfo" xml:space="preserve">
+    <value>Trésor : {0} ({1})</value>
+  </data>
+  <data name="FoundState" xml:space="preserve">
+    <value>trouvé</value>
+  </data>
+  <data name="ToFindState" xml:space="preserve">
+    <value>à trouver</value>
+  </data>
+  <data name="EventsPrefix" xml:space="preserve">
+    <value>Événements : {0}</value>
+  </data>
+  <data name="SearchingFor" xml:space="preserve">
+    <value>{0} — à la recherche de {1}</value>
+  </data>
+  <data name="SearchCostsDays" xml:space="preserve">
+    <value>Cette fouille coûte {0} jour(s).</value>
+  </data>
+  <data name="RegionExhausted" xml:space="preserve">
+    <value>Région entièrement fouillée.</value>
+  </data>
+  <data name="SearchResultLabel" xml:space="preserve">
+    <value>Résultat de fouille : {0}</value>
+  </data>
+  <data name="SearchResultModified" xml:space="preserve">
+    <value>Résultat de fouille : {0} (modifié par la baguette)</value>
+  </data>
+  <data name="UseDowsingRod" xml:space="preserve">
+    <value>Utiliser la baguette de sourcier</value>
+  </data>
+  <data name="ApplySearch" xml:space="preserve">
+    <value>Appliquer la fouille</value>
+  </data>
+  <data name="SearchAgain" xml:space="preserve">
+    <value>Fouiller à nouveau</value>
+  </data>
+  <data name="BackToRegions" xml:space="preserve">
+    <value>Retour aux régions</value>
+  </data>
+  <data name="NothingFound" xml:space="preserve">
+    <value>Rien trouvé cette fois-ci.</value>
+  </data>
+  <data name="ConstructFoundPerfect" xml:space="preserve">
+    <value>{0} trouvé et activé (zéro parfait, +5 énergie God&#x27;s Hand) !</value>
+  </data>
+  <data name="ConstructFoundMsg" xml:space="preserve">
+    <value>{0} trouvé !</value>
+  </data>
+  <data name="ComponentsFoundMsg" xml:space="preserve">
+    <value>{0} × {1} trouvé(s).</value>
+  </data>
+  <data name="DiceLabel" xml:space="preserve">
+    <value>Dés :</value>
+  </data>
+  <data name="DiceHint" xml:space="preserve">
+    <value>(choisissez un dé, puis une case)</value>
+  </data>
+  <data name="MustFight" xml:space="preserve">
+    <value>Vous devez combattre {0} (attaque sur {1}, touché sur {2}{3}).</value>
+  </data>
+  <data name="SpiritSuffix" xml:space="preserve">
+    <value>, esprit</value>
+  </data>
+  <data name="YouRoll" xml:space="preserve">
+    <value>Vous lancez {0} et {1}.</value>
+  </data>
+  <data name="RollCombatDice" xml:space="preserve">
+    <value>Lancer les dés de combat</value>
+  </data>
+  <data name="Flee" xml:space="preserve">
+    <value>Fuir</value>
+  </data>
+  <data name="YouFlee" xml:space="preserve">
+    <value>Vous fuyez le combat.</value>
+  </data>
+  <data name="UseWandButton" xml:space="preserve">
+    <value>Baguette de paralysie (+{0})</value>
+  </data>
+  <data name="SkipWand" xml:space="preserve">
+    <value>Continuer sans baguette</value>
+  </data>
+  <data name="WandApplied" xml:space="preserve">
+    <value>Baguette de paralysie : +{0} aux dés pour tout le combat, soit {1} et {2}.</value>
+  </data>
+  <data name="YouLoseHp" xml:space="preserve">
+    <value>Vous perdez {0} PV.</value>
+  </data>
+  <data name="EncounterDefeated" xml:space="preserve">
+    <value>{0} est vaincu !</value>
+  </data>
+  <data name="LootComponent" xml:space="preserve">
+    <value>Butin : 1 × {0}.</value>
+  </data>
+  <data name="LootTreasure" xml:space="preserve">
+    <value>Butin : {0} (trésor légendaire) !</value>
+  </data>
+  <data name="DiedToWounds" xml:space="preserve">
+    <value>vous succombez à vos blessures</value>
+  </data>
+  <data name="EventsRolled" xml:space="preserve">
+    <value>De nouveaux événements se produisent dans les régions !</value>
+  </data>
+  <data name="GameLostTime" xml:space="preserve">
+    <value>le temps vous a rattrapé</value>
+  </data>
+  <data name="UnconsciousMsg" xml:space="preserve">
+    <value>Inconscient ! Vous vous réveillez après {0} jour(s), soigné.</value>
+  </data>
+  <data name="GameLostFmt" xml:space="preserve">
+    <value>Partie perdue — {0}.</value>
+  </data>
+  <data name="ActivationTitle" xml:space="preserve">
+    <value>Activation de {0}</value>
+  </data>
+  <data name="Attempt1" xml:space="preserve">
+    <value>Tentative 1 sur 2</value>
+  </data>
+  <data name="Attempt2" xml:space="preserve">
+    <value>Tentative 2 sur 2</value>
+  </data>
+  <data name="EnergyLabel" xml:space="preserve">
+    <value>Énergie : {0} / 4</value>
+  </data>
+  <data name="ColumnEnergy" xml:space="preserve">
+    <value>Colonne terminée : +{0} énergie.</value>
+  </data>
+  <data name="ColumnZero" xml:space="preserve">
+    <value>Colonne nulle : elle est effacée, à refaire.</value>
+  </data>
+  <data name="ColumnBacklash" xml:space="preserve">
+    <value>Contrecoup ! Colonne perdue et −1 PV.</value>
+  </data>
+  <data name="FocusCharmUsed" xml:space="preserve">
+    <value>Charme de concentration : +2 énergie sur cette activation.</value>
+  </data>
+  <data name="UseFocusCharm" xml:space="preserve">
+    <value>Charme de concentration (+2 énergie)</value>
+  </data>
+  <data name="ConstructActivated" xml:space="preserve">
+    <value>{0} est activé !</value>
+  </data>
+  <data name="SurplusToGodsHand" xml:space="preserve">
+    <value> Le surplus ({0}) charge la God&#x27;s Hand.</value>
+  </data>
+  <data name="ExhaustedActivation" xml:space="preserve">
+    <value> Les deux tentatives sont épuisées : le construct s&#x27;active de justesse, épuisé.</value>
+  </data>
+  <data name="AttemptFailed" xml:space="preserve">
+    <value>Tentative ratée ({0} énergie sur 4 requises) : +1 jour, on repart sur la seconde table.</value>
+  </data>
+  <data name="DiedToBacklash" xml:space="preserve">
+    <value>vous succombez au contrecoup</value>
+  </data>
+  <data name="BackToConstructs" xml:space="preserve">
+    <value>Retour aux constructs</value>
+  </data>
+  <data name="ConstructsTitle" xml:space="preserve">
+    <value>Constructs</value>
+  </data>
+  <data name="NotFoundState" xml:space="preserve">
+    <value>Non trouvé</value>
+  </data>
+  <data name="ActivatedState" xml:space="preserve">
+    <value>Activé ✓</value>
+  </data>
+  <data name="FoundToActivateState" xml:space="preserve">
+    <value>Trouvé, à activer</value>
+  </data>
+  <data name="ActivateAction" xml:space="preserve">
+    <value>Activer</value>
+  </data>
+  <data name="LinksTitle" xml:space="preserve">
+    <value>Liens entre constructs</value>
+  </data>
+  <data name="LinksSummary" xml:space="preserve">
+    <value>{0} lien(s) sur {1} — difficulté d&#x27;activation finale actuelle : {2}</value>
+  </data>
+  <data name="LinkConnected" xml:space="preserve">
+    <value>Connecté (valeur {0})</value>
+  </data>
+  <data name="LinkNeedsActivated" xml:space="preserve">
+    <value>Indisponible — les deux constructs doivent être activés</value>
+  </data>
+  <data name="LinkNoComponent" xml:space="preserve">
+    <value>Indisponible — aucun composant {0}</value>
+  </data>
+  <data name="LinkReady" xml:space="preserve">
+    <value>Prêt à relier (coût : 1 × {0})</value>
+  </data>
+  <data name="ConnectAction" xml:space="preserve">
+    <value>Relier</value>
+  </data>
+  <data name="FinalActivationButton" xml:space="preserve">
+    <value>⚡ Activation finale !</value>
+  </data>
+  <data name="ConnectTitle" xml:space="preserve">
+    <value>Relier {0} et {1}</value>
+  </data>
+  <data name="ConnectHint" xml:space="preserve">
+    <value>Objectif : des colonnes à écart faible mais jamais négatif — la somme des liens fixe la difficulté de l&#x27;activation finale.</value>
+  </data>
+  <data name="BasketLabelFmt" xml:space="preserve">
+    <value>Jeter le dé sélectionné (corbeille : {0}/{1})</value>
+  </data>
+  <data name="AutoConnectButton" xml:space="preserve">
+    <value>Textes Anciens : connecter automatiquement (valeur 2)</value>
+  </data>
+  <data name="AutoConnected" xml:space="preserve">
+    <value>Lien établi automatiquement grâce aux Textes Anciens (valeur {0}).</value>
+  </data>
+  <data name="ComponentsSpent" xml:space="preserve">
+    <value>{0} composant(s) dépensé(s).</value>
+  </data>
+  <data name="NegativeColumns" xml:space="preserve">
+    <value>Colonnes négatives : −{0} PV.</value>
+  </data>
+  <data name="LinkFailedReset" xml:space="preserve">
+    <value>Plus de composants pour compenser : le lien est réinitialisé, tout est à refaire.</value>
+  </data>
+  <data name="LinkMade" xml:space="preserve">
+    <value>Lien établi (valeur {0}) !</value>
+  </data>
+  <data name="DiedToLinkBacklash" xml:space="preserve">
+    <value>vous succombez au contrecoup du lien</value>
+  </data>
+  <data name="BackToLinks" xml:space="preserve">
+    <value>Retour aux liens</value>
+  </data>
+  <data name="FinalTitle" xml:space="preserve">
+    <value>Activation finale</value>
+  </data>
+  <data name="FinalIntro" xml:space="preserve">
+    <value>Les six constructs sont reliés : l&#x27;Utopia Engine est prêt. Lancez 2d6 — atteignez ou dépassez la difficulté pour sauver le monde. Chaque échec coûte 1 PV et 1 jour.</value>
+  </data>
+  <data name="FinalDifficulty" xml:space="preserve">
+    <value>Difficulté : {0} (2d6, somme à atteindre)</value>
+  </data>
+  <data name="SacrificeHpButton" xml:space="preserve">
+    <value>Sacrifier des PV (−1 difficulté par PV)</value>
+  </data>
+  <data name="SacrificeDone" xml:space="preserve">
+    <value>Vous canalisez votre énergie vitale : −{0} PV, difficulté réduite d&#x27;autant. Il n&#x27;y aura pas de second sacrifice.</value>
+  </data>
+  <data name="FinalRollButton" xml:space="preserve">
+    <value>Tenter l&#x27;activation (2d6)</value>
+  </data>
+  <data name="FinalRollLine" xml:space="preserve">
+    <value>Vous lancez {0} et {1} : {2}.</value>
+  </data>
+  <data name="FinalFail" xml:space="preserve">
+    <value>L&#x27;Engine gronde mais ne démarre pas : −1 PV, +1 jour.</value>
+  </data>
+  <data name="Victory" xml:space="preserve">
+    <value>L&#x27;UTOPIA ENGINE S&#x27;ÉVEILLE — le monde est sauvé !</value>
+  </data>
+  <data name="FinalScore" xml:space="preserve">
+    <value>Score final : {0}.</value>
+  </data>
+  <data name="LifeExhausted" xml:space="preserve">
+    <value>votre énergie vitale est épuisée</value>
+  </data>
+  <data name="SkullsFmt" xml:space="preserve">
+    <value>Crânes barrés : {0}/{1} (chaque crâne = +1 jour de délai)</value>
+  </data>
+  <data name="GodsHandFmt" xml:space="preserve">
+    <value>Énergie God&#x27;s Hand : {0}/{1}</value>
+  </data>
+  <data name="BasketFmt" xml:space="preserve">
+    <value>Corbeille : {0}/{1} dés jetés</value>
+  </data>
+  <data name="CrossSkullButton" xml:space="preserve">
+    <value>Barrer un crâne (3 énergies, +1 jour)</value>
+  </data>
+  <data name="SkullCrossed" xml:space="preserve">
+    <value>La God&#x27;s Hand frappe : un crâne est barré, +1 jour de délai.</value>
+  </data>
+  <data name="RestHint" xml:space="preserve">
+    <value>Repos : 1 PV récupéré par jour passé.</value>
+  </data>
+  <data name="RestButton" xml:space="preserve">
+    <value>Se reposer</value>
+  </data>
+  <data name="Rested" xml:space="preserve">
+    <value>Vous vous reposez {0} jour(s) — PV : {1}.</value>
+  </data>
+  <data name="ComponentsHeader" xml:space="preserve">
+    <value>Composants</value>
+  </data>
+  <data name="ItemsHeader" xml:space="preserve">
+    <value>Objets</value>
+  </data>
+  <data name="TreasuresHeader" xml:space="preserve">
+    <value>Trésors légendaires</value>
+  </data>
+  <data name="NoTreasures" xml:space="preserve">
+    <value>Aucun trésor légendaire pour l&#x27;instant.</value>
+  </data>
+  <data name="ChargedState" xml:space="preserve">
+    <value>chargée</value>
+  </data>
+  <data name="UsedState" xml:space="preserve">
+    <value>utilisée</value>
+  </data>
+  <data name="DowsingRodName" xml:space="preserve">
+    <value>Baguette de sourcier</value>
+  </data>
+  <data name="ParalysisWandName" xml:space="preserve">
+    <value>Baguette de paralysie</value>
+  </data>
+  <data name="FocusCharmName" xml:space="preserve">
+    <value>Charme de concentration</value>
+  </data>
+  <data name="HelpTitle" xml:space="preserve">
+    <value>Aide — les mécanismes du jeu</value>
+  </data>
+  <data name="HelpBack" xml:space="preserve">
+    <value>Retour au jeu</value>
+  </data>
+  <data name="HelpForThisScreen" xml:space="preserve">
+    <value>Pour cet écran</value>
+  </data>
+  <data name="HelpFullHelp" xml:space="preserve">
+    <value>Toute l&#x27;aide</value>
+  </data>
+  <data name="HelpGoalTitle" xml:space="preserve">
+    <value>But du jeu</value>
+  </data>
+  <data name="HelpGoalBody" xml:space="preserve">
+    <value>Vous êtes le dernier artificier. Retrouvez les six constructs enfouis dans les six régions, activez-les, reliez-les entre eux, puis tentez l&#x27;activation finale de l&#x27;Utopia Engine avant la fin du monde. Vous perdez si le temps s&#x27;épuise ou si vos points de vie tombent sous zéro.</value>
+  </data>
+  <data name="HelpTimeTitle" xml:space="preserve">
+    <value>Le temps</value>
+  </data>
+  <data name="HelpTimeBody" xml:space="preserve">
+    <value>Presque tout coûte des jours : fouiller une région déjà entamée, se reposer, échouer une activation… Vous disposez de 15 jours au départ. Chaque crâne barré (via la God&#x27;s Hand) prolonge le délai d&#x27;un jour, jusqu&#x27;à 8 crânes. Certains jours sont des jours d&#x27;événement : de nouveaux événements sont tirés aléatoirement dans les régions et modifient la fouille ou le combat tant qu&#x27;ils sont actifs.</value>
+  </data>
+  <data name="HelpSearchTitle" xml:space="preserve">
+    <value>La fouille</value>
+  </data>
+  <data name="HelpSearchBody" xml:space="preserve">
+    <value>Chaque région contient 6 boîtes de recherche de 6 cases (3 en haut, 3 en bas). On lance deux dés, et on place chacun dans une case libre ; on relance jusqu&#x27;à remplir la boîte. Le rang du haut forme un nombre à 3 chiffres, celui du bas aussi : le résultat de la fouille est la différence (haut − bas). Tout l&#x27;art consiste à placer les gros chiffres au bon endroit !</value>
+  </data>
+  <data name="HelpResultsTitle" xml:space="preserve">
+    <value>Résultats de fouille</value>
+  </data>
+  <data name="HelpResultsBody" xml:space="preserve">
+    <value>• 0 (zéro parfait) : le construct de la région est trouvé ET activé immédiatement, +5 d&#x27;énergie God&#x27;s Hand.
+• 1 à 10 : le construct est trouvé (s&#x27;il l&#x27;était déjà : 2 composants à la place).
+• 11 à 99 : 1 composant de la région.
+• Négatif ou 100 et plus : un monstre attaque ! Plus le résultat est extrême, plus le monstre est puissant (niveau 1 à 5 : ±100 → niv. 2, ±200 → niv. 3, ±300 → niv. 4, ±400/500 → niv. 5).</value>
+  </data>
+  <data name="HelpCombatTitle" xml:space="preserve">
+    <value>Le combat</value>
+  </data>
+  <data name="HelpCombatBody" xml:space="preserve">
+    <value>À chaque tour, on lance deux dés. Chaque dé inférieur ou égal à la valeur d&#x27;attaque du monstre vous coûte 1 PV ; un dé supérieur ou égal à sa valeur de touche le tue. Un monstre vaincu peut laisser du butin : un composant, ou le trésor légendaire de la région pour un monstre de niveau 5. À 0 PV, vous tombez inconscient : 6 jours perdus (4 avec la Corne de Guérison), puis PV au maximum. Sous 0 PV, vous êtes mort.</value>
+  </data>
+  <data name="HelpItemsTitle" xml:space="preserve">
+    <value>Les objets</value>
+  </data>
+  <data name="HelpItemsBody" xml:space="preserve">
+    <value>Trois objets à usage unique par partie :
+• Baguette de sourcier : ajoute ou retranche jusqu&#x27;à 100 à un résultat de fouille.
+• Baguette de paralysie : +2 aux deux dés pour tout le combat en cours (décidé après avoir vu le tirage).
+• Charme de concentration : aide lors de l&#x27;activation d&#x27;un construct.
+Chaque objet encore chargé en fin de partie vaut 10 points.</value>
+  </data>
+  <data name="HelpGodshandTitle" xml:space="preserve">
+    <value>La God&#x27;s Hand</value>
+  </data>
+  <data name="HelpGodshandBody" xml:space="preserve">
+    <value>Une jauge d&#x27;énergie alimentée par les zéros parfaits et certains pouvoirs. Dépensez 3 énergies pour barrer un crâne : +1 jour de délai et +5 points.</value>
+  </data>
+  <data name="HelpConstructsTitle" xml:space="preserve">
+    <value>Constructs, liens et activation finale</value>
+  </data>
+  <data name="HelpConstructsBody" xml:space="preserve">
+    <value>Un construct trouvé doit être activé : on place des dés sur sa table de 4 colonnes. Une colonne complète dont l&#x27;écart (haut − bas) vaut ±5 rapporte 2 énergies, ±4 en rapporte 1, 0 efface la colonne (à refaire), tout autre écart la verrouille et coûte 1 PV. Il faut 4 énergies pour activer ; le surplus charge la God&#x27;s Hand. Une table ratée coûte 1 jour et donne droit à une seconde table — si elle échoue aussi, le construct s&#x27;active quand même, épuisé.
+Les constructs activés se relient ensuite deux à deux (six liens, table de 3 colonnes chacun). Démarrer un lien coûte 1 composant. Une colonne dont le bas dépasse le haut coûte 1 PV et 1 composant de plus (sinon le lien est entièrement à refaire). La corbeille permet de jeter un dé au lieu de le placer — 10 dés maximum pour toute la partie. La somme des valeurs de liens fixe la difficulté de l&#x27;activation finale : visez bas ! Une fois les six liens établis, l&#x27;activation finale décide de la victoire : 2d6 contre cette difficulté, chaque échec coûte 1 PV et 1 jour. Avant le premier lancer, vous pouvez sacrifier des PV pour réduire la difficulté d&#x27;autant (une seule fois).</value>
+  </data>
+  <data name="HelpScoreTitle" xml:space="preserve">
+    <value>Le score</value>
+  </data>
+  <data name="HelpScoreBody" xml:space="preserve">
+    <value>PV restants + 10 par construct trouvé + 5 par construct activé + 10 par trésor légendaire + 5 par lien + 5 par crâne barré + 20 par zéro parfait non modifié + 10 par objet non utilisé. Victoire : +50, plus 5 par jour restant.</value>
+  </data>
+</root>

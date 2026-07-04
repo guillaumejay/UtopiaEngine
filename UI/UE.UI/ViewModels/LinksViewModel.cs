@@ -3,6 +3,7 @@ using System.Linq;
 using CommunityToolkit.Mvvm.Input;
 using UE.Core.Entities;
 using UE.Core.Interfaces;
+using UE.UI.Localization;
 
 namespace UE.UI.ViewModels;
 
@@ -20,13 +21,13 @@ public partial class LinkItemViewModel : ViewModelBase
         // L'éligibilité vient du moteur (PossibleLinks) ; les branches ne servent qu'au message.
         CanConnect = engine.GameState.PossibleLinks.Contains(ls);
         if (CanConnect)
-            Status = $"Prêt à relier (coût : 1 × {componentName})";
+            Status = string.Format(L.LinkReady, componentName);
         else if (ls.IsLinkDone)
-            Status = $"Connecté (valeur {ls.LinkBox})";
+            Status = string.Format(L.LinkConnected, ls.LinkBox);
         else if (!ls.Construct1.HasBeenActivated || !ls.Construct2.HasBeenActivated)
-            Status = "Indisponible — les deux constructs doivent être activés";
+            Status = L.LinkNeedsActivated;
         else
-            Status = $"Indisponible — aucun composant {componentName}";
+            Status = string.Format(L.LinkNoComponent, componentName);
     }
 
     public string Name { get; }
@@ -52,7 +53,7 @@ public partial class LinksViewModel : ViewModelBase, IHelpContextProvider
             .Select(ls => new LinkItemViewModel(ls, engine, shell))
             .ToList();
         int done = engine.GameState.ConnectedLinks.Count();
-        Summary = $"{done} lien(s) sur {engine.GameState.LinkStates.Count} — difficulté d'activation finale actuelle : {engine.GameState.FinalActivationDifficulty}";
+        Summary = string.Format(L.LinksSummary, done, engine.GameState.LinkStates.Count, engine.GameState.FinalActivationDifficulty);
         CanFinalActivate = engine.IsFinalActivationPossible;
     }
 
@@ -61,7 +62,7 @@ public partial class LinksViewModel : ViewModelBase, IHelpContextProvider
     [RelayCommand]
     private void FinalActivation() => _shell.ShowFinalActivation();
 
-    public string Title => "Liens entre constructs";
+    public string Title => L.LinksTitle;
 
     public string Summary { get; }
 

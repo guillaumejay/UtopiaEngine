@@ -3,6 +3,7 @@ using System.Linq;
 using CommunityToolkit.Mvvm.Input;
 using UE.Core.Entities;
 using UE.Core.Interfaces;
+using UE.UI.Localization;
 
 namespace UE.UI.ViewModels;
 
@@ -13,8 +14,8 @@ public partial class ConstructItemViewModel(ConstructState cs, Region region, Ma
     public string RegionName { get; } = region.Name.Text;
 
     public string Status { get; } = !cs.HasBeenFound
-        ? "Non trouvé"
-        : cs.HasBeenActivated ? "Activé ✓" : "Trouvé, à activer";
+        ? L.NotFoundState
+        : cs.HasBeenActivated ? L.ActivatedState : L.FoundToActivateState;
 
     public bool CanActivate { get; } = cs.HasBeenFound && !cs.HasBeenActivated;
 
@@ -38,7 +39,7 @@ public partial class ConstructsViewModel : ViewModelBase, IHelpContextProvider
             .ToList();
     }
 
-    public string Title => "Constructs";
+    public string Title => L.ConstructsTitle;
 
     [RelayCommand]
     private void Back() => _shell.ShowRegions();

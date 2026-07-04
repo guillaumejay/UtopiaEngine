@@ -4,6 +4,7 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:vm="using:UE.UI.ViewModels"
                 xmlns:views="using:UE.UI.Views"
+                xmlns:loc="using:UE.UI.Localization"
                 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                 x:Class="UE.UI.Views.ConnectLinkView"
                 x:DataType="vm:ConnectLinkViewModel">
@@ -26,14 +27,14 @@
                 <views:DicePairView DataContext="{Binding Dice}"/>
                 <Button Content="{Binding BasketLabel}" Command="{Binding DiscardCommand}"
                         IsEnabled="{Binding CanUseBasket}"/>
-                <Button Content="Textes Anciens : connecter automatiquement (valeur 2)"
+                <Button Content="{x:Static loc:L.AutoConnectButton}"
                         Command="{Binding AutoConnectCommand}" IsVisible="{Binding CanAutoConnect}"/>
             </StackPanel>
 
             <TextBlock Text="{Binding OutcomeText}" TextWrapping="Wrap" FontSize="16"
                        IsVisible="{Binding IsDone}"/>
 
-            <Button Content="Retour aux liens" Command="{Binding BackCommand}"/>
+            <Button Content="{x:Static loc:L.BackToLinks}" Command="{Binding BackCommand}"/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

@@ -4,6 +4,7 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:vm="using:UE.UI.ViewModels"
                 xmlns:views="using:UE.UI.Views"
+                xmlns:loc="using:UE.UI.Localization"
                 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                 x:Class="UE.UI.Views.SearchRegionView"
                 x:DataType="vm:SearchRegionViewModel">
@@ -31,30 +32,30 @@
                 <StackPanel Orientation="Horizontal" Spacing="8" IsVisible="{Binding CanUseDowsingRod}">
                     <NumericUpDown Minimum="1" Maximum="100" Value="{Binding DowsingRodNumber, Mode=TwoWay}"
                                    Width="130"/>
-                    <Button Content="Utiliser la baguette de sourcier" Command="{Binding UseDowsingRodCommand}"/>
+                    <Button Content="{x:Static loc:L.UseDowsingRod}" Command="{Binding UseDowsingRodCommand}"/>
                 </StackPanel>
-                <Button Content="Appliquer la fouille" Command="{Binding ApplySearchCommand}"/>
+                <Button Content="{x:Static loc:L.ApplySearch}" Command="{Binding ApplySearchCommand}"/>
             </StackPanel>
 
             <StackPanel Spacing="8" IsVisible="{Binding IsCombat}">
                 <TextBlock Text="{Binding CombatLog}" TextWrapping="Wrap"/>
                 <StackPanel Orientation="Horizontal" Spacing="8" IsVisible="{Binding CanRollCombat}">
-                    <Button Content="Lancer les dés de combat" Command="{Binding RollCombatCommand}"/>
-                    <Button Content="Fuir" Command="{Binding FleeCommand}" IsVisible="{Binding CanFlee}"/>
+                    <Button Content="{x:Static loc:L.RollCombatDice}" Command="{Binding RollCombatCommand}"/>
+                    <Button Content="{x:Static loc:L.Flee}" Command="{Binding FleeCommand}" IsVisible="{Binding CanFlee}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Spacing="8" IsVisible="{Binding ShowWandChoice}">
-                    <Button Content="Baguette de paralysie (+2)" Command="{Binding UseWandCommand}"/>
-                    <Button Content="Continuer sans baguette" Command="{Binding SkipWandCommand}"/>
+                    <Button Content="{Binding UseWandLabel}" Command="{Binding UseWandCommand}"/>
+                    <Button Content="{x:Static loc:L.SkipWand}" Command="{Binding SkipWandCommand}"/>
                 </StackPanel>
             </StackPanel>
 
             <StackPanel Spacing="8" IsVisible="{Binding IsDone}">
                 <TextBlock Text="{Binding OutcomeText}" TextWrapping="Wrap" FontSize="16"/>
-                <Button Content="Fouiller à nouveau" Command="{Binding ContinueCommand}"
+                <Button Content="{x:Static loc:L.SearchAgain}" Command="{Binding ContinueCommand}"
                         IsVisible="{Binding CanContinue}"/>
             </StackPanel>
 
-            <Button Content="Retour aux régions" Command="{Binding BackCommand}"
+            <Button Content="{x:Static loc:L.BackToRegions}" Command="{Binding BackCommand}"
                     IsVisible="{Binding !IsCombat}"/>
         </StackPanel>
     </ScrollViewer>

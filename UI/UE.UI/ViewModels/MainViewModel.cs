@@ -34,7 +34,17 @@ public partial class MainViewModel : ViewModelBase
 
     public int GodsHandEnergy => _engine.GameState.GodsHandEnergy;
 
-    public string HelpLabel => HelpViewModel.IsFrench ? "Aide" : "Help";
+    public string HpText => string.Format(Localization.L.StatusHp, CurrentHitPoint);
+
+    public string DayText => string.Format(Localization.L.StatusDay, CurrentDay);
+
+    public string DaysRemainingText => string.Format(Localization.L.StatusDaysRemaining, DaysRemaining);
+
+    public string ScoreText => string.Format(Localization.L.StatusScore, Score);
+
+    public string GodsHandText => string.Format(Localization.L.StatusGodsHand, GodsHandEnergy);
+
+    public string HelpLabel => Localization.L.Help;
 
     private ViewModelBase? _pageBeforeHelp;
 
@@ -126,6 +136,11 @@ public partial class MainViewModel : ViewModelBase
         OnPropertyChanged(nameof(DaysRemaining));
         OnPropertyChanged(nameof(Score));
         OnPropertyChanged(nameof(GodsHandEnergy));
+        OnPropertyChanged(nameof(HpText));
+        OnPropertyChanged(nameof(DayText));
+        OnPropertyChanged(nameof(DaysRemainingText));
+        OnPropertyChanged(nameof(ScoreText));
+        OnPropertyChanged(nameof(GodsHandText));
         Autosave();
     }
 }

@@ -11,11 +11,11 @@
             <Grid ColumnDefinitions="*,Auto">
                 <StackPanel Orientation="Horizontal" Spacing="24" VerticalAlignment="Center">
                     <TextBlock Text="{Binding Title}" FontSize="20" FontWeight="Bold"/>
-                    <TextBlock Text="{Binding CurrentHitPoint, StringFormat='PV : {0}'}" VerticalAlignment="Center"/>
-                    <TextBlock Text="{Binding CurrentDay, StringFormat='Jour : {0}'}" VerticalAlignment="Center"/>
-                    <TextBlock Text="{Binding DaysRemaining, StringFormat='Jours restants : {0}'}" VerticalAlignment="Center"/>
-                    <TextBlock Text="{Binding Score, StringFormat='Score : {0}'}" VerticalAlignment="Center"/>
-                    <TextBlock Text="{Binding GodsHandEnergy, StringFormat='Énergie GH : {0}'}" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding HpText}" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding DayText}" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding DaysRemainingText}" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding ScoreText}" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding GodsHandText}" VerticalAlignment="Center"/>
                 </StackPanel>
                 <Button Grid.Column="1" Content="{Binding HelpLabel}" Command="{Binding OpenHelpCommand}"/>
             </Grid>

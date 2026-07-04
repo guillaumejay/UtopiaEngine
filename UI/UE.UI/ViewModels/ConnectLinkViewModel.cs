@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using UE.Core.Architecture.Messages;
 using UE.Core.Entities;
 using UE.Core.Interfaces;
+using UE.UI.Localization;
 
 namespace UE.UI.ViewModels;
 
@@ -32,8 +33,8 @@ public partial class ConnectLinkViewModel : DicePlacementPageViewModel, IHelpCon
         : base(engine, shell)
     {
         _ls = ls;
-        Title = $"Relier {ls.Construct1.Construct.Name.Text} et {ls.Construct2.Construct.Name.Text}";
-        InfoMessage = "Objectif : des colonnes à écart faible mais jamais négatif — la somme des liens fixe la difficulté de l'activation finale.";
+        Title = string.Format(L.ConnectTitle, ls.Construct1.Construct.Name.Text, ls.Construct2.Construct.Name.Text);
+        InfoMessage = L.ConnectHint;
         CanAutoConnect = engine.HasAbility(Ability.AutomaticallyConnect);
         RefreshBasket();
         SyncCells(6, i => _ls.Connection[i]);
@@ -43,14 +44,14 @@ public partial class ConnectLinkViewModel : DicePlacementPageViewModel, IHelpCon
     private void RefreshBasket()
     {
         CanUseBasket = !EngineRef.GameState.IsWasteBasketFull;
-        BasketLabel = $"Jeter le dé sélectionné (corbeille : {EngineRef.GameState.WasteBasket}/{GameState.WasteBasketCapacity})";
+        BasketLabel = string.Format(L.BasketLabelFmt, EngineRef.GameState.WasteBasket, GameState.WasteBasketCapacity);
     }
 
     [RelayCommand]
     private void AutoConnect()
     {
         EngineRef.UseAutomaticConnect(_ls);
-        Finish($"Lien établi automatiquement grâce aux Textes Anciens (valeur {_ls.LinkBox}).");
+        Finish(string.Format(L.AutoConnected, _ls.LinkBox));
     }
 
     [RelayCommand]
@@ -74,18 +75,18 @@ public partial class ConnectLinkViewModel : DicePlacementPageViewModel, IHelpCon
 
         var info = new List<string>();
         if (lr.ComponentLost > 0)
-            info.Add($"{lr.ComponentLost} composant(s) dépensé(s).");
+            info.Add(string.Format(L.ComponentsSpent, lr.ComponentLost));
 
         if (lr.IsLinkFinished)
         {
             if (lr.HitPointLost > 0)
-                info.Add($"Colonnes négatives : −{lr.HitPointLost} PV.");
+                info.Add(string.Format(L.NegativeColumns, lr.HitPointLost));
 
             string recovery = string.Empty;
             switch (ResolveHpAftermath(out string hpMessage))
             {
                 case HpAftermath.Dead:
-                    Finish(string.Join(" ", info) + " " + UiMessages.GameLost("vous succombez au contrecoup du lien"));
+                    Finish(string.Join(" ", info) + " " + UiMessages.GameLost(L.DiedToLinkBacklash));
                     return;
                 case HpAftermath.TimeOut:
                     Finish(string.Join(" ", info) + " " + hpMessage + " " + UiMessages.GameLost(UiMessages.GameLostTime));
@@ -97,11 +98,11 @@ public partial class ConnectLinkViewModel : DicePlacementPageViewModel, IHelpCon
 
             if (lr.HasFailed)
             {
-                Finish(string.Join(" ", info) + " Plus de composants pour compenser : le lien est réinitialisé, tout est à refaire." + recovery);
+                Finish(string.Join(" ", info) + " " + L.LinkFailedReset + recovery);
                 return;
             }
 
-            Finish(string.Join(" ", info) + $" Lien établi (valeur {lr.LinkBox}) !" + recovery);
+            Finish(string.Join(" ", info) + " " + string.Format(L.LinkMade, lr.LinkBox) + recovery);
             return;
         }
 

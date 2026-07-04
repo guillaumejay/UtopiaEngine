@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using UE.Core.Architecture.Messages;
 using UE.Core.Interfaces;
+using UE.UI.Localization;
 
 namespace UE.UI.ViewModels;
 
@@ -33,35 +34,35 @@ public partial class CampViewModel : ViewModelBase, IHelpContextProvider
         RefreshAll();
     }
 
-    public string Title => "Campement";
+    public string Title => L.Camp;
 
     private void RefreshAll()
     {
         var gs = _engine.GameState;
         var def = _engine.GameDefinition;
-        SkullsText = $"Crânes barrés : {gs.NumberOfSkullsCrossed}/{def.NumberOfSkulls} (chaque crâne = +1 jour de délai)";
-        GodsHandText = $"Énergie God's Hand : {gs.GodsHandEnergy}/{def.GodsHandCapacity}";
-        BasketText = $"Corbeille : {gs.WasteBasket}/{UE.Core.Entities.GameState.WasteBasketCapacity} dés jetés";
+        SkullsText = string.Format(L.SkullsFmt, gs.NumberOfSkullsCrossed, def.NumberOfSkulls);
+        GodsHandText = string.Format(L.GodsHandFmt, gs.GodsHandEnergy, def.GodsHandCapacity);
+        BasketText = string.Format(L.BasketFmt, gs.WasteBasket, UE.Core.Entities.GameState.WasteBasketCapacity);
         ComponentsText = string.Join("\n", def.Components.Select(c =>
             $"{c.Name.Text} : {gs.Inventory.GetComponentQuantityFor(c.ID)}"));
-        ItemsText = $"Baguette de sourcier : {Charge(gs.Inventory.DowsingRodCharged)}\n" +
-                    $"Baguette de paralysie : {Charge(gs.Inventory.ParalysisWandCharged)}\n" +
-                    $"Charme de concentration : {Charge(gs.Inventory.FocusCharmCharged)}";
+        ItemsText = $"{L.DowsingRodName} : {Charge(gs.Inventory.DowsingRodCharged)}\n" +
+                    $"{L.ParalysisWandName} : {Charge(gs.Inventory.ParalysisWandCharged)}\n" +
+                    $"{L.FocusCharmName} : {Charge(gs.Inventory.FocusCharmCharged)}";
         TreasuresText = gs.TreasuresFound.Any()
             ? string.Join("\n", gs.TreasuresFound.Select(t => t.Name.Text))
-            : "Aucun trésor légendaire pour l'instant.";
+            : L.NoTreasures;
         CanUseGodsHand = _engine.IsGodsHandUsable && !IsGameOver;
         CanRest = _engine.CanRest && !IsGameOver;
         _shell.RefreshStatus();
     }
 
-    private static string Charge(bool charged) => charged ? "chargée" : "utilisée";
+    private static string Charge(bool charged) => charged ? L.ChargedState : L.UsedState;
 
     [RelayCommand]
     private void UseGodsHand()
     {
         _engine.UseGodsHand();
-        InfoMessage = "La God's Hand frappe : un crâne est barré, +1 jour de délai.";
+        InfoMessage = L.SkullCrossed;
         RefreshAll();
     }
 
@@ -72,7 +73,7 @@ public partial class CampViewModel : ViewModelBase, IHelpContextProvider
         if (days <= 0 || !_engine.CanRest)
             return;
         TimePassed t = _engine.Rest(days);
-        var info = new List<string> { $"Vous vous reposez {t.DaysPassed} jour(s) — PV : {_engine.GameState.CurrentHitPoint}." };
+        var info = new List<string> { string.Format(L.Rested, t.DaysPassed, _engine.GameState.CurrentHitPoint) };
         if (t.eventOccured)
             info.Add(UiMessages.EventsRolled);
         if (_engine.IsGameLost)

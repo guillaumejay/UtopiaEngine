@@ -3,6 +3,7 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:vm="using:UE.UI.ViewModels"
+                xmlns:loc="using:UE.UI.Localization"
                 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                 x:Class="UE.UI.Views.CampView"
                 x:DataType="vm:CampViewModel">
@@ -17,7 +18,7 @@
                 <StackPanel Spacing="6">
                     <TextBlock Text="{Binding SkullsText}" TextWrapping="Wrap"/>
                     <TextBlock Text="{Binding GodsHandText}"/>
-                    <Button Content="Barrer un crâne (3 énergies, +1 jour)" Command="{Binding UseGodsHandCommand}"
+                    <Button Content="{x:Static loc:L.CrossSkullButton}" Command="{Binding UseGodsHandCommand}"
                             IsVisible="{Binding CanUseGodsHand}"/>
                     <TextBlock Text="{Binding BasketText}"/>
                 </StackPanel>
@@ -25,36 +26,36 @@
 
             <Border Classes="card" IsVisible="{Binding CanRest}">
                 <StackPanel Spacing="6">
-                    <TextBlock Text="Repos : 1 PV récupéré par jour passé." TextWrapping="Wrap"/>
+                    <TextBlock Text="{x:Static loc:L.RestHint}" TextWrapping="Wrap"/>
                     <StackPanel Orientation="Horizontal" Spacing="8">
                         <NumericUpDown Minimum="1" Maximum="10" Value="{Binding RestDays, Mode=TwoWay}" Width="120"/>
-                        <Button Content="Se reposer" Command="{Binding RestCommand}"/>
+                        <Button Content="{x:Static loc:L.RestButton}" Command="{Binding RestCommand}"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
 
             <Border Classes="card">
                 <StackPanel Spacing="6">
-                    <TextBlock Text="Composants" FontWeight="Bold"/>
+                    <TextBlock Text="{x:Static loc:L.ComponentsHeader}" FontWeight="Bold"/>
                     <TextBlock Text="{Binding ComponentsText}"/>
                 </StackPanel>
             </Border>
 
             <Border Classes="card">
                 <StackPanel Spacing="6">
-                    <TextBlock Text="Objets" FontWeight="Bold"/>
+                    <TextBlock Text="{x:Static loc:L.ItemsHeader}" FontWeight="Bold"/>
                     <TextBlock Text="{Binding ItemsText}"/>
                 </StackPanel>
             </Border>
 
             <Border Classes="card">
                 <StackPanel Spacing="6">
-                    <TextBlock Text="Trésors légendaires" FontWeight="Bold"/>
+                    <TextBlock Text="{x:Static loc:L.TreasuresHeader}" FontWeight="Bold"/>
                     <TextBlock Text="{Binding TreasuresText}" TextWrapping="Wrap"/>
                 </StackPanel>
             </Border>
 
-            <Button Content="Retour aux régions" Command="{Binding BackCommand}"/>
+            <Button Content="{x:Static loc:L.BackToRegions}" Command="{Binding BackCommand}"/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

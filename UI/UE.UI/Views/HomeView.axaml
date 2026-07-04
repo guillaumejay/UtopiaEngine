@@ -3,15 +3,16 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:vm="using:UE.UI.ViewModels"
+                xmlns:loc="using:UE.UI.Localization"
                 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                 x:Class="UE.UI.Views.HomeView"
                 x:DataType="vm:HomeViewModel">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="16">
-        <TextBlock Text="Reconstruisez l'Utopia Engine avant la fin du monde."
+        <TextBlock Text="{x:Static loc:L.HomeTagline}"
                    FontSize="16" HorizontalAlignment="Center"/>
-        <Button Content="Nouvelle partie" Command="{Binding NewGameCommand}"
+        <Button Content="{x:Static loc:L.NewGame}" Command="{Binding NewGameCommand}"
                 FontSize="18" Padding="24,12" HorizontalAlignment="Center"/>
-        <Button Content="Continuer la partie sauvegardée" Command="{Binding ContinueCommand}"
+        <Button Content="{x:Static loc:L.ContinueSaved}" Command="{Binding ContinueCommand}"
                 IsVisible="{Binding HasAutosave}" HorizontalAlignment="Center"/>
     </StackPanel>
 </UserControl>

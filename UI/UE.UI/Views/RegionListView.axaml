@@ -3,13 +3,14 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:vm="using:UE.UI.ViewModels"
+                xmlns:loc="using:UE.UI.Localization"
                 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                 x:Class="UE.UI.Views.RegionListView"
                 x:DataType="vm:RegionListViewModel">
     <ScrollViewer>
         <StackPanel>
         <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,12">
-            <Button Content="Campement" Command="{Binding ShowCampCommand}"/>
+            <Button Content="{x:Static loc:L.Camp}" Command="{Binding ShowCampCommand}"/>
             <Button Content="{Binding ConstructsLabel}" Command="{Binding ShowConstructsCommand}"
                     IsVisible="{Binding HasConstructs}"/>
             <Button Content="{Binding LinksLabel}" Command="{Binding ShowLinksCommand}"
@@ -25,10 +26,10 @@
                                 <TextBlock Text="{Binding ComponentInfo}"/>
                                 <TextBlock Text="{Binding ConstructInfo}"/>
                                 <TextBlock Text="{Binding TreasureInfo}"/>
-                                <TextBlock Text="{Binding Events, StringFormat='Événements : {0}'}"
+                                <TextBlock Text="{Binding EventsText}"
                                            IsVisible="{Binding HasEvents}" FontStyle="Italic"/>
                             </StackPanel>
-                            <Button Grid.Column="1" Content="Fouiller" Command="{Binding SearchCommand}"
+                            <Button Grid.Column="1" Content="{x:Static loc:L.SearchAction}" Command="{Binding SearchCommand}"
                                     VerticalAlignment="Center"/>
                         </Grid>
                     </Border>

@@ -3,6 +3,7 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:vm="using:UE.UI.ViewModels"
+                xmlns:loc="using:UE.UI.Localization"
                 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                 x:Class="UE.UI.Views.ConstructsView"
                 x:DataType="vm:ConstructsViewModel">
@@ -19,14 +20,14 @@
                                     <TextBlock Text="{Binding RegionName}" Opacity="0.7"/>
                                     <TextBlock Text="{Binding Status}"/>
                                 </StackPanel>
-                                <Button Grid.Column="1" Content="Activer" Command="{Binding ActivateCommand}"
+                                <Button Grid.Column="1" Content="{x:Static loc:L.ActivateAction}" Command="{Binding ActivateCommand}"
                                         IsVisible="{Binding CanActivate}" VerticalAlignment="Center"/>
                             </Grid>
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <Button Content="Retour aux régions" Command="{Binding BackCommand}"/>
+            <Button Content="{x:Static loc:L.BackToRegions}" Command="{Binding BackCommand}"/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

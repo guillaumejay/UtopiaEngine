@@ -3,6 +3,7 @@ using System.Linq;
 using CommunityToolkit.Mvvm.Input;
 using UE.Core.Entities;
 using UE.Core.Interfaces;
+using UE.UI.Localization;
 
 namespace UE.UI.ViewModels;
 
@@ -12,18 +13,19 @@ public partial class RegionItemViewModel(RegionState rs, Inventory inventory, Ma
 
     public string Name { get; } = rs.Region.Name.Text;
 
-    public string ComponentInfo { get; } =
-        $"Composant : {rs.Region.Component.Name.Text} ({inventory.GetComponentQuantityFor(rs.Region.Component.ID)})";
+    public string ComponentInfo { get; } = string.Format(L.ComponentInfo,
+        rs.Region.Component.Name.Text, inventory.GetComponentQuantityFor(rs.Region.Component.ID));
 
-    public string ConstructInfo { get; } =
-        $"Construct : {rs.Region.Construct.Name.Text} ({(rs.ConstructFound ? "trouvé" : "à trouver")})";
+    public string ConstructInfo { get; } = string.Format(L.ConstructInfo,
+        rs.Region.Construct.Name.Text, rs.ConstructFound ? L.FoundState : L.ToFindState);
 
-    public string TreasureInfo { get; } =
-        $"Trésor : {rs.Region.LegendaryTreasure.Name.Text} ({(rs.LegendaryTreasureFound ? "trouvé" : "à trouver")})";
+    public string TreasureInfo { get; } = string.Format(L.TreasureInfo,
+        rs.Region.LegendaryTreasure.Name.Text, rs.LegendaryTreasureFound ? L.FoundState : L.ToFindState);
 
-    public string Events { get; } = string.Join(", ", rs.Events.Select(x => x.Name.Text));
+    public string EventsText { get; } = string.Format(L.EventsPrefix,
+        string.Join(", ", rs.Events.Select(x => x.Name.Text)));
 
-    public bool HasEvents => Events.Length > 0;
+    public bool HasEvents { get; } = rs.Events.Count > 0;
 
     [RelayCommand]
     private void Search() => shell.OpenSearch(Index);
@@ -46,14 +48,14 @@ public partial class RegionListViewModel : ViewModelBase, IHelpContextProvider
         int found = engine.GameState.ConstructsFound.Count();
         int toActivate = engine.GameState.ConstructsUnactivated.Count();
         ConstructsLabel = toActivate > 0
-            ? $"Constructs ({toActivate} à activer)"
-            : $"Constructs ({found} trouvé(s))";
+            ? string.Format(L.ConstructsToActivate, toActivate)
+            : string.Format(L.ConstructsFoundLabel, found);
         HasConstructs = found > 0;
         int possible = engine.GameState.PossibleLinks.Count();
         int connected = engine.GameState.ConnectedLinks.Count();
         LinksLabel = possible > 0
-            ? $"Liens ({possible} possible(s))"
-            : $"Liens ({connected} connecté(s))";
+            ? string.Format(L.LinksPossibleLabel, possible)
+            : string.Format(L.LinksConnectedLabel, connected);
         HasLinks = possible > 0 || connected > 0;
     }
 

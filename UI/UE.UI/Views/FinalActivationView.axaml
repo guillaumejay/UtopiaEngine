@@ -3,6 +3,7 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:vm="using:UE.UI.ViewModels"
+                xmlns:loc="using:UE.UI.Localization"
                 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                 x:Class="UE.UI.Views.FinalActivationView"
                 x:DataType="vm:FinalActivationViewModel">
@@ -14,20 +15,20 @@
             <StackPanel Orientation="Horizontal" Spacing="8" IsVisible="{Binding CanSpendHp}">
                 <NumericUpDown Minimum="1" Maximum="{Binding MaxHpToSpend}"
                                Value="{Binding HpToSpend, Mode=TwoWay}" Width="120"/>
-                <Button Content="Sacrifier des PV (−1 difficulté par PV)" Command="{Binding SpendHpCommand}"/>
+                <Button Content="{x:Static loc:L.SacrificeHpButton}" Command="{Binding SpendHpCommand}"/>
             </StackPanel>
 
             <TextBlock Text="{Binding Log}" TextWrapping="Wrap" LineHeight="22"/>
 
-            <Button Content="Tenter l'activation (2d6)" Command="{Binding RollCommand}"
+            <Button Content="{x:Static loc:L.FinalRollButton}" Command="{Binding RollCommand}"
                     IsVisible="{Binding IsRolling}" FontSize="16" Padding="16,8"/>
 
             <StackPanel Spacing="8" IsVisible="{Binding IsFinished}">
                 <TextBlock Text="{Binding OutcomeText}" TextWrapping="Wrap" FontSize="18" FontWeight="Bold"/>
-                <Button Content="Nouvelle partie" Command="{Binding NewGameCommand}"/>
+                <Button Content="{x:Static loc:L.NewGame}" Command="{Binding NewGameCommand}"/>
             </StackPanel>
 
-            <Button Content="Retour aux liens" Command="{Binding BackCommand}"
+            <Button Content="{x:Static loc:L.BackToLinks}" Command="{Binding BackCommand}"
                     IsVisible="{Binding IsRolling}"/>
         </StackPanel>
     </ScrollViewer>
