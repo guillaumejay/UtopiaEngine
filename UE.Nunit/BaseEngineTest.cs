@@ -18,7 +18,8 @@ namespace UE.NUnit
 
         protected virtual IDiceRoller GetDiceRoller()
         {
-            return new RandomDice();
+            // Seeded so that tests not overriding this stay deterministic and reproducible.
+            return new RandomDice(20140126);
         }
         protected readonly GameEngine GameEngine;
         protected XmlRepository _xmlRepository;
