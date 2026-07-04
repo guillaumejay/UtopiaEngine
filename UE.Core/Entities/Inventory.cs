@@ -89,7 +89,7 @@ namespace UE.Core.Entities
             return score;
         }
 
-        internal int GetComponentQuantityFor(int id)
+        public int GetComponentQuantityFor(int id)
         {
                 return Stores.Single(x=>x.ComponentId==id).Quantity ;
         }

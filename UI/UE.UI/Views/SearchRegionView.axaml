@@ -51,13 +51,26 @@
                 <Button Content="Appliquer la fouille" Command="{Binding ApplySearchCommand}"/>
             </StackPanel>
 
+            <StackPanel Spacing="8" IsVisible="{Binding IsCombat}">
+                <TextBlock Text="{Binding CombatLog}" TextWrapping="Wrap"/>
+                <StackPanel Orientation="Horizontal" Spacing="8" IsVisible="{Binding CanRollCombat}">
+                    <Button Content="Lancer les dés de combat" Command="{Binding RollCombatCommand}"/>
+                    <Button Content="Fuir" Command="{Binding FleeCommand}" IsVisible="{Binding CanFlee}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="8" IsVisible="{Binding ShowWandChoice}">
+                    <Button Content="Baguette de paralysie (+2)" Command="{Binding UseWandCommand}"/>
+                    <Button Content="Continuer sans baguette" Command="{Binding SkipWandCommand}"/>
+                </StackPanel>
+            </StackPanel>
+
             <StackPanel Spacing="8" IsVisible="{Binding IsDone}">
                 <TextBlock Text="{Binding OutcomeText}" TextWrapping="Wrap" FontSize="16"/>
                 <Button Content="Fouiller à nouveau" Command="{Binding ContinueCommand}"
                         IsVisible="{Binding CanContinue}"/>
             </StackPanel>
 
-            <Button Content="Retour aux régions" Command="{Binding BackCommand}"/>
+            <Button Content="Retour aux régions" Command="{Binding BackCommand}"
+                    IsVisible="{Binding !IsCombat}"/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

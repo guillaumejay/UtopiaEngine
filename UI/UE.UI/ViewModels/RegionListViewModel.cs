@@ -13,7 +13,7 @@ public partial class RegionItemViewModel(RegionState rs, Inventory inventory, Ma
     public string Name { get; } = rs.Region.Name.Text;
 
     public string ComponentInfo { get; } =
-        $"Composant : {rs.Region.Component.Name.Text} ({inventory.Stores.Single(x => x.ComponentId == rs.Region.Component.ID).Quantity})";
+        $"Composant : {rs.Region.Component.Name.Text} ({inventory.GetComponentQuantityFor(rs.Region.Component.ID)})";
 
     public string ConstructInfo { get; } =
         $"Construct : {rs.Region.Construct.Name.Text} ({(rs.ConstructFound ? "trouvé" : "à trouver")})";

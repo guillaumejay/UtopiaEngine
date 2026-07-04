@@ -31,6 +31,7 @@ public enum SearchPhase
 {
     Placing,
     BoxFull,
+    Combat,
     Done,
 }
 
@@ -50,12 +51,15 @@ public partial class SearchRegionViewModel : ViewModelBase
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsPlacing))]
     [NotifyPropertyChangedFor(nameof(IsBoxFull))]
+    [NotifyPropertyChangedFor(nameof(IsCombat))]
     [NotifyPropertyChangedFor(nameof(IsDone))]
     private SearchPhase _phase;
 
     public bool IsPlacing => Phase == SearchPhase.Placing;
 
     public bool IsBoxFull => Phase == SearchPhase.BoxFull;
+
+    public bool IsCombat => Phase == SearchPhase.Combat;
 
     public bool IsDone => Phase == SearchPhase.Done;
 
@@ -72,6 +76,14 @@ public partial class SearchRegionViewModel : ViewModelBase
     [ObservableProperty] private bool _canUseDowsingRod;
     [ObservableProperty] private decimal _dowsingRodNumber = 50;
     [ObservableProperty] private bool _canContinue;
+
+    private Encounter? _encounter;
+    private TwoDice? _combatDice;
+
+    [ObservableProperty] private string _combatLog = string.Empty;
+    [ObservableProperty] private bool _canRollCombat;
+    [ObservableProperty] private bool _showWandChoice;
+    [ObservableProperty] private bool _canFlee;
 
     public SearchRegionViewModel(IGameEngine engine, MainViewModel shell, int regionIndex)
     {
@@ -204,8 +216,8 @@ public partial class SearchRegionViewModel : ViewModelBase
             lines.Add($"{sr.NumberOfComposantFound} × {_region.Component.Name.Text} trouvé(s).");
         if (sr.MonsterLevel > 0)
         {
-            Encounter e = _region.GetEncounter(sr.MonsterLevel);
-            lines.Add($"Rencontre : {e.Name.Text} (niveau {sr.MonsterLevel}) — combat pas encore implémenté dans cette interface.");
+            StartCombat(_region.GetEncounter(sr.MonsterLevel));
+            return;
         }
         if (lines.Count == 0)
             lines.Add("Rien trouvé cette fois-ci.");
@@ -221,15 +233,122 @@ public partial class SearchRegionViewModel : ViewModelBase
         Phase = SearchPhase.Done;
     }
 
+    private void StartCombat(Encounter e)
+    {
+        _encounter = e;
+        _engine.StartFight();
+        CombatLog = $"Vous devez combattre {e.Name.Text} (attaque sur {e.AttackText}, touché sur {e.HitText}{(e.IsSpirit ? ", esprit" : "")}).";
+        CanFlee = _engine.HasAbility(Ability.IgnoreEncounter);
+        CanRollCombat = true;
+        ShowWandChoice = false;
+        Phase = SearchPhase.Combat;
+    }
+
+    private void AppendCombatLog(string line) => CombatLog += "\n" + line;
+
+    [RelayCommand]
+    private void RollCombat()
+    {
+        _combatDice = _engine.DiceGenerator.Get2d6();
+        if (_engine.GameState.ParalysisWandInUse)
+            _combatDice.ModifyBothDie(2);
+        if (_encounter!.IsSpirit && _engine.HasAbility(Ability.HelpAgainstSpirit))
+            _combatDice.ModifyBothDie(1);
+        AppendCombatLog($"Vous lancez {_combatDice.First} et {_combatDice.Second}.");
+        CanRollCombat = false;
+        if (_engine.GameState.Inventory.ParalysisWandCharged && !_engine.GameState.ParalysisWandInUse)
+            ShowWandChoice = true;
+        else
+            ResolveCombatTurn();
+    }
+
+    [RelayCommand]
+    private void UseWand()
+    {
+        _engine.UseParalysisWand();
+        _combatDice!.ModifyBothDie(2);
+        AppendCombatLog($"Baguette de paralysie : +2 aux dés pour tout le combat, soit {_combatDice.First} et {_combatDice.Second}.");
+        ShowWandChoice = false;
+        ResolveCombatTurn();
+    }
+
+    [RelayCommand]
+    private void SkipWand()
+    {
+        ShowWandChoice = false;
+        ResolveCombatTurn();
+    }
+
+    [RelayCommand]
+    private void Flee()
+    {
+        AppendCombatLog("Vous fuyez le combat.");
+        EndCombat();
+    }
+
+    private void ResolveCombatTurn()
+    {
+        CombatResult cr = _engine.ApplyCombatRoll(_combatDice!, _encounter!, _region);
+        _shell.RefreshStatus();
+        if (cr.HitpointLost > 0)
+            AppendCombatLog($"Vous perdez {cr.HitpointLost} PV.");
+
+        if (cr.EncounterDead)
+        {
+            AppendCombatLog($"{_encounter!.Name.Text} est vaincu !");
+            if (cr.ComponentFound)
+                AppendCombatLog($"Butin : 1 × {_region.Component.Name.Text}.");
+            if (cr.LegendaryTreasureFound)
+                AppendCombatLog($"Butin : {_region.LegendaryTreasure.Name.Text} (trésor légendaire) !");
+            _shell.RefreshStatus();
+        }
+
+        if (_engine.GameState.CurrentHitPoint < 0)
+        {
+            GameLost("vous succombez à vos blessures");
+            return;
+        }
+
+        if (_engine.GameState.CurrentHitPoint == 0)
+        {
+            TimePassed t = _engine.RecoverFromUnconsciousness();
+            _shell.RefreshStatus();
+            AppendCombatLog($"Inconscient ! Vous vous réveillez après {t.DaysPassed} jour(s), soigné.");
+            if (_engine.IsGameLost)
+            {
+                GameLost();
+                return;
+            }
+            EndCombat();
+            return;
+        }
+
+        if (cr.EncounterDead)
+        {
+            EndCombat();
+            return;
+        }
+
+        CanRollCombat = true;
+    }
+
+    private void EndCombat()
+    {
+        OutcomeText = CombatLog;
+        CanContinue = _engine.NumberOfAvailableSearchesBoxesFor(_region.Index) > 0;
+        Phase = SearchPhase.Done;
+    }
+
     [RelayCommand]
     private void Continue() => StartBox();
 
     [RelayCommand]
     private void Back() => _shell.ShowRegions();
 
-    private void GameLost()
+    private void GameLost(string reason = "le temps vous a rattrapé")
     {
-        OutcomeText = "Partie perdue — le temps vous a rattrapé.";
+        string prefix = IsCombat ? CombatLog + "\n" : string.Empty;
+        OutcomeText = $"{prefix}Partie perdue — {reason}.";
         CanContinue = false;
         Phase = SearchPhase.Done;
     }
