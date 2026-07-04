@@ -3,6 +3,7 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:vm="using:UE.UI.ViewModels"
+                xmlns:views="using:UE.UI.Views"
                 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                 x:Class="UE.UI.Views.SearchRegionView"
                 x:DataType="vm:SearchRegionViewModel">
@@ -20,7 +21,7 @@
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
-                    <DataTemplate x:DataType="vm:SearchCellViewModel">
+                    <DataTemplate x:DataType="vm:DiceCellViewModel">
                         <Button Content="{Binding Display}" Command="{Binding PlaceCommand}"
                                 IsEnabled="{Binding IsEmpty}"
                                 Height="56" Margin="4" FontSize="20"
@@ -29,16 +30,8 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
 
-            <StackPanel Orientation="Horizontal" Spacing="12" IsVisible="{Binding IsPlacing}">
-                <TextBlock Text="Dés :" VerticalAlignment="Center"/>
-                <RadioButton GroupName="dice" Content="{Binding Die1}"
-                             IsChecked="{Binding IsDie1Selected, Mode=TwoWay}"
-                             IsEnabled="{Binding !Die1Used}" FontSize="18"/>
-                <RadioButton GroupName="dice" Content="{Binding Die2}"
-                             IsChecked="{Binding IsDie2Selected, Mode=TwoWay}"
-                             IsEnabled="{Binding !Die2Used}" FontSize="18"/>
-                <TextBlock Text="(choisissez un dé, puis une case)" VerticalAlignment="Center"
-                           FontStyle="Italic" Opacity="0.7"/>
+            <StackPanel IsVisible="{Binding IsPlacing}">
+                <views:DicePairView DataContext="{Binding Dice}"/>
             </StackPanel>
 
             <StackPanel Spacing="8" IsVisible="{Binding IsBoxFull}">

@@ -16,6 +16,7 @@ public enum HelpContext
     SearchResult,
     Combat,
     AfterSearch,
+    Constructs,
 }
 
 /// <summary>À implémenter par les pages qui savent quel contexte d'aide les concerne.</summary>
@@ -34,6 +35,7 @@ public partial class HelpViewModel : ViewModelBase
         [HelpContext.SearchResult] = ["results", "items"],
         [HelpContext.Combat] = ["combat", "items"],
         [HelpContext.AfterSearch] = ["results", "time"],
+        [HelpContext.Constructs] = ["constructs", "godshand", "items"],
     };
 
     private readonly MainViewModel _shell;
@@ -112,11 +114,14 @@ public partial class HelpViewModel : ViewModelBase
             "Dépensez 3 énergies pour barrer un crâne : +1 jour de délai et +5 points."),
 
         new("constructs", "Constructs, liens et activation finale",
-            "Un construct trouvé doit être activé (placement de dés sur sa table d'activation, en dépensant des " +
-            "composants). Les constructs activés se relient deux à deux ; six liens sont nécessaires. " +
-            "Une fois le réseau complet, l'activation finale décide de la victoire : 2d6 contre la difficulté finale. " +
-            "Chaque échec coûte 1 PV et 1 jour.\n" +
-            "⚠ Dans cette interface, l'activation, les liens et l'activation finale ne sont pas encore jouables."),
+            "Un construct trouvé doit être activé : on place des dés sur sa table de 4 colonnes. Une colonne " +
+            "complète dont l'écart (haut − bas) vaut ±5 rapporte 2 énergies, ±4 en rapporte 1, 0 efface la " +
+            "colonne (à refaire), tout autre écart la verrouille et coûte 1 PV. Il faut 4 énergies pour activer ; " +
+            "le surplus charge la God's Hand. Une table ratée coûte 1 jour et donne droit à une seconde table — " +
+            "si elle échoue aussi, le construct s'active quand même, épuisé.\n" +
+            "Les constructs activés se relient ensuite deux à deux (six liens), puis l'activation finale décide " +
+            "de la victoire : 2d6 contre la difficulté finale, chaque échec coûte 1 PV et 1 jour.\n" +
+            "⚠ Dans cette interface, les liens et l'activation finale ne sont pas encore jouables."),
 
         new("score", "Le score",
             "PV restants + 10 par construct trouvé + 5 par construct activé + 10 par trésor légendaire " +
@@ -168,10 +173,14 @@ public partial class HelpViewModel : ViewModelBase
             "+1 day on the deadline and +5 points."),
 
         new("constructs", "Constructs, links and final activation",
-            "A found construct must be activated (dice placement on its activation table, spending components). " +
-            "Activated constructs are linked in pairs; six links are needed. Once the network is complete, the " +
-            "final activation decides the game: 2d6 against the final difficulty. Each failure costs 1 HP and 1 day.\n" +
-            "⚠ In this interface, activation, linking and the final activation are not playable yet."),
+            "A found construct must be activated: place dice on its 4-column table. A completed column whose " +
+            "difference (top − bottom) is ±5 yields 2 energy, ±4 yields 1, 0 clears the column (redo it), any " +
+            "other difference locks it and costs 1 HP. You need 4 energy to activate; any surplus charges the " +
+            "God's Hand. A failed table costs 1 day and grants a second table — if that one fails too, the " +
+            "construct activates anyway, exhausted.\n" +
+            "Activated constructs are then linked in pairs (six links), and the final activation decides the " +
+            "game: 2d6 against the final difficulty, each failure costing 1 HP and 1 day.\n" +
+            "⚠ In this interface, linking and the final activation are not playable yet."),
 
         new("score", "Scoring",
             "Remaining HP + 10 per found construct + 5 per activated construct + 10 per legendary treasure " +

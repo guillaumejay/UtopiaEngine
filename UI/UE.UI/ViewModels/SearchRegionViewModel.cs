@@ -10,23 +10,6 @@ using UE.Core.Interfaces;
 
 namespace UE.UI.ViewModels;
 
-public partial class SearchCellViewModel(SearchRegionViewModel owner, int position) : ObservableObject
-{
-    public int Position { get; } = position;
-
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(IsEmpty))]
-    [NotifyPropertyChangedFor(nameof(Display))]
-    private string _value = string.Empty;
-
-    public bool IsEmpty => string.IsNullOrEmpty(Value);
-
-    public string Display => IsEmpty ? "·" : Value;
-
-    [RelayCommand]
-    private void Place() => owner.PlaceSelectedDie(this);
-}
-
 public enum SearchPhase
 {
     Placing,
@@ -54,7 +37,9 @@ public partial class SearchRegionViewModel : ViewModelBase, IHelpContextProvider
 
     public string RegionName { get; }
 
-    public ObservableCollection<SearchCellViewModel> Cells { get; } = new();
+    public ObservableCollection<DiceCellViewModel> Cells { get; } = new();
+
+    public DicePairViewModel Dice { get; } = new();
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsPlacing))]
@@ -70,13 +55,6 @@ public partial class SearchRegionViewModel : ViewModelBase, IHelpContextProvider
     public bool IsCombat => Phase == SearchPhase.Combat;
 
     public bool IsDone => Phase == SearchPhase.Done;
-
-    [ObservableProperty] private int _die1;
-    [ObservableProperty] private int _die2;
-    [ObservableProperty] private bool _die1Used;
-    [ObservableProperty] private bool _die2Used;
-    [ObservableProperty] private bool _isDie1Selected;
-    [ObservableProperty] private bool _isDie2Selected;
 
     [ObservableProperty] private string _infoMessage = string.Empty;
     [ObservableProperty] private string _resultText = string.Empty;
@@ -132,62 +110,34 @@ public partial class SearchRegionViewModel : ViewModelBase, IHelpContextProvider
         _modified = false;
         RebuildCells();
         Phase = SearchPhase.Placing;
-        RollDice();
+        Dice.Roll(_engine.DiceGenerator);
     }
 
     private void RebuildCells()
     {
         Cells.Clear();
         for (int i = 0; i < 6; i++)
-            Cells.Add(new SearchCellViewModel(this, i + 1) { Value = _box![i] });
+            Cells.Add(new DiceCellViewModel(i + 1, PlaceSelectedDie) { Value = _box![i] });
     }
 
-    private void RollDice()
-    {
-        TwoDice td = _engine.DiceGenerator.Get2d6();
-        Die1 = td.First;
-        Die2 = td.Second;
-        Die1Used = false;
-        Die2Used = false;
-        IsDie1Selected = true;
-        IsDie2Selected = false;
-    }
-
-    public void PlaceSelectedDie(SearchCellViewModel cell)
+    private void PlaceSelectedDie(DiceCellViewModel cell)
     {
         if (Phase != SearchPhase.Placing || !cell.IsEmpty)
             return;
 
-        int value;
-        if (IsDie1Selected && !Die1Used)
-            value = Die1;
-        else if (IsDie2Selected && !Die2Used)
-            value = Die2;
-        else
+        int? value = Dice.TakeSelected();
+        if (value is null)
             return;
 
-        _engine.PlaceSearchNumberOnRegion(_region.Index, cell.Position, value);
-        cell.Value = value.ToString();
+        _engine.PlaceSearchNumberOnRegion(_region.Index, cell.Position, value.Value);
+        cell.Value = value.Value.ToString();
 
-        if (IsDie1Selected)
-        {
-            Die1Used = true;
-            IsDie1Selected = false;
-            IsDie2Selected = !Die2Used;
-        }
-        else
-        {
-            Die2Used = true;
-            IsDie2Selected = false;
-            IsDie1Selected = !Die1Used;
-        }
-
-        if (Die1Used && Die2Used)
+        if (Dice.BothUsed)
         {
             if (_box!.IsFull)
                 BoxFilled();
             else
-                RollDice();
+                Dice.Roll(_engine.DiceGenerator);
         }
     }
 

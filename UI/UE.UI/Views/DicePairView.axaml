@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:vm="using:UE.UI.ViewModels"
+                mc:Ignorable="d"
+                x:Class="UE.UI.Views.DicePairView"
+                x:DataType="vm:DicePairViewModel">
+    <StackPanel Orientation="Horizontal" Spacing="12">
+        <TextBlock Text="Dés :" VerticalAlignment="Center"/>
+        <RadioButton GroupName="dice" Content="{Binding Die1}"
+                     IsChecked="{Binding IsDie1Selected, Mode=TwoWay}"
+                     IsEnabled="{Binding !Die1Used}" FontSize="18"/>
+        <RadioButton GroupName="dice" Content="{Binding Die2}"
+                     IsChecked="{Binding IsDie2Selected, Mode=TwoWay}"
+                     IsEnabled="{Binding !Die2Used}" FontSize="18"/>
+        <TextBlock Text="(choisissez un dé, puis une case)" VerticalAlignment="Center"
+                   FontStyle="Italic" Opacity="0.7"/>
+    </StackPanel>
+</UserControl>

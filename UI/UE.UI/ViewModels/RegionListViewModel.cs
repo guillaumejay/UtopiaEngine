@@ -29,16 +29,32 @@ public partial class RegionItemViewModel(RegionState rs, Inventory inventory, Ma
     private void Search() => shell.OpenSearch(Index);
 }
 
-public class RegionListViewModel : ViewModelBase, IHelpContextProvider
+public partial class RegionListViewModel : ViewModelBase, IHelpContextProvider
 {
     public HelpContext HelpContext => HelpContext.Regions;
 
     public List<RegionItemViewModel> Regions { get; }
 
+    private readonly MainViewModel _shell;
+
     public RegionListViewModel(IGameEngine engine, MainViewModel shell)
     {
+        _shell = shell;
         Regions = engine.GameState.RegionStates
             .Select(rs => new RegionItemViewModel(rs, engine.GameState.Inventory, shell))
             .ToList();
+        int found = engine.GameState.ConstructsFound.Count();
+        int toActivate = engine.GameState.ConstructsUnactivated.Count();
+        ConstructsLabel = toActivate > 0
+            ? $"Constructs ({toActivate} à activer)"
+            : $"Constructs ({found} trouvé(s))";
+        HasConstructs = found > 0;
     }
+
+    public string ConstructsLabel { get; }
+
+    public bool HasConstructs { get; }
+
+    [RelayCommand]
+    private void ShowConstructs() => _shell.ShowConstructs();
 }

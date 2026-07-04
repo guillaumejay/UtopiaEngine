@@ -21,6 +21,8 @@ public partial class MainViewModel : ViewModelBase
 
     public string Title => "Utopia Engine";
 
+    public GameEngine Engine => _engine;
+
     public int CurrentHitPoint => _engine.GameState.CurrentHitPoint;
 
     public int CurrentDay => _engine.GameState.CurrentDay;
@@ -55,6 +57,10 @@ public partial class MainViewModel : ViewModelBase
     public void ShowRegions() => CurrentPage = new RegionListViewModel(_engine, this);
 
     public void OpenSearch(int regionIndex) => CurrentPage = new SearchRegionViewModel(_engine, this, regionIndex);
+
+    public void ShowConstructs() => CurrentPage = new ConstructsViewModel(_engine, this);
+
+    public void OpenActivation(UE.Core.Entities.ConstructState cs) => CurrentPage = new ActivateConstructViewModel(_engine, this, cs);
 
     public void RefreshStatus()
     {

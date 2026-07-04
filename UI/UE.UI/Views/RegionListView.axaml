@@ -7,6 +7,9 @@
                 x:Class="UE.UI.Views.RegionListView"
                 x:DataType="vm:RegionListViewModel">
     <ScrollViewer>
+        <StackPanel>
+        <Button Content="{Binding ConstructsLabel}" Command="{Binding ShowConstructsCommand}"
+                IsVisible="{Binding HasConstructs}" Margin="0,0,0,12"/>
         <ItemsControl ItemsSource="{Binding Regions}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate x:DataType="vm:RegionItemViewModel">
@@ -28,5 +31,6 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        </StackPanel>
     </ScrollViewer>
 </UserControl>
