@@ -32,6 +32,8 @@ public partial class MainViewModel : ViewModelBase
 
     public int Score => _engine.Score;
 
+    public int GodsHandEnergy => _engine.GameState.GodsHandEnergy;
+
     public string HelpLabel => HelpViewModel.IsFrench ? "Aide" : "Help";
 
     private ViewModelBase? _pageBeforeHelp;
@@ -69,11 +71,61 @@ public partial class MainViewModel : ViewModelBase
 
     public void ShowFinalActivation() => CurrentPage = new FinalActivationViewModel(_engine, this);
 
+    public void ShowCamp() => CurrentPage = new CampViewModel(_engine, this);
+
+    private static string AutosavePath
+    {
+        get
+        {
+            string dir = System.IO.Path.Combine(
+                System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData),
+                "UtopiaEngine");
+            return System.IO.Path.Combine(dir, "autosave.xml");
+        }
+    }
+
+    public bool HasAutosave
+    {
+        get
+        {
+            try { return System.IO.File.Exists(AutosavePath); }
+            catch { return false; }
+        }
+    }
+
+    public void ContinueGame()
+    {
+        _engine.LoadGameState(AutosavePath);
+        RefreshStatus();
+        ShowRegions();
+    }
+
+    private void Autosave()
+    {
+        // Sauvegarde silencieuse après chaque action ; supprimée quand la partie est finie.
+        try
+        {
+            if (_engine.IsFinished)
+            {
+                System.IO.File.Delete(AutosavePath);
+                return;
+            }
+            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(AutosavePath)!);
+            _engine.SaveGameState(AutosavePath);
+        }
+        catch
+        {
+            // Plateformes sans système de fichiers persistant (navigateur) : on joue sans sauvegarde.
+        }
+    }
+
     public void RefreshStatus()
     {
         OnPropertyChanged(nameof(CurrentHitPoint));
         OnPropertyChanged(nameof(CurrentDay));
         OnPropertyChanged(nameof(DaysRemaining));
         OnPropertyChanged(nameof(Score));
+        OnPropertyChanged(nameof(GodsHandEnergy));
+        Autosave();
     }
 }

@@ -70,4 +70,7 @@ public partial class RegionListViewModel : ViewModelBase, IHelpContextProvider
 
     [RelayCommand]
     private void ShowLinks() => _shell.ShowLinks();
+
+    [RelayCommand]
+    private void ShowCamp() => _shell.ShowCamp();
 }

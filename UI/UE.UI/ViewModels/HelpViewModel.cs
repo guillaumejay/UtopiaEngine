@@ -18,6 +18,7 @@ public enum HelpContext
     Constructs,
     Links,
     Final,
+    Camp,
 }
 
 /// <summary>À implémenter par les pages qui savent quel contexte d'aide les concerne.</summary>
@@ -39,6 +40,7 @@ public partial class HelpViewModel : ViewModelBase
         [HelpContext.Constructs] = ["constructs", "godshand", "items"],
         [HelpContext.Links] = ["constructs", "score"],
         [HelpContext.Final] = ["constructs", "godshand", "score"],
+        [HelpContext.Camp] = ["godshand", "time", "items"],
     };
 
     private readonly MainViewModel _shell;

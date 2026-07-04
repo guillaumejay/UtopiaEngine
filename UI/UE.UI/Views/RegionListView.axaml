@@ -9,6 +9,7 @@
     <ScrollViewer>
         <StackPanel>
         <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,12">
+            <Button Content="Campement" Command="{Binding ShowCampCommand}"/>
             <Button Content="{Binding ConstructsLabel}" Command="{Binding ShowConstructsCommand}"
                     IsVisible="{Binding HasConstructs}"/>
             <Button Content="{Binding LinksLabel}" Command="{Binding ShowLinksCommand}"

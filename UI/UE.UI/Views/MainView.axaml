@@ -15,6 +15,7 @@
                     <TextBlock Text="{Binding CurrentDay, StringFormat='Jour : {0}'}" VerticalAlignment="Center"/>
                     <TextBlock Text="{Binding DaysRemaining, StringFormat='Jours restants : {0}'}" VerticalAlignment="Center"/>
                     <TextBlock Text="{Binding Score, StringFormat='Score : {0}'}" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding GodsHandEnergy, StringFormat='Énergie GH : {0}'}" VerticalAlignment="Center"/>
                 </StackPanel>
                 <Button Grid.Column="1" Content="{Binding HelpLabel}" Command="{Binding OpenHelpCommand}"/>
             </Grid>
