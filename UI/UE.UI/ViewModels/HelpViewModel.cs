@@ -17,6 +17,7 @@ public enum HelpContext
     Combat,
     AfterSearch,
     Constructs,
+    Links,
 }
 
 /// <summary>À implémenter par les pages qui savent quel contexte d'aide les concerne.</summary>
@@ -36,6 +37,7 @@ public partial class HelpViewModel : ViewModelBase
         [HelpContext.Combat] = ["combat", "items"],
         [HelpContext.AfterSearch] = ["results", "time"],
         [HelpContext.Constructs] = ["constructs", "godshand", "items"],
+        [HelpContext.Links] = ["constructs", "score"],
     };
 
     private readonly MainViewModel _shell;
@@ -119,9 +121,13 @@ public partial class HelpViewModel : ViewModelBase
             "colonne (à refaire), tout autre écart la verrouille et coûte 1 PV. Il faut 4 énergies pour activer ; " +
             "le surplus charge la God's Hand. Une table ratée coûte 1 jour et donne droit à une seconde table — " +
             "si elle échoue aussi, le construct s'active quand même, épuisé.\n" +
-            "Les constructs activés se relient ensuite deux à deux (six liens), puis l'activation finale décide " +
-            "de la victoire : 2d6 contre la difficulté finale, chaque échec coûte 1 PV et 1 jour.\n" +
-            "⚠ Dans cette interface, les liens et l'activation finale ne sont pas encore jouables."),
+            "Les constructs activés se relient ensuite deux à deux (six liens, table de 3 colonnes chacun). " +
+            "Démarrer un lien coûte 1 composant. Une colonne dont le bas dépasse le haut coûte 1 PV et 1 composant " +
+            "de plus (sinon le lien est entièrement à refaire). La corbeille permet de jeter un dé au lieu de le " +
+            "placer — 10 dés maximum pour toute la partie. La somme des valeurs de liens fixe la difficulté de " +
+            "l'activation finale : visez bas ! L'activation finale décide de la victoire : 2d6 contre cette " +
+            "difficulté, chaque échec coûte 1 PV et 1 jour.\n" +
+            "⚠ Dans cette interface, l'activation finale n'est pas encore jouable."),
 
         new("score", "Le score",
             "PV restants + 10 par construct trouvé + 5 par construct activé + 10 par trésor légendaire " +
@@ -178,9 +184,13 @@ public partial class HelpViewModel : ViewModelBase
             "other difference locks it and costs 1 HP. You need 4 energy to activate; any surplus charges the " +
             "God's Hand. A failed table costs 1 day and grants a second table — if that one fails too, the " +
             "construct activates anyway, exhausted.\n" +
-            "Activated constructs are then linked in pairs (six links), and the final activation decides the " +
-            "game: 2d6 against the final difficulty, each failure costing 1 HP and 1 day.\n" +
-            "⚠ In this interface, linking and the final activation are not playable yet."),
+            "Activated constructs are then linked in pairs (six links, a 3-column table each). Starting a link " +
+            "costs 1 component. A column whose bottom exceeds its top costs 1 HP and 1 extra component (otherwise " +
+            "the whole link resets). The waste basket lets you discard a die instead of placing it — 10 dice " +
+            "maximum for the whole game. The sum of the link values sets the final activation difficulty: aim " +
+            "low! The final activation decides the game: 2d6 against that difficulty, each failure costing " +
+            "1 HP and 1 day.\n" +
+            "⚠ In this interface, the final activation is not playable yet."),
 
         new("score", "Scoring",
             "Remaining HP + 10 per found construct + 5 per activated construct + 10 per legendary treasure " +

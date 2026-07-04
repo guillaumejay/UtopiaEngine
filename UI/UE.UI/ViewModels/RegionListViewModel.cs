@@ -49,12 +49,25 @@ public partial class RegionListViewModel : ViewModelBase, IHelpContextProvider
             ? $"Constructs ({toActivate} à activer)"
             : $"Constructs ({found} trouvé(s))";
         HasConstructs = found > 0;
+        int possible = engine.GameState.PossibleLinks.Count();
+        int connected = engine.GameState.ConnectedLinks.Count();
+        LinksLabel = possible > 0
+            ? $"Liens ({possible} possible(s))"
+            : $"Liens ({connected} connecté(s))";
+        HasLinks = possible > 0 || connected > 0;
     }
 
     public string ConstructsLabel { get; }
 
     public bool HasConstructs { get; }
 
+    public string LinksLabel { get; }
+
+    public bool HasLinks { get; }
+
     [RelayCommand]
     private void ShowConstructs() => _shell.ShowConstructs();
+
+    [RelayCommand]
+    private void ShowLinks() => _shell.ShowLinks();
 }

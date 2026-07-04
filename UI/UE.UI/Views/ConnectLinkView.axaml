@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:vm="using:UE.UI.ViewModels"
+                xmlns:views="using:UE.UI.Views"
+                mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                x:Class="UE.UI.Views.ConnectLinkView"
+                x:DataType="vm:ConnectLinkViewModel">
+    <ScrollViewer>
+        <StackPanel Spacing="12" MaxWidth="560" HorizontalAlignment="Center">
+            <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="Bold" TextWrapping="Wrap"/>
+
+            <TextBlock Text="{Binding InfoMessage}" TextWrapping="Wrap" FontStyle="Italic"
+                       IsVisible="{Binding InfoMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+            <ItemsControl ItemsSource="{Binding Cells}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="3"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:DiceCellViewModel">
+                        <Button Content="{Binding Display}" Command="{Binding PlaceCommand}"
+                                IsEnabled="{Binding IsEmpty}"
+                                Height="56" Margin="4" FontSize="20"
+                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <StackPanel Spacing="8" IsVisible="{Binding IsPlacing}">
+                <views:DicePairView DataContext="{Binding Dice}"/>
+                <Button Content="{Binding BasketLabel}" Command="{Binding DiscardCommand}"
+                        IsEnabled="{Binding CanUseBasket}"/>
+                <Button Content="Textes Anciens : connecter automatiquement (valeur 2)"
+                        Command="{Binding AutoConnectCommand}" IsVisible="{Binding CanAutoConnect}"/>
+            </StackPanel>
+
+            <TextBlock Text="{Binding OutcomeText}" TextWrapping="Wrap" FontSize="16"
+                       IsVisible="{Binding IsDone}"/>
+
+            <Button Content="Retour aux liens" Command="{Binding BackCommand}"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
