@@ -29,8 +29,10 @@ public partial class RegionItemViewModel(RegionState rs, Inventory inventory, Ma
     private void Search() => shell.OpenSearch(Index);
 }
 
-public class RegionListViewModel : ViewModelBase
+public class RegionListViewModel : ViewModelBase, IHelpContextProvider
 {
+    public HelpContext HelpContext => HelpContext.Regions;
+
     public List<RegionItemViewModel> Regions { get; }
 
     public RegionListViewModel(IGameEngine engine, MainViewModel shell)

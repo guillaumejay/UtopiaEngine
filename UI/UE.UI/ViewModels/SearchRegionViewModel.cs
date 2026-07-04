@@ -35,8 +35,16 @@ public enum SearchPhase
     Done,
 }
 
-public partial class SearchRegionViewModel : ViewModelBase
+public partial class SearchRegionViewModel : ViewModelBase, IHelpContextProvider
 {
+    public HelpContext HelpContext => Phase switch
+    {
+        SearchPhase.BoxFull => HelpContext.SearchResult,
+        SearchPhase.Combat => HelpContext.Combat,
+        SearchPhase.Done => HelpContext.AfterSearch,
+        _ => HelpContext.Placing,
+    };
+
     private readonly IGameEngine _engine;
     private readonly MainViewModel _shell;
     private readonly Region _region;

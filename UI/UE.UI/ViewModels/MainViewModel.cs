@@ -39,7 +39,8 @@ public partial class MainViewModel : ViewModelBase
         if (CurrentPage is HelpViewModel)
             return;
         _pageBeforeHelp = CurrentPage;
-        CurrentPage = new HelpViewModel(this);
+        HelpContext context = (CurrentPage as IHelpContextProvider)?.HelpContext ?? HelpContext.General;
+        CurrentPage = new HelpViewModel(this, context);
     }
 
     public void CloseHelp() => CurrentPage = _pageBeforeHelp ?? new HomeViewModel(this);
