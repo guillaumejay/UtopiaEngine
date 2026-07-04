@@ -12,11 +12,16 @@ to set the actual DataContext for runtime, set the DataContext property in code 
         <vm:MainViewModel />
     </Design.DataContext>
 
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8">
-        <TextBlock Text="{Binding Title}" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center"/>
-        <TextBlock Text="{Binding CurrentHitPoint, StringFormat='HP : {0}'}"/>
-        <TextBlock Text="{Binding CurrentDay, StringFormat='Jour : {0}'}"/>
-        <TextBlock Text="{Binding DaysRemaining, StringFormat='Jours restants : {0}'}"/>
-        <TextBlock Text="{Binding Score, StringFormat='Score : {0}'}"/>
-    </StackPanel>
+    <DockPanel Margin="16">
+        <Border DockPanel.Dock="Top" Padding="0,0,0,12">
+            <StackPanel Orientation="Horizontal" Spacing="24" VerticalAlignment="Center">
+                <TextBlock Text="{Binding Title}" FontSize="20" FontWeight="Bold"/>
+                <TextBlock Text="{Binding CurrentHitPoint, StringFormat='PV : {0}'}" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding CurrentDay, StringFormat='Jour : {0}'}" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding DaysRemaining, StringFormat='Jours restants : {0}'}" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Score, StringFormat='Score : {0}'}" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+        <ContentControl Content="{Binding CurrentPage}"/>
+    </DockPanel>
 </UserControl>

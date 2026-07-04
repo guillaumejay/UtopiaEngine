@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:vm="using:UE.UI.ViewModels"
+                mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                x:Class="UE.UI.Views.RegionListView"
+                x:DataType="vm:RegionListViewModel">
+    <ScrollViewer>
+        <ItemsControl ItemsSource="{Binding Regions}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="vm:RegionItemViewModel">
+                    <Border BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}"
+                            BorderThickness="1" CornerRadius="6" Padding="12" Margin="0,0,0,8">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <StackPanel Spacing="2">
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="16"/>
+                                <TextBlock Text="{Binding ComponentInfo}"/>
+                                <TextBlock Text="{Binding ConstructInfo}"/>
+                                <TextBlock Text="{Binding TreasureInfo}"/>
+                                <TextBlock Text="{Binding Events, StringFormat='Événements : {0}'}"
+                                           IsVisible="{Binding HasEvents}" FontStyle="Italic"/>
+                            </StackPanel>
+                            <Button Grid.Column="1" Content="Fouiller" Command="{Binding SearchCommand}"
+                                    VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </ScrollViewer>
+</UserControl>

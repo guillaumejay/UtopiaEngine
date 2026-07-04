@@ -1,0 +1,42 @@
+using System.Collections.Generic;
+using System.Linq;
+using CommunityToolkit.Mvvm.Input;
+using UE.Core.Entities;
+using UE.Core.Interfaces;
+
+namespace UE.UI.ViewModels;
+
+public partial class RegionItemViewModel(RegionState rs, Inventory inventory, MainViewModel shell) : ViewModelBase
+{
+    public int Index { get; } = rs.Region.Index;
+
+    public string Name { get; } = rs.Region.Name.Text;
+
+    public string ComponentInfo { get; } =
+        $"Composant : {rs.Region.Component.Name.Text} ({inventory.Stores.Single(x => x.ComponentId == rs.Region.Component.ID).Quantity})";
+
+    public string ConstructInfo { get; } =
+        $"Construct : {rs.Region.Construct.Name.Text} ({(rs.ConstructFound ? "trouvé" : "à trouver")})";
+
+    public string TreasureInfo { get; } =
+        $"Trésor : {rs.Region.LegendaryTreasure.Name.Text} ({(rs.LegendaryTreasureFound ? "trouvé" : "à trouver")})";
+
+    public string Events { get; } = string.Join(", ", rs.Events.Select(x => x.Name.Text));
+
+    public bool HasEvents => Events.Length > 0;
+
+    [RelayCommand]
+    private void Search() => shell.OpenSearch(Index);
+}
+
+public class RegionListViewModel : ViewModelBase
+{
+    public List<RegionItemViewModel> Regions { get; }
+
+    public RegionListViewModel(IGameEngine engine, MainViewModel shell)
+    {
+        Regions = engine.GameState.RegionStates
+            .Select(rs => new RegionItemViewModel(rs, engine.GameState.Inventory, shell))
+            .ToList();
+    }
+}
