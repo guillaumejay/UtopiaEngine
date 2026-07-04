@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using UE.Core;
 using UE.Core.Repository;
 
@@ -27,6 +28,21 @@ public partial class MainViewModel : ViewModelBase
     public int DaysRemaining => _engine.DaysRemaining;
 
     public int Score => _engine.Score;
+
+    public string HelpLabel => HelpViewModel.IsFrench ? "Aide" : "Help";
+
+    private ViewModelBase? _pageBeforeHelp;
+
+    [RelayCommand]
+    private void OpenHelp()
+    {
+        if (CurrentPage is HelpViewModel)
+            return;
+        _pageBeforeHelp = CurrentPage;
+        CurrentPage = new HelpViewModel(this);
+    }
+
+    public void CloseHelp() => CurrentPage = _pageBeforeHelp ?? new HomeViewModel(this);
 
     public void StartNewGame()
     {
