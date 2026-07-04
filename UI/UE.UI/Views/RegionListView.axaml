@@ -17,8 +17,7 @@
         <ItemsControl ItemsSource="{Binding Regions}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate x:DataType="vm:RegionItemViewModel">
-                    <Border BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}"
-                            BorderThickness="1" CornerRadius="6" Padding="12" Margin="0,0,0,8">
+                    <Border Classes="card">
                         <Grid ColumnDefinitions="*,Auto">
                             <StackPanel Spacing="2">
                                 <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="16"/>

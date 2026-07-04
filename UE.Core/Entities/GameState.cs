@@ -47,7 +47,9 @@ namespace UE.Core.Entities
 
         public Inventory Inventory { get; set; }
 
-        public bool IsWasteBasketFull { get { return WasteBasket >= 10; } }
+        public const int WasteBasketCapacity = 10;
+
+        public bool IsWasteBasketFull { get { return WasteBasket >= WasteBasketCapacity; } }
 
         public DateTime? LastPlayed { get; set; }
 

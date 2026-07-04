@@ -1,10 +1,109 @@
 using System;
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using UE.Core;
+using UE.Core.Architecture.Messages;
 using UE.Core.Interfaces;
 
 namespace UE.UI.ViewModels;
+
+/// <summary>Messages joueur partagés entre les écrans (une seule source pour les textes récurrents).</summary>
+public static class UiMessages
+{
+    public const string EventsRolled = "De nouveaux événements se produisent dans les régions !";
+
+    public const string GameLostTime = "le temps vous a rattrapé";
+
+    public static string Unconscious(int days) =>
+        $"Inconscient ! Vous vous réveillez après {days} jour(s), soigné.";
+
+    public static string GameLost(string reason) => $"Partie perdue — {reason}.";
+}
+
+/// <summary>Issue de la résolution des PV après une action qui peut en coûter.</summary>
+public enum HpAftermath
+{
+    Fine,
+    Unconscious,
+    Dead,
+    TimeOut,
+}
+
+/// <summary>
+/// Socle des pages qui placent une paire de dés sur une grille : cellules, dés,
+/// protocole de prise de dé et résolution inconscience/mort partagés.
+/// </summary>
+public abstract partial class DicePlacementPageViewModel : ViewModelBase
+{
+    protected readonly IGameEngine EngineRef;
+    protected readonly MainViewModel Shell;
+
+    protected DicePlacementPageViewModel(IGameEngine engine, MainViewModel shell)
+    {
+        EngineRef = engine;
+        Shell = shell;
+    }
+
+    public ObservableCollection<DiceCellViewModel> Cells { get; } = new();
+
+    public DicePairViewModel Dice { get; } = new();
+
+    /// <summary>Aligne les cellules sur l'état du moteur, en place quand c'est possible.</summary>
+    protected void SyncCells(int count, Func<int, string> valueAt)
+    {
+        if (Cells.Count != count)
+        {
+            Cells.Clear();
+            for (int i = 0; i < count; i++)
+                Cells.Add(new DiceCellViewModel(i + 1, PlaceDie) { Value = valueAt(i) });
+            return;
+        }
+        for (int i = 0; i < count; i++)
+            Cells[i].Value = valueAt(i);
+    }
+
+    /// <summary>Prend le dé sélectionné pour une case vide ; isFirst = premier dé du lancer.</summary>
+    protected bool TryTakeDie(DiceCellViewModel? cell, out int value, out bool isFirst)
+    {
+        value = 0;
+        isFirst = !Dice.Die1Used && !Dice.Die2Used;
+        if (cell is { IsEmpty: false })
+            return false;
+        int? taken = Dice.TakeSelected();
+        if (taken is null)
+            return false;
+        value = taken.Value;
+        return true;
+    }
+
+    protected void RerollIfBothUsed()
+    {
+        if (Dice.BothUsed)
+            Dice.Roll(EngineRef.DiceGenerator);
+    }
+
+    /// <summary>
+    /// Résout l'état des PV après une action : mort sous 0, inconscience à 0
+    /// (récupération moteur + message), défaite au temps après récupération.
+    /// </summary>
+    protected HpAftermath ResolveHpAftermath(out string message)
+    {
+        message = string.Empty;
+        if (EngineRef.GameState.CurrentHitPoint < 0)
+            return HpAftermath.Dead;
+        if (EngineRef.GameState.CurrentHitPoint == 0)
+        {
+            TimePassed t = EngineRef.RecoverFromUnconsciousness();
+            Shell.RefreshStatus();
+            message = UiMessages.Unconscious(t.DaysPassed);
+            return EngineRef.IsGameLost ? HpAftermath.TimeOut : HpAftermath.Unconscious;
+        }
+        return HpAftermath.Fine;
+    }
+
+    protected abstract void PlaceDie(DiceCellViewModel cell);
+}
 
 /// <summary>Une case cliquable d'une grille de placement (fouille, activation, lien…).</summary>
 public partial class DiceCellViewModel(int position, Action<DiceCellViewModel> place) : ObservableObject

@@ -14,20 +14,12 @@
             <TextBlock Text="{Binding InfoMessage}" TextWrapping="Wrap" FontStyle="Italic"
                        IsVisible="{Binding InfoMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
 
-            <ItemsControl ItemsSource="{Binding Cells}">
+            <ItemsControl ItemsSource="{Binding Cells}" ItemTemplate="{StaticResource DiceCellTemplate}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Columns="3"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate x:DataType="vm:DiceCellViewModel">
-                        <Button Content="{Binding Display}" Command="{Binding PlaceCommand}"
-                                IsEnabled="{Binding IsEmpty}"
-                                Height="56" Margin="4" FontSize="20"
-                                HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
             </ItemsControl>
 
             <StackPanel IsVisible="{Binding IsPlacing}">

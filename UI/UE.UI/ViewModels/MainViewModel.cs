@@ -1,13 +1,14 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using UE.Core;
+using UE.Core.Interfaces;
 using UE.Core.Repository;
 
 namespace UE.UI.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
 {
-    private readonly GameEngine _engine;
+    private readonly IGameEngine _engine;
 
     [ObservableProperty]
     private ViewModelBase _currentPage;
@@ -21,7 +22,7 @@ public partial class MainViewModel : ViewModelBase
 
     public string Title => "Utopia Engine";
 
-    public GameEngine Engine => _engine;
+    public IGameEngine Engine => _engine;
 
     public int CurrentHitPoint => _engine.GameState.CurrentHitPoint;
 

@@ -1,15 +1,34 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:UE.UI"
+             xmlns:vm="using:UE.UI.ViewModels"
              x:Class="UE.UI.App"
              RequestedThemeVariant="Default">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.DataTemplates>
         <local:ViewLocator/>
-    </Application.DataTemplates>    
+    </Application.DataTemplates>
+
+    <Application.Resources>
+        <!-- Case d'une grille de placement de dés, partagée par fouille / activation / lien -->
+        <DataTemplate x:Key="DiceCellTemplate" x:DataType="vm:DiceCellViewModel">
+            <Button Content="{Binding Display}" Command="{Binding PlaceCommand}"
+                    IsEnabled="{Binding IsEmpty}"
+                    Height="56" Margin="4" FontSize="20"
+                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+        </DataTemplate>
+    </Application.Resources>
 
     <Application.Styles>
         <FluentTheme />
+        <!-- Carte des listes (régions, constructs, liens) -->
+        <Style Selector="Border.card">
+            <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseLowBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="12"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+        </Style>
     </Application.Styles>
 </Application>

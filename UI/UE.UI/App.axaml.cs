@@ -1,8 +1,5 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Data.Core;
-using Avalonia.Data.Core.Plugins;
-using System.Linq;
 using Avalonia.Markup.Xaml;
 using UE.UI.ViewModels;
 using UE.UI.Views;
@@ -11,6 +8,8 @@ namespace UE.UI;
 
 public partial class App : Application
 {
+    private MainViewModel? _mainViewModel;
+
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
@@ -22,21 +21,24 @@ public partial class App : Application
         {
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainViewModel()
+                DataContext = MainViewModel
             };
         }
         else if (ApplicationLifetime is IActivityApplicationLifetime singleViewFactoryApplicationLifetime)
         {
-            singleViewFactoryApplicationLifetime.MainViewFactory = () => new MainView { DataContext = new MainViewModel() };
+            // La factory peut être rappelée (rotation Android…) : on garde le même VM pour ne pas perdre la partie.
+            singleViewFactoryApplicationLifetime.MainViewFactory = () => new MainView { DataContext = MainViewModel };
         }
         else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
         {
             singleViewPlatform.MainView = new MainView
             {
-                DataContext = new MainViewModel()
+                DataContext = MainViewModel
             };
         }
 
         base.OnFrameworkInitializationCompleted();
     }
+
+    private MainViewModel MainViewModel => _mainViewModel ??= new MainViewModel();
 }

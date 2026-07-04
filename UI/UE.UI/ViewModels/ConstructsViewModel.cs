@@ -34,10 +34,7 @@ public partial class ConstructsViewModel : ViewModelBase, IHelpContextProvider
     {
         _shell = shell;
         Constructs = engine.GameState.Constructs
-            .Select(cs => new ConstructItemViewModel(
-                cs,
-                engine.GameDefinition.Regions.Single(r => r.Construct.ID == cs.ID),
-                shell))
+            .Select(cs => new ConstructItemViewModel(cs, engine.GetRegionForConstruct(cs), shell))
             .ToList();
     }
 

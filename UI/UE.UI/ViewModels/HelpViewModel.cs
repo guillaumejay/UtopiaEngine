@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using CommunityToolkit.Mvvm.Input;
 
@@ -53,8 +52,7 @@ public partial class HelpViewModel : ViewModelBase
         OtherSections = all.Where(s => !keys.Contains(s.Key)).ToList();
     }
 
-    // Même logique que UE.Core.Tools.Language : FR si la culture est française, sinon anglais.
-    public static bool IsFrench => CultureInfo.CurrentUICulture.TwoLetterISOLanguageName.ToUpperInvariant() == "FR";
+    public static bool IsFrench => UE.Core.Tools.Language == UE.Core.Architecture.EnumLanguage.FR;
 
     public string Title => IsFrench ? "Aide — les mécanismes du jeu" : "Help — game mechanics";
 

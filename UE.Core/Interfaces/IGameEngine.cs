@@ -38,6 +38,8 @@ namespace UE.Core.Interfaces
         bool IsGodsHandUsable { get; }
         void LoadGameState(string file);
         CombatResult MakeCombatTurn(Encounter e, Region r);
+        TwoDice RollCombatDice(Encounter e);
+        Region GetRegionForConstruct(ConstructState cs);
         int NumberOfAvailableSearchesBoxesFor(int indexRegion);
         void PlaceSearchNumberOnRegion(int region, int indexWhere, int value);
         TimePassed RecoverFromUnconsciousness();

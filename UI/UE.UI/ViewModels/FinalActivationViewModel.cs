@@ -16,9 +16,13 @@ public partial class FinalActivationViewModel : ViewModelBase, IHelpContextProvi
     [ObservableProperty] private string _log = string.Empty;
     [ObservableProperty] private bool _canSpendHp;
     [ObservableProperty] private decimal _hpToSpend = 1;
-    [ObservableProperty] private decimal _maxHpToSpend;
-    [ObservableProperty] private bool _isRolling = true;
-    [ObservableProperty] private bool _isFinished;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsRolling))]
+    private bool _isFinished;
+
+    public bool IsRolling => !IsFinished;
+
     [ObservableProperty] private string _outcomeText = string.Empty;
 
     public FinalActivationViewModel(IGameEngine engine, MainViewModel shell)
@@ -32,6 +36,8 @@ public partial class FinalActivationViewModel : ViewModelBase, IHelpContextProvi
     }
 
     public string Title => "Activation finale";
+
+    public int MaxHpToSpend { get; }
 
     private void RefreshDifficulty() =>
         DifficultyText = $"Difficulté : {_engine.GameState.FinalActivationDifficulty} (2d6, somme à atteindre)";
@@ -66,14 +72,14 @@ public partial class FinalActivationViewModel : ViewModelBase, IHelpContextProvi
 
         AppendLog("L'Engine gronde mais ne démarre pas : −1 PV, +1 jour.");
         if (far.eventOccured)
-            AppendLog("De nouveaux événements se produisent dans les régions !");
+            AppendLog(UiMessages.EventsRolled);
 
         if (_engine.IsGameLost)
         {
             string reason = _engine.GameState.CurrentHitPoint < 0
                 ? "votre énergie vitale est épuisée"
-                : "le temps vous a rattrapé";
-            Finish($"Partie perdue — {reason}.\nScore final : {_engine.Score}.");
+                : UiMessages.GameLostTime;
+            Finish(UiMessages.GameLost(reason) + $"\nScore final : {_engine.Score}.");
             return;
         }
 
@@ -83,7 +89,6 @@ public partial class FinalActivationViewModel : ViewModelBase, IHelpContextProvi
     private void Finish(string outcome)
     {
         OutcomeText = outcome;
-        IsRolling = false;
         IsFinished = true;
         CanSpendHp = false;
     }

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using UE.Core.Architecture.Messages;
@@ -8,89 +7,69 @@ using UE.Core.Interfaces;
 
 namespace UE.UI.ViewModels;
 
-public partial class ConnectLinkViewModel : ViewModelBase, IHelpContextProvider
+public partial class ConnectLinkViewModel : DicePlacementPageViewModel, IHelpContextProvider
 {
     public HelpContext HelpContext => HelpContext.Links;
 
-    private readonly IGameEngine _engine;
-    private readonly MainViewModel _shell;
     private readonly LinkState _ls;
 
     public string Title { get; }
 
-    public ObservableCollection<DiceCellViewModel> Cells { get; } = new();
-
-    public DicePairViewModel Dice { get; } = new();
-
     [ObservableProperty] private string _infoMessage = string.Empty;
-    [ObservableProperty] private bool _isPlacing = true;
-    [ObservableProperty] private bool _isDone;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsPlacing))]
+    private bool _isDone;
+
+    public bool IsPlacing => !IsDone;
+
     [ObservableProperty] private string _outcomeText = string.Empty;
     [ObservableProperty] private string _basketLabel = string.Empty;
     [ObservableProperty] private bool _canUseBasket;
     [ObservableProperty] private bool _canAutoConnect;
 
     public ConnectLinkViewModel(IGameEngine engine, MainViewModel shell, LinkState ls)
+        : base(engine, shell)
     {
-        _engine = engine;
-        _shell = shell;
         _ls = ls;
         Title = $"Relier {ls.Construct1.Construct.Name.Text} et {ls.Construct2.Construct.Name.Text}";
         InfoMessage = "Objectif : des colonnes à écart faible mais jamais négatif — la somme des liens fixe la difficulté de l'activation finale.";
         CanAutoConnect = engine.HasAbility(Ability.AutomaticallyConnect);
         RefreshBasket();
-        RebuildCells();
+        SyncCells(6, i => _ls.Connection[i]);
         Dice.Roll(engine.DiceGenerator);
     }
 
     private void RefreshBasket()
     {
-        CanUseBasket = !_engine.GameState.IsWasteBasketFull;
-        BasketLabel = $"Jeter le dé sélectionné (corbeille : {_engine.GameState.WasteBasket}/10)";
-    }
-
-    private void RebuildCells()
-    {
-        Cells.Clear();
-        for (int i = 0; i < 6; i++)
-            Cells.Add(new DiceCellViewModel(i + 1, PlaceDie) { Value = _ls.Connection[i] });
+        CanUseBasket = !EngineRef.GameState.IsWasteBasketFull;
+        BasketLabel = $"Jeter le dé sélectionné (corbeille : {EngineRef.GameState.WasteBasket}/{GameState.WasteBasketCapacity})";
     }
 
     [RelayCommand]
     private void AutoConnect()
     {
-        _engine.UseAutomaticConnect(_ls);
-        _shell.RefreshStatus();
+        EngineRef.UseAutomaticConnect(_ls);
         Finish($"Lien établi automatiquement grâce aux Textes Anciens (valeur {_ls.LinkBox}).");
     }
 
     [RelayCommand]
     private void Discard()
     {
-        if (!IsPlacing || _engine.GameState.IsWasteBasketFull)
+        if (IsDone || EngineRef.GameState.IsWasteBasketFull || !TryTakeDie(null, out int value, out bool isFirst))
             return;
-        bool isFirst = !Dice.Die1Used && !Dice.Die2Used;
-        int? value = Dice.TakeSelected();
-        if (value is null)
-            return;
-        _engine.WorkToLink(_ls.ID, 0, value.Value, isFirst);
+        EngineRef.WorkToLink(_ls.ID, 0, value, isFirst);
         RefreshBasket();
-        if (Dice.BothUsed)
-            Dice.Roll(_engine.DiceGenerator);
+        RerollIfBothUsed();
     }
 
-    private void PlaceDie(DiceCellViewModel cell)
+    protected override void PlaceDie(DiceCellViewModel cell)
     {
-        if (!IsPlacing || !cell.IsEmpty)
+        if (IsDone || !TryTakeDie(cell, out int value, out bool isFirst))
             return;
 
-        bool isFirst = !Dice.Die1Used && !Dice.Die2Used;
-        int? value = Dice.TakeSelected();
-        if (value is null)
-            return;
-
-        LinkResult lr = _engine.WorkToLink(_ls.ID, cell.Position, value.Value, isFirst);
-        _shell.RefreshStatus();
+        LinkResult lr = EngineRef.WorkToLink(_ls.ID, cell.Position, value, isFirst);
+        Shell.RefreshStatus();
         RefreshBasket();
 
         var info = new List<string>();
@@ -102,23 +81,18 @@ public partial class ConnectLinkViewModel : ViewModelBase, IHelpContextProvider
             if (lr.HitPointLost > 0)
                 info.Add($"Colonnes négatives : −{lr.HitPointLost} PV.");
 
-            if (_engine.GameState.CurrentHitPoint < 0)
-            {
-                Finish(string.Join(" ", info) + " Partie perdue — vous succombez au contrecoup du lien.");
-                return;
-            }
-
             string recovery = string.Empty;
-            if (_engine.GameState.CurrentHitPoint == 0)
+            switch (ResolveHpAftermath(out string hpMessage))
             {
-                TimePassed t = _engine.RecoverFromUnconsciousness();
-                _shell.RefreshStatus();
-                recovery = $" Inconscient ! Vous vous réveillez après {t.DaysPassed} jour(s), soigné.";
-                if (_engine.IsGameLost)
-                {
-                    Finish(string.Join(" ", info) + recovery + " Partie perdue — le temps vous a rattrapé.");
+                case HpAftermath.Dead:
+                    Finish(string.Join(" ", info) + " " + UiMessages.GameLost("vous succombez au contrecoup du lien"));
                     return;
-                }
+                case HpAftermath.TimeOut:
+                    Finish(string.Join(" ", info) + " " + hpMessage + " " + UiMessages.GameLost(UiMessages.GameLostTime));
+                    return;
+                case HpAftermath.Unconscious:
+                    recovery = " " + hpMessage;
+                    break;
             }
 
             if (lr.HasFailed)
@@ -132,22 +106,19 @@ public partial class ConnectLinkViewModel : ViewModelBase, IHelpContextProvider
         }
 
         InfoMessage = string.Join(" ", info);
-        RebuildCells();
-
-        if (Dice.BothUsed)
-            Dice.Roll(_engine.DiceGenerator);
+        SyncCells(6, i => _ls.Connection[i]);
+        RerollIfBothUsed();
     }
 
     private void Finish(string outcome)
     {
         OutcomeText = outcome.Trim();
-        IsPlacing = false;
         IsDone = true;
         CanAutoConnect = false;
-        RebuildCells();
-        _shell.RefreshStatus();
+        SyncCells(6, i => _ls.Connection[i]);
+        Shell.RefreshStatus();
     }
 
     [RelayCommand]
-    private void Back() => _shell.ShowLinks();
+    private void Back() => Shell.ShowLinks();
 }

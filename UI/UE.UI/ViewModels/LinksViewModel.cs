@@ -17,23 +17,16 @@ public partial class LinkItemViewModel : ViewModelBase
         _ls = ls;
         Name = $"{ls.Construct1.Construct.Name.Text} — {ls.Construct2.Construct.Name.Text}";
         string componentName = engine.GameDefinition.Components.Single(c => c.ID == ls.Link.ComponentID).Name.Text;
-        if (ls.IsLinkDone)
-        {
-            Status = $"Connecté (valeur {ls.LinkBox})";
-        }
-        else if (!ls.Construct1.HasBeenActivated || !ls.Construct2.HasBeenActivated)
-        {
-            Status = "Indisponible — les deux constructs doivent être activés";
-        }
-        else if (engine.GameState.NumberOfComponents(ls.Link.ComponentID) == 0)
-        {
-            Status = $"Indisponible — aucun composant {componentName}";
-        }
-        else
-        {
+        // L'éligibilité vient du moteur (PossibleLinks) ; les branches ne servent qu'au message.
+        CanConnect = engine.GameState.PossibleLinks.Contains(ls);
+        if (CanConnect)
             Status = $"Prêt à relier (coût : 1 × {componentName})";
-            CanConnect = true;
-        }
+        else if (ls.IsLinkDone)
+            Status = $"Connecté (valeur {ls.LinkBox})";
+        else if (!ls.Construct1.HasBeenActivated || !ls.Construct2.HasBeenActivated)
+            Status = "Indisponible — les deux constructs doivent être activés";
+        else
+            Status = $"Indisponible — aucun composant {componentName}";
     }
 
     public string Name { get; }
