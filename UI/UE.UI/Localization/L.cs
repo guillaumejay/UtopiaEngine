@@ -296,4 +296,6 @@ public static class L
 
     public static string HelpScoreBody => T(nameof(HelpScoreBody));
 
+    public static string LanguageLabel => T(nameof(LanguageLabel));
+
 }

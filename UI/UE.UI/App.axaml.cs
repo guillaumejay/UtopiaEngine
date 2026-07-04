@@ -12,6 +12,7 @@ public partial class App : Application
 
     public override void Initialize()
     {
+        Localization.LanguageManager.Initialize();
         AvaloniaXamlLoader.Load(this);
     }
 

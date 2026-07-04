@@ -83,16 +83,7 @@ public partial class MainViewModel : ViewModelBase
 
     public void ShowCamp() => CurrentPage = new CampViewModel(_engine, this);
 
-    private static string AutosavePath
-    {
-        get
-        {
-            string dir = System.IO.Path.Combine(
-                System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData),
-                "UtopiaEngine");
-            return System.IO.Path.Combine(dir, "autosave.xml");
-        }
-    }
+    private static string AutosavePath => AppData.PathFor("autosave.xml");
 
     public bool HasAutosave
     {
@@ -131,6 +122,20 @@ public partial class MainViewModel : ViewModelBase
 
     public void RefreshStatus()
     {
+        NotifyStatusChanged();
+        Autosave();
+    }
+
+    /// <summary>Après un changement de langue : retraduit la barre de statut et recrée la page d'accueil.</summary>
+    public void OnLanguageChanged()
+    {
+        OnPropertyChanged(nameof(HelpLabel));
+        NotifyStatusChanged();
+        CurrentPage = new HomeViewModel(this);
+    }
+
+    private void NotifyStatusChanged()
+    {
         OnPropertyChanged(nameof(CurrentHitPoint));
         OnPropertyChanged(nameof(CurrentDay));
         OnPropertyChanged(nameof(DaysRemaining));
@@ -141,6 +146,5 @@ public partial class MainViewModel : ViewModelBase
         OnPropertyChanged(nameof(DaysRemainingText));
         OnPropertyChanged(nameof(ScoreText));
         OnPropertyChanged(nameof(GodsHandText));
-        Autosave();
     }
 }

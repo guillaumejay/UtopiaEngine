@@ -177,6 +177,8 @@ S = [
     ("HelpScoreBody",
      "Remaining HP + 10 per found construct + 5 per activated construct + 10 per legendary treasure + 5 per link + 5 per crossed skull + 20 per unmodified perfect zero + 10 per unused item. Victory: +50, plus 5 per remaining day.",
      "PV restants + 10 par construct trouvé + 5 par construct activé + 10 par trésor légendaire + 5 par lien + 5 par crâne barré + 20 par zéro parfait non modifié + 10 par objet non utilisé. Victoire : +50, plus 5 par jour restant."),
+
+    ("LanguageLabel", "Language:", "Langue :"),
 ]
 
 RESX_HEADER = '''<?xml version="1.0" encoding="utf-8"?>

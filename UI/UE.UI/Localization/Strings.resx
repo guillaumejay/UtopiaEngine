@@ -441,4 +441,7 @@ Activated constructs are then linked in pairs (six links, a 3-column table each)
   <data name="HelpScoreBody" xml:space="preserve">
     <value>Remaining HP + 10 per found construct + 5 per activated construct + 10 per legendary treasure + 5 per link + 5 per crossed skull + 20 per unmodified perfect zero + 10 per unused item. Victory: +50, plus 5 per remaining day.</value>
   </data>
+  <data name="LanguageLabel" xml:space="preserve">
+    <value>Language:</value>
+  </data>
 </root>

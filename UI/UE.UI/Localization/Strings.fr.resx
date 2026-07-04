@@ -441,4 +441,7 @@ Les constructs activés se relient ensuite deux à deux (six liens, table de 3 c
   <data name="HelpScoreBody" xml:space="preserve">
     <value>PV restants + 10 par construct trouvé + 5 par construct activé + 10 par trésor légendaire + 5 par lien + 5 par crâne barré + 20 par zéro parfait non modifié + 10 par objet non utilisé. Victoire : +50, plus 5 par jour restant.</value>
   </data>
+  <data name="LanguageLabel" xml:space="preserve">
+    <value>Langue :</value>
+  </data>
 </root>
