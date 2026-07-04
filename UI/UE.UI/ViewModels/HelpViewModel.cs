@@ -18,6 +18,7 @@ public enum HelpContext
     AfterSearch,
     Constructs,
     Links,
+    Final,
 }
 
 /// <summary>À implémenter par les pages qui savent quel contexte d'aide les concerne.</summary>
@@ -38,6 +39,7 @@ public partial class HelpViewModel : ViewModelBase
         [HelpContext.AfterSearch] = ["results", "time"],
         [HelpContext.Constructs] = ["constructs", "godshand", "items"],
         [HelpContext.Links] = ["constructs", "score"],
+        [HelpContext.Final] = ["constructs", "godshand", "score"],
     };
 
     private readonly MainViewModel _shell;
@@ -125,9 +127,9 @@ public partial class HelpViewModel : ViewModelBase
             "Démarrer un lien coûte 1 composant. Une colonne dont le bas dépasse le haut coûte 1 PV et 1 composant " +
             "de plus (sinon le lien est entièrement à refaire). La corbeille permet de jeter un dé au lieu de le " +
             "placer — 10 dés maximum pour toute la partie. La somme des valeurs de liens fixe la difficulté de " +
-            "l'activation finale : visez bas ! L'activation finale décide de la victoire : 2d6 contre cette " +
-            "difficulté, chaque échec coûte 1 PV et 1 jour.\n" +
-            "⚠ Dans cette interface, l'activation finale n'est pas encore jouable."),
+            "l'activation finale : visez bas ! Une fois les six liens établis, l'activation finale décide de la " +
+            "victoire : 2d6 contre cette difficulté, chaque échec coûte 1 PV et 1 jour. Avant le premier lancer, " +
+            "vous pouvez sacrifier des PV pour réduire la difficulté d'autant (une seule fois)."),
 
         new("score", "Le score",
             "PV restants + 10 par construct trouvé + 5 par construct activé + 10 par trésor légendaire " +
@@ -188,9 +190,9 @@ public partial class HelpViewModel : ViewModelBase
             "costs 1 component. A column whose bottom exceeds its top costs 1 HP and 1 extra component (otherwise " +
             "the whole link resets). The waste basket lets you discard a die instead of placing it — 10 dice " +
             "maximum for the whole game. The sum of the link values sets the final activation difficulty: aim " +
-            "low! The final activation decides the game: 2d6 against that difficulty, each failure costing " +
-            "1 HP and 1 day.\n" +
-            "⚠ In this interface, the final activation is not playable yet."),
+            "low! Once all six links are made, the final activation decides the game: 2d6 against that " +
+            "difficulty, each failure costing 1 HP and 1 day. Before the first roll, you may sacrifice HP to " +
+            "reduce the difficulty by that amount (once only)."),
 
         new("score", "Scoring",
             "Remaining HP + 10 per found construct + 5 per activated construct + 10 per legendary treasure " +

@@ -60,7 +60,13 @@ public partial class LinksViewModel : ViewModelBase, IHelpContextProvider
             .ToList();
         int done = engine.GameState.ConnectedLinks.Count();
         Summary = $"{done} lien(s) sur {engine.GameState.LinkStates.Count} — difficulté d'activation finale actuelle : {engine.GameState.FinalActivationDifficulty}";
+        CanFinalActivate = engine.IsFinalActivationPossible;
     }
+
+    public bool CanFinalActivate { get; }
+
+    [RelayCommand]
+    private void FinalActivation() => _shell.ShowFinalActivation();
 
     public string Title => "Liens entre constructs";
 

@@ -66,6 +66,8 @@ public partial class MainViewModel : ViewModelBase
 
     public void OpenLink(UE.Core.Entities.LinkState ls) => CurrentPage = new ConnectLinkViewModel(_engine, this, ls);
 
+    public void ShowFinalActivation() => CurrentPage = new FinalActivationViewModel(_engine, this);
+
     public void RefreshStatus()
     {
         OnPropertyChanged(nameof(CurrentHitPoint));

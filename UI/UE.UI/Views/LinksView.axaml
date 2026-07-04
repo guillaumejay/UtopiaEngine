@@ -27,6 +27,8 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+            <Button Content="⚡ Activation finale !" Command="{Binding FinalActivationCommand}"
+                    IsVisible="{Binding CanFinalActivate}" FontSize="16" Padding="16,8"/>
             <Button Content="Retour aux régions" Command="{Binding BackCommand}"/>
         </StackPanel>
     </ScrollViewer>
