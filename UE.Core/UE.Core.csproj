@@ -9,14 +9,6 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
-  <!-- Couche UI/MvvmCross : hors du moteur pur, laissée sur disque pour réemploi futur -->
-  <ItemGroup>
-    <Compile Remove="App.cs" />
-    <Compile Remove="ViewModels/**/*.cs" />
-    <Compile Remove="Repository/MVVMRepository.cs" />
-    <Compile Remove="Converters/TableConverter.cs" />
-  </ItemGroup>
-
   <!-- Données de jeu embarquées : nom logique UE.Core.Data.<fichier>.xml -->
   <ItemGroup>
     <EmbeddedResource Include="Data/DefinitionStandard.xml" />

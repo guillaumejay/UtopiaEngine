@@ -8,22 +8,26 @@ A C#/.NET digital port (with the author's permission) of the solo board game **U
 
 ## Toolchain & build
 
-The repo is **mid-migration** and has two stacks. Pick the right solution for what you touch:
+Single modern stack, all on **`net10.0`** (SDK-style projects).
 
-- **Engine + tests → modern (`net10.0`, SDK-style).** `UE.Core` (engine only) and `UE.Nunit` target `net10.0`, grouped in **`UtopiaEngine.Net.slnx`**.
+- **Engine + tests → `UtopiaEngine.Net.slnx`** (`UE.Core`, `UE.Nunit`).
   - Build: `dotnet build UtopiaEngine.Net.slnx`
   - Test: `dotnet test UtopiaEngine.Net.slnx` (uses **NUnit 4** + `NUnit3TestAdapter` + `Microsoft.NET.Test.Sdk`).
   - Single test: `dotnet test UtopiaEngine.Net.slnx --filter "FullyQualifiedName~ScoreTest"` (or `Name~WinningAddsBonus`).
-  - The net10 `UE.Core` is **MvvmCross-free**: `App.cs`, `ViewModels/*`, `Repository/MVVMRepository.cs`, `Converters/TableConverter.cs` are still on disk but **excluded** from compilation via `<Compile Remove>` (kept for the future UI layer).
-- **UI heads → legacy (.NET 4.x, MvvmCross 3.1.1).** `UE.Console`, `UE.WPF`, `UE.Droid`, `ConsoleGame` remain in **`UtopiaEngine.sln`**, built with **Visual Studio / MSBuild** (NuGet `packages.config`, restore via `.nuget/NuGet.targets`). These are currently **orphaned** from the net10 `UE.Core` and will be re-wired to a modern MvvmCross later. `UE.Droid` needs the Xamarin toolchain; `UE.WPF` needs Windows.
+- **UI → `UI/UE.UI.slnx`** (Avalonia, CommunityToolkit.Mvvm), heads for Desktop/Android/Browser.
+  - Run desktop: `dotnet run --project UI/UE.UI.Desktop` (or `just run`)
+  - Run browser (WASM): `dotnet run --project UI/UE.UI.Browser` (or `just browser`)
+  - Build both: `just build`
+  - See `justfile` for the full command list.
+
+There is no legacy stack anymore: the original MvvmCross/.NET Framework heads (`UE.Console`, `UE.WPF`, `UE.Droid`, `ConsoleGame`, `UtopiaEngine.sln`) were removed once the Avalonia UI reached feature parity — the Avalonia port was written from scratch against `IGameEngine`, not migrated from them.
 
 ## Projects
 
-- **UE.Core** — the heart: game engine, entities, repositories (and, excluded-from-build, the MvvmCross ViewModels/converter/app). The net10 build is the pure, UI-agnostic engine.
+- **UE.Core** — the engine: game logic, entities, repositories. UI-agnostic, no UI framework dependency.
 - **UE.Nunit** — engine unit tests (the most complete part of the codebase; treat as the behavior spec). On NUnit 4 — classic asserts use `ClassicAssert.*` (from `NUnit.Framework.Legacy`, surfaced via `GlobalUsings.cs`).
-- **UE.Console** — fully playable text UI (MvvmCross console host). Best reference for how to drive the engine end-to-end (legacy).
-- **ConsoleGame** — older/scratch console experiment, not the MvvmCross app (legacy).
-- **UE.Droid** / **UE.WPF** — incomplete UI front-ends (the README notes the author is slow on UI) (legacy).
+- **UI/UE.UI** — shared Avalonia UI (views, view models, localization) driving the engine through `IGameEngine`.
+- **UI/UE.UI.Desktop**, **UI/UE.UI.Android**, **UI/UE.UI.Browser** — platform heads (Android/Browser untested on device/WASM, compile only).
 
 ## Architecture
 
@@ -33,10 +37,10 @@ The central design split is **GameDefinition (immutable rules) vs GameState (mut
 - `GameDefinition` is deserialized from an **embedded** XML resource `Data\DefinitionStandard.xml` (the static rules: regions, constructs, components, links, treasures, events). `Quotes.xml` and `UIText.xml` are also embedded resources. `BaseRepository.LoadDefinition` maps a file-style path to a manifest resource name (`UE.Core.` + dotted path) — keep that in mind when referencing data files.
 - `GameState` holds everything that changes during play and is what gets serialized for save/load. After deserialization it must be **re-hydrated**: `GameState.Hydrate(GameDefinition)` rewires object references (RegionState→Region, ConstructState→Construct, LinkState→Constructs, etc.) that aren't serialized. `GameEngine.Init(...)` then `LoadGameState(...)` is the load path.
 - **Dice are injected** via `IDiceRoller` (`RandomDice`, `FixedDice`/`TwoDice`). Tests subclass `BaseEngineTest` and override `GetDiceRoller()` to make rolls deterministic — do the same when writing engine tests.
-- **Repository pattern** for persistence: `BaseRepository` (abstract, owns definition/quote loading) → `XmlRepository` (used by tests, plain file XML) and `MVVMRepository` (platform file store via MvvmCross `IMvxFileStore`; save/load currently `NotImplementedException`). Autosave lives at `autosave.xml`.
-- **MVVM via MvvmCross**: `UE.Core/ViewModels` (`BaseViewModel : MvxViewModel`, plus Title/Main/StartSearch/SearchRegion VMs) are shared; each UI project provides `Setup`/views and platform bootstrap plugins. The `Architecture/Messages/*` types (`SearchResult`, `CombatResult`, `ActivationResult`, `LinkResult`, `TimePassed`, etc.) are the result/DTO objects the engine returns to the UI layer.
-- `Architecture/Table` + `Column` model the game's number-placement grids (search boxes, construct activation tables, link connections). Engine methods like `WorkToActivate`, `WorkToLink`, `ApplySearch` operate on these and interpret results (`SearchResult`, `ActivationResult`, `LinkResult`).
-- Localization: `LocalizedText(s)` + `enumLanguage`; French resources exist (`Values-fr`, `UEResources/French`).
+- **Repository pattern** for persistence: `BaseRepository` (abstract, owns definition/quote loading) → `XmlRepository` (plain file XML, used by tests and the UI). Autosave lives at `%AppData%/UtopiaEngine/autosave.xml` on desktop (see `UI/UE.UI/AppData.cs`).
+- **MVVM via CommunityToolkit.Mvvm** in `UI/UE.UI`: `MainViewModel` is a shell driving page navigation (`CurrentPage` + status bar); each screen (Regions, Search, Combat, Constructs, Activation, Links, Camp, Help) has its own view model. The engine's `Architecture/Messages/*` types (`SearchResult`, `CombatResult`, `ActivationResult`, `LinkResult`, `TimePassed`, etc.) are the result/DTO objects the engine returns to the UI layer.
+- `Architecture/Table` + `Column` model the game's number-placement grids (search boxes, construct activation tables, link connections). Engine methods like `WorkToActivate`, `WorkToLink`, `ApplySearch` operate on these and interpret results (`SearchResult`, `ActivationResult`, `LinkResult`). The UI factors dice placement into shared `DiceCellViewModel`/`DicePairViewModel` + `DicePairView`.
+- Localization: two independent layers. Engine strings use `LocalizedText(s)` + `enumLanguage` (`Values-fr`, `UEResources/French` in the embedded data). UI strings are externalized to `UI/UE.UI/Localization/Strings.resx` (EN neutral) + `Strings.fr.resx`, both **generated** from `UI/UE.UI/Localization/gen_strings.py` — edit the script and rerun it, never the `.resx` files directly. Both layers follow `CurrentUICulture`; the in-app language selector persists the choice to `%AppData%/UtopiaEngine/language.txt`.
 
 ## Conventions specific to this repo
 
