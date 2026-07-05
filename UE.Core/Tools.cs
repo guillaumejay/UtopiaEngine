@@ -3,7 +3,7 @@ using UE.Core.Architecture;
 
 namespace UE.Core
 {
-    static class Tools
+    public static class Tools
     {
         public static EnumLanguage Language
         {

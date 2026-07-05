@@ -307,14 +307,25 @@ namespace UE.Core
             GameState.Hydrate(GameDefinition);
         }
 
+        public const int ParalysisWandBonus = 2;
+
         public CombatResult MakeCombatTurn(Encounter e, Region r)
+        {
+            return ApplyCombatRoll(RollCombatDice(e), e, r);
+        }
+
+        /// <summary>
+        /// Rolls the combat dice and applies the standing modifiers (paralysis wand, spirit help).
+        /// Split from <see cref="MakeCombatTurn"/> so UIs can show the roll before resolving it.
+        /// </summary>
+        public TwoDice RollCombatDice(Encounter e)
         {
             TwoDice dice = DiceGenerator.Get2d6();
             if (GameState.ParalysisWandInUse)
-                dice.ModifyBothDie(2);
+                dice.ModifyBothDie(ParalysisWandBonus);
             if (e.IsSpirit && HasAbility(Ability.HelpAgainstSpirit))
                 dice.ModifyBothDie(1);
-            return ApplyCombatRoll(dice, e, r);
+            return dice;
         }
 
         public int NumberOfAvailableSearchesBoxesFor(int indexRegion)
@@ -738,7 +749,7 @@ namespace UE.Core
             }
         }
 
-        private Region GetRegionForConstruct(ConstructState cs)
+        public Region GetRegionForConstruct(ConstructState cs)
         {
             Region r = GameDefinition.Regions.Single(x => x.Construct.ID == cs.Construct.ID);
             return r;

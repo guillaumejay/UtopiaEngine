@@ -1,0 +1,42 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:vm="using:UE.UI.ViewModels"
+                mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                x:Class="UE.UI.Views.HelpView"
+                x:DataType="vm:HelpViewModel">
+    <UserControl.Resources>
+        <DataTemplate x:Key="HelpSectionTemplate" x:DataType="vm:HelpSection">
+            <StackPanel Spacing="4" Margin="0,0,0,12">
+                <TextBlock Text="{Binding Title}" FontSize="17" FontWeight="Bold"/>
+                <TextBlock Text="{Binding Body}" TextWrapping="Wrap" LineHeight="22"/>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <ScrollViewer>
+        <StackPanel Spacing="16" MaxWidth="640" HorizontalAlignment="Center" Margin="0,0,0,24">
+            <TextBlock Text="{Binding Title}" FontSize="22" FontWeight="Bold" TextWrapping="Wrap"/>
+            <Button Content="{Binding BackLabel}" Command="{Binding BackCommand}"/>
+
+            <Border IsVisible="{Binding HasRelevantSections}"
+                    Background="{DynamicResource SystemControlBackgroundListLowBrush}"
+                    BorderBrush="{DynamicResource SystemAccentColor}"
+                    BorderThickness="2" CornerRadius="8" Padding="16">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="{Binding RelevantHeader}" FontSize="14" FontWeight="Bold"
+                               Foreground="{DynamicResource SystemAccentColor}"/>
+                    <ItemsControl ItemsSource="{Binding RelevantSections}"
+                                  ItemTemplate="{StaticResource HelpSectionTemplate}"/>
+                </StackPanel>
+            </Border>
+
+            <TextBlock Text="{Binding OthersHeader}" FontSize="14" FontWeight="Bold" Opacity="0.7"
+                       IsVisible="{Binding HasRelevantSections}"/>
+            <ItemsControl ItemsSource="{Binding OtherSections}"
+                          ItemTemplate="{StaticResource HelpSectionTemplate}"/>
+
+            <Button Content="{Binding BackLabel}" Command="{Binding BackCommand}"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

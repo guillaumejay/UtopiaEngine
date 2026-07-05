@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="UE.UI.Android/UE.UI.Android.csproj">
+    <Deploy />
+  </Project>
+  <Project Path="UE.UI.Browser/UE.UI.Browser.csproj" />
+  <Project Path="UE.UI.Desktop/UE.UI.Desktop.csproj" />
+  <Project Path="UE.UI/UE.UI.csproj" />
+</Solution>

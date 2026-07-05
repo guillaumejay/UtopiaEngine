@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="StatusHp" xml:space="preserve">
+    <value>HP: {0}</value>
+  </data>
+  <data name="StatusDay" xml:space="preserve">
+    <value>Day: {0}</value>
+  </data>
+  <data name="StatusDaysRemaining" xml:space="preserve">
+    <value>Days left: {0}</value>
+  </data>
+  <data name="StatusScore" xml:space="preserve">
+    <value>Score: {0}</value>
+  </data>
+  <data name="StatusGodsHand" xml:space="preserve">
+    <value>GH energy: {0}</value>
+  </data>
+  <data name="HomeTagline" xml:space="preserve">
+    <value>Rebuild the Utopia Engine before the world ends.</value>
+  </data>
+  <data name="NewGame" xml:space="preserve">
+    <value>New game</value>
+  </data>
+  <data name="ContinueSaved" xml:space="preserve">
+    <value>Continue the saved game</value>
+  </data>
+  <data name="Camp" xml:space="preserve">
+    <value>Camp</value>
+  </data>
+  <data name="SearchAction" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="ConstructsToActivate" xml:space="preserve">
+    <value>Constructs ({0} to activate)</value>
+  </data>
+  <data name="ConstructsFoundLabel" xml:space="preserve">
+    <value>Constructs ({0} found)</value>
+  </data>
+  <data name="LinksPossibleLabel" xml:space="preserve">
+    <value>Links ({0} possible)</value>
+  </data>
+  <data name="LinksConnectedLabel" xml:space="preserve">
+    <value>Links ({0} connected)</value>
+  </data>
+  <data name="ComponentInfo" xml:space="preserve">
+    <value>Component: {0} ({1})</value>
+  </data>
+  <data name="ConstructInfo" xml:space="preserve">
+    <value>Construct: {0} ({1})</value>
+  </data>
+  <data name="TreasureInfo" xml:space="preserve">
+    <value>Treasure: {0} ({1})</value>
+  </data>
+  <data name="FoundState" xml:space="preserve">
+    <value>found</value>
+  </data>
+  <data name="ToFindState" xml:space="preserve">
+    <value>to find</value>
+  </data>
+  <data name="EventsPrefix" xml:space="preserve">
+    <value>Events: {0}</value>
+  </data>
+  <data name="SearchingFor" xml:space="preserve">
+    <value>{0} — hunting for {1}</value>
+  </data>
+  <data name="SearchCostsDays" xml:space="preserve">
+    <value>This search costs {0} day(s).</value>
+  </data>
+  <data name="RegionExhausted" xml:space="preserve">
+    <value>Region fully searched.</value>
+  </data>
+  <data name="SearchResultLabel" xml:space="preserve">
+    <value>Search result: {0}</value>
+  </data>
+  <data name="SearchResultModified" xml:space="preserve">
+    <value>Search result: {0} (modified by the rod)</value>
+  </data>
+  <data name="UseDowsingRod" xml:space="preserve">
+    <value>Use the dowsing rod</value>
+  </data>
+  <data name="ApplySearch" xml:space="preserve">
+    <value>Apply the search</value>
+  </data>
+  <data name="SearchAgain" xml:space="preserve">
+    <value>Search again</value>
+  </data>
+  <data name="BackToRegions" xml:space="preserve">
+    <value>Back to regions</value>
+  </data>
+  <data name="NothingFound" xml:space="preserve">
+    <value>Nothing found this time.</value>
+  </data>
+  <data name="ConstructFoundPerfect" xml:space="preserve">
+    <value>{0} found and activated (perfect zero, +5 God&#x27;s Hand energy)!</value>
+  </data>
+  <data name="ConstructFoundMsg" xml:space="preserve">
+    <value>{0} found!</value>
+  </data>
+  <data name="ComponentsFoundMsg" xml:space="preserve">
+    <value>{0} × {1} found.</value>
+  </data>
+  <data name="DiceLabel" xml:space="preserve">
+    <value>Dice:</value>
+  </data>
+  <data name="DiceHint" xml:space="preserve">
+    <value>(pick a die, then a cell)</value>
+  </data>
+  <data name="MustFight" xml:space="preserve">
+    <value>You must fight {0} (attack on {1}, hit on {2}{3}).</value>
+  </data>
+  <data name="SpiritSuffix" xml:space="preserve">
+    <value>, spirit</value>
+  </data>
+  <data name="YouRoll" xml:space="preserve">
+    <value>You roll {0} and {1}.</value>
+  </data>
+  <data name="RollCombatDice" xml:space="preserve">
+    <value>Roll the combat dice</value>
+  </data>
+  <data name="Flee" xml:space="preserve">
+    <value>Flee</value>
+  </data>
+  <data name="YouFlee" xml:space="preserve">
+    <value>You flee the fight.</value>
+  </data>
+  <data name="UseWandButton" xml:space="preserve">
+    <value>Paralysis wand (+{0})</value>
+  </data>
+  <data name="SkipWand" xml:space="preserve">
+    <value>Continue without the wand</value>
+  </data>
+  <data name="WandApplied" xml:space="preserve">
+    <value>Paralysis wand: +{0} to both dice for the whole fight, now {1} and {2}.</value>
+  </data>
+  <data name="YouLoseHp" xml:space="preserve">
+    <value>You lose {0} HP.</value>
+  </data>
+  <data name="EncounterDefeated" xml:space="preserve">
+    <value>{0} is defeated!</value>
+  </data>
+  <data name="LootComponent" xml:space="preserve">
+    <value>Loot: 1 × {0}.</value>
+  </data>
+  <data name="LootTreasure" xml:space="preserve">
+    <value>Loot: {0} (legendary treasure)!</value>
+  </data>
+  <data name="DiedToWounds" xml:space="preserve">
+    <value>you succumb to your wounds</value>
+  </data>
+  <data name="EventsRolled" xml:space="preserve">
+    <value>New events unfold across the regions!</value>
+  </data>
+  <data name="GameLostTime" xml:space="preserve">
+    <value>time has caught up with you</value>
+  </data>
+  <data name="UnconsciousMsg" xml:space="preserve">
+    <value>Unconscious! You wake up after {0} day(s), healed.</value>
+  </data>
+  <data name="GameLostFmt" xml:space="preserve">
+    <value>Game lost — {0}.</value>
+  </data>
+  <data name="ActivationTitle" xml:space="preserve">
+    <value>Activating {0}</value>
+  </data>
+  <data name="Attempt1" xml:space="preserve">
+    <value>Attempt 1 of 2</value>
+  </data>
+  <data name="Attempt2" xml:space="preserve">
+    <value>Attempt 2 of 2</value>
+  </data>
+  <data name="EnergyLabel" xml:space="preserve">
+    <value>Energy: {0} / 4</value>
+  </data>
+  <data name="ColumnEnergy" xml:space="preserve">
+    <value>Column complete: +{0} energy.</value>
+  </data>
+  <data name="ColumnZero" xml:space="preserve">
+    <value>Zero column: cleared, redo it.</value>
+  </data>
+  <data name="ColumnBacklash" xml:space="preserve">
+    <value>Backlash! Column lost and −1 HP.</value>
+  </data>
+  <data name="FocusCharmUsed" xml:space="preserve">
+    <value>Focus charm: +2 energy on this activation.</value>
+  </data>
+  <data name="UseFocusCharm" xml:space="preserve">
+    <value>Focus charm (+2 energy)</value>
+  </data>
+  <data name="ConstructActivated" xml:space="preserve">
+    <value>{0} is activated!</value>
+  </data>
+  <data name="SurplusToGodsHand" xml:space="preserve">
+    <value> The surplus ({0}) charges the God&#x27;s Hand.</value>
+  </data>
+  <data name="ExhaustedActivation" xml:space="preserve">
+    <value> Both attempts spent: the construct activates anyway, exhausted.</value>
+  </data>
+  <data name="AttemptFailed" xml:space="preserve">
+    <value>Attempt failed ({0} energy of 4 required): +1 day, moving on to the second table.</value>
+  </data>
+  <data name="DiedToBacklash" xml:space="preserve">
+    <value>you succumb to the backlash</value>
+  </data>
+  <data name="BackToConstructs" xml:space="preserve">
+    <value>Back to constructs</value>
+  </data>
+  <data name="ConstructsTitle" xml:space="preserve">
+    <value>Constructs</value>
+  </data>
+  <data name="NotFoundState" xml:space="preserve">
+    <value>Not found</value>
+  </data>
+  <data name="ActivatedState" xml:space="preserve">
+    <value>Activated ✓</value>
+  </data>
+  <data name="FoundToActivateState" xml:space="preserve">
+    <value>Found, to activate</value>
+  </data>
+  <data name="ActivateAction" xml:space="preserve">
+    <value>Activate</value>
+  </data>
+  <data name="LinksTitle" xml:space="preserve">
+    <value>Construct links</value>
+  </data>
+  <data name="LinksSummary" xml:space="preserve">
+    <value>{0} link(s) of {1} — current final activation difficulty: {2}</value>
+  </data>
+  <data name="LinkConnected" xml:space="preserve">
+    <value>Connected (value {0})</value>
+  </data>
+  <data name="LinkNeedsActivated" xml:space="preserve">
+    <value>Unavailable — both constructs must be activated</value>
+  </data>
+  <data name="LinkNoComponent" xml:space="preserve">
+    <value>Unavailable — no {0} component left</value>
+  </data>
+  <data name="LinkReady" xml:space="preserve">
+    <value>Ready to link (cost: 1 × {0})</value>
+  </data>
+  <data name="ConnectAction" xml:space="preserve">
+    <value>Link</value>
+  </data>
+  <data name="FinalActivationButton" xml:space="preserve">
+    <value>⚡ Final activation!</value>
+  </data>
+  <data name="ConnectTitle" xml:space="preserve">
+    <value>Linking {0} and {1}</value>
+  </data>
+  <data name="ConnectHint" xml:space="preserve">
+    <value>Goal: low-difference columns, never negative — the sum of the link values sets the final activation difficulty.</value>
+  </data>
+  <data name="BasketLabelFmt" xml:space="preserve">
+    <value>Discard the selected die (basket: {0}/{1})</value>
+  </data>
+  <data name="AutoConnectButton" xml:space="preserve">
+    <value>Ancient Texts: connect automatically (value 2)</value>
+  </data>
+  <data name="AutoConnected" xml:space="preserve">
+    <value>Link made automatically thanks to the Ancient Texts (value {0}).</value>
+  </data>
+  <data name="ComponentsSpent" xml:space="preserve">
+    <value>{0} component(s) spent.</value>
+  </data>
+  <data name="NegativeColumns" xml:space="preserve">
+    <value>Negative columns: −{0} HP.</value>
+  </data>
+  <data name="LinkFailedReset" xml:space="preserve">
+    <value>No components left to compensate: the link is reset, start over.</value>
+  </data>
+  <data name="LinkMade" xml:space="preserve">
+    <value>Link made (value {0})!</value>
+  </data>
+  <data name="DiedToLinkBacklash" xml:space="preserve">
+    <value>you succumb to the link&#x27;s backlash</value>
+  </data>
+  <data name="BackToLinks" xml:space="preserve">
+    <value>Back to links</value>
+  </data>
+  <data name="FinalTitle" xml:space="preserve">
+    <value>Final activation</value>
+  </data>
+  <data name="FinalIntro" xml:space="preserve">
+    <value>The six constructs are linked: the Utopia Engine is ready. Roll 2d6 — reach or exceed the difficulty to save the world. Each failure costs 1 HP and 1 day.</value>
+  </data>
+  <data name="FinalDifficulty" xml:space="preserve">
+    <value>Difficulty: {0} (2d6, sum to reach)</value>
+  </data>
+  <data name="SacrificeHpButton" xml:space="preserve">
+    <value>Sacrifice HP (−1 difficulty per HP)</value>
+  </data>
+  <data name="SacrificeDone" xml:space="preserve">
+    <value>You channel your life force: −{0} HP, difficulty reduced by as much. There will be no second sacrifice.</value>
+  </data>
+  <data name="FinalRollButton" xml:space="preserve">
+    <value>Attempt the activation (2d6)</value>
+  </data>
+  <data name="FinalRollLine" xml:space="preserve">
+    <value>You roll {0} and {1}: {2}.</value>
+  </data>
+  <data name="FinalFail" xml:space="preserve">
+    <value>The Engine rumbles but does not start: −1 HP, +1 day.</value>
+  </data>
+  <data name="Victory" xml:space="preserve">
+    <value>THE UTOPIA ENGINE AWAKENS — the world is saved!</value>
+  </data>
+  <data name="FinalScore" xml:space="preserve">
+    <value>Final score: {0}.</value>
+  </data>
+  <data name="LifeExhausted" xml:space="preserve">
+    <value>your life force is spent</value>
+  </data>
+  <data name="SkullsFmt" xml:space="preserve">
+    <value>Skulls crossed: {0}/{1} (each skull = +1 day of deadline)</value>
+  </data>
+  <data name="GodsHandFmt" xml:space="preserve">
+    <value>God&#x27;s Hand energy: {0}/{1}</value>
+  </data>
+  <data name="BasketFmt" xml:space="preserve">
+    <value>Waste basket: {0}/{1} dice discarded</value>
+  </data>
+  <data name="CrossSkullButton" xml:space="preserve">
+    <value>Cross a skull (3 energy, +1 day)</value>
+  </data>
+  <data name="SkullCrossed" xml:space="preserve">
+    <value>The God&#x27;s Hand strikes: a skull is crossed, +1 day of deadline.</value>
+  </data>
+  <data name="RestHint" xml:space="preserve">
+    <value>Rest: recover 1 HP per day spent.</value>
+  </data>
+  <data name="RestButton" xml:space="preserve">
+    <value>Rest</value>
+  </data>
+  <data name="Rested" xml:space="preserve">
+    <value>You rest {0} day(s) — HP: {1}.</value>
+  </data>
+  <data name="ComponentsHeader" xml:space="preserve">
+    <value>Components</value>
+  </data>
+  <data name="ItemsHeader" xml:space="preserve">
+    <value>Items</value>
+  </data>
+  <data name="TreasuresHeader" xml:space="preserve">
+    <value>Legendary treasures</value>
+  </data>
+  <data name="NoTreasures" xml:space="preserve">
+    <value>No legendary treasure yet.</value>
+  </data>
+  <data name="ChargedState" xml:space="preserve">
+    <value>charged</value>
+  </data>
+  <data name="UsedState" xml:space="preserve">
+    <value>used</value>
+  </data>
+  <data name="DowsingRodName" xml:space="preserve">
+    <value>Dowsing rod</value>
+  </data>
+  <data name="ParalysisWandName" xml:space="preserve">
+    <value>Paralysis wand</value>
+  </data>
+  <data name="FocusCharmName" xml:space="preserve">
+    <value>Focus charm</value>
+  </data>
+  <data name="HelpTitle" xml:space="preserve">
+    <value>Help — game mechanics</value>
+  </data>
+  <data name="HelpBack" xml:space="preserve">
+    <value>Back to game</value>
+  </data>
+  <data name="HelpForThisScreen" xml:space="preserve">
+    <value>For this screen</value>
+  </data>
+  <data name="HelpFullHelp" xml:space="preserve">
+    <value>Full help</value>
+  </data>
+  <data name="HelpGoalTitle" xml:space="preserve">
+    <value>Goal</value>
+  </data>
+  <data name="HelpGoalBody" xml:space="preserve">
+    <value>You are the last artificer. Find the six constructs buried in the six regions, activate them, link them together, then attempt the final activation of the Utopia Engine before the world ends. You lose if time runs out or if your hit points drop below zero.</value>
+  </data>
+  <data name="HelpTimeTitle" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="HelpTimeBody" xml:space="preserve">
+    <value>Almost everything costs days: searching an already-searched region, resting, failing an activation… You start with 15 days. Each crossed skull (via the God&#x27;s Hand) extends the deadline by one day, up to 8 skulls. Some days are event days: new events are rolled randomly across the regions and modify searching or fighting while active.</value>
+  </data>
+  <data name="HelpSearchTitle" xml:space="preserve">
+    <value>Searching</value>
+  </data>
+  <data name="HelpSearchBody" xml:space="preserve">
+    <value>Each region holds 6 search boxes of 6 cells (3 top, 3 bottom). Roll two dice and place each one in a free cell; reroll until the box is full. The top row forms a 3-digit number, so does the bottom row: the search result is the difference (top − bottom). The art is putting the right digits in the right places!</value>
+  </data>
+  <data name="HelpResultsTitle" xml:space="preserve">
+    <value>Search results</value>
+  </data>
+  <data name="HelpResultsBody" xml:space="preserve">
+    <value>• 0 (perfect zero): the region&#x27;s construct is found AND activated immediately, +5 God&#x27;s Hand energy.
+• 1 to 10: the construct is found (if already found: 2 components instead).
+• 11 to 99: 1 component from the region.
+• Negative or 100 and above: a monster attacks! The more extreme the result, the stronger the monster (level 1 to 5: ±100 → lvl 2, ±200 → lvl 3, ±300 → lvl 4, ±400/500 → lvl 5).</value>
+  </data>
+  <data name="HelpCombatTitle" xml:space="preserve">
+    <value>Combat</value>
+  </data>
+  <data name="HelpCombatBody" xml:space="preserve">
+    <value>Each turn, roll two dice. Every die at or below the monster&#x27;s attack value costs you 1 HP; a die at or above its hit value kills it. A defeated monster may drop loot: a component, or the region&#x27;s legendary treasure for a level-5 monster. At 0 HP you fall unconscious: 6 days lost (4 with the Healing Horn), then HP restored. Below 0 HP, you are dead.</value>
+  </data>
+  <data name="HelpItemsTitle" xml:space="preserve">
+    <value>Items</value>
+  </data>
+  <data name="HelpItemsBody" xml:space="preserve">
+    <value>Three once-per-game items:
+• Dowsing rod: add or subtract up to 100 from a search result.
+• Paralysis wand: +2 to both dice for the rest of the current fight (decided after seeing the roll).
+• Focus charm: helps when activating a construct.
+Each item still charged at game end is worth 10 points.</value>
+  </data>
+  <data name="HelpGodshandTitle" xml:space="preserve">
+    <value>The God&#x27;s Hand</value>
+  </data>
+  <data name="HelpGodshandBody" xml:space="preserve">
+    <value>An energy gauge fed by perfect zeros and certain powers. Spend 3 energy to cross a skull: +1 day on the deadline and +5 points.</value>
+  </data>
+  <data name="HelpConstructsTitle" xml:space="preserve">
+    <value>Constructs, links and final activation</value>
+  </data>
+  <data name="HelpConstructsBody" xml:space="preserve">
+    <value>A found construct must be activated: place dice on its 4-column table. A completed column whose difference (top − bottom) is ±5 yields 2 energy, ±4 yields 1, 0 clears the column (redo it), any other difference locks it and costs 1 HP. You need 4 energy to activate; any surplus charges the God&#x27;s Hand. A failed table costs 1 day and grants a second table — if that one fails too, the construct activates anyway, exhausted.
+Activated constructs are then linked in pairs (six links, a 3-column table each). Starting a link costs 1 component. A column whose bottom exceeds its top costs 1 HP and 1 extra component (otherwise the whole link resets). The waste basket lets you discard a die instead of placing it — 10 dice maximum for the whole game. The sum of the link values sets the final activation difficulty: aim low! Once all six links are made, the final activation decides the game: 2d6 against that difficulty, each failure costing 1 HP and 1 day. Before the first roll, you may sacrifice HP to reduce the difficulty by that amount (once only).</value>
+  </data>
+  <data name="HelpScoreTitle" xml:space="preserve">
+    <value>Scoring</value>
+  </data>
+  <data name="HelpScoreBody" xml:space="preserve">
+    <value>Remaining HP + 10 per found construct + 5 per activated construct + 10 per legendary treasure + 5 per link + 5 per crossed skull + 20 per unmodified perfect zero + 10 per unused item. Victory: +50, plus 5 per remaining day.</value>
+  </data>
+  <data name="LanguageLabel" xml:space="preserve">
+    <value>Language:</value>
+  </data>
+</root>

@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:vm="using:UE.UI.ViewModels"
+                xmlns:loc="using:UE.UI.Localization"
+                mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                x:Class="UE.UI.Views.ConstructsView"
+                x:DataType="vm:ConstructsViewModel">
+    <ScrollViewer>
+        <StackPanel Spacing="12" MaxWidth="560" HorizontalAlignment="Center">
+            <TextBlock Text="{Binding Title}" FontSize="20" FontWeight="Bold"/>
+            <ItemsControl ItemsSource="{Binding Constructs}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:ConstructItemViewModel">
+                        <Border Classes="card">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Spacing="2">
+                                    <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding RegionName}" Opacity="0.7"/>
+                                    <TextBlock Text="{Binding Status}"/>
+                                </StackPanel>
+                                <Button Grid.Column="1" Content="{x:Static loc:L.ActivateAction}" Command="{Binding ActivateCommand}"
+                                        IsVisible="{Binding CanActivate}" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Button Content="{x:Static loc:L.BackToRegions}" Command="{Binding BackCommand}"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
